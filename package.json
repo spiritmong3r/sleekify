@@ -1,0 +1,44 @@
+{
+  "name": "sleekify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spiritmong3r/sleekify.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spiritmong3r/sleekify/issues"
+  },
+  "homepage": "https://github.com/spiritmong3r/sleekify#readme",
+  "dependencies": {
+    "@types/jest": "^27.4.1",
+    "ts-jest": "^27.1.4"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.4"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
+}
