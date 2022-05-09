@@ -8,7 +8,7 @@ export abstract class SortBy {
             else if (callback(previous) > callback(current)) return 1;
             else return 0;
         });
-        return new List(...values);
+        return new List<T>().reset(values);
     };
 
 }

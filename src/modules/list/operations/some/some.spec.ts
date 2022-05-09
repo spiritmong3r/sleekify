@@ -1,7 +1,7 @@
 import {PersonMock} from '../../../../test/mocks/person.mock';
 import {Some} from './some';
 
-describe('some', () => {
+describe('Some', () => {
 
     it('given an array of strings containing a single value 4, return true', () => {
         // GIVEN

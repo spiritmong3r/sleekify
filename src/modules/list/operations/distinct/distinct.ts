@@ -7,7 +7,7 @@ export abstract class Distinct {
             const duplicateIndex = values.findIndex(it => JSON.stringify(it) === JSON.stringify(value));
             return index === duplicateIndex;
         });
-        return new List(...result);
+        return new List<T>().reset(result);
     };
 
 }

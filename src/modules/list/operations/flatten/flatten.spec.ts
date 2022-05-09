@@ -2,7 +2,7 @@ import {MultidimensionalArrayHelper} from '../../../common/multidimensional-arra
 import {List} from '../../list';
 import {Flatten} from './flatten';
 
-describe('flatten', () => {
+describe('Flatten', () => {
 
     it('given an empty array, return an empty List', () => {
         // GIVEN
