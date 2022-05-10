@@ -3,7 +3,18 @@ import {Last} from './last';
 
 describe('Last', () => {
 
-    it('given an empty array, throw an exception', () => {
+    it('given an empty array and no predicate, throw an exception', () => {
+        // GIVEN
+        const values: any[] = [];
+
+        // WHEN
+        const result = () => Last.execute(values);
+
+        // THEN
+        expect(result).toThrowError('No value matches the predicate');
+    });
+
+    it('given an empty array and a predicate, throw an exception', () => {
         // GIVEN
         const values: any[] = [];
 
@@ -23,6 +34,18 @@ describe('Last', () => {
 
         // THEN
         expect(result).toThrowError('No value matches the predicate');
+    });
+
+    it('given an array of numbers and no predicate, return the last value', () => {
+        // GIVEN
+        const values = [1, 2, 3, 4, 5];
+
+        // WHEN
+        const result = Last.execute(values);
+
+        // THEN
+        const expected = 5;
+        expect(result).toEqual(expected);
     });
 
     it('given an array of numbers, return the last value matching the predicate', () => {

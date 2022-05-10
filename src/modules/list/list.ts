@@ -4,6 +4,7 @@ import {Distinct} from './operations/distinct/distinct';
 import {DropLast} from './operations/drop-last/drop-last';
 import {Drop} from './operations/drop/drop';
 import {Filter} from './operations/filter/filter';
+import {Find} from './operations/find/find';
 import {FirstOrNull} from './operations/first-or-null/first-or-null';
 import {First} from './operations/first/first';
 import {Flatmap} from './operations/flatmap/flatmap';
@@ -92,25 +93,24 @@ export class List<T> {
         return DropLast.execute(this.values, n);
     }
 
-    first(predicate: (value: T, index: number, array: T[]) => unknown): T {
+    find(predicate: (value: T, index: number, array: T[]) => boolean): T | undefined {
+        return Find.execute(this.values, predicate);
+    }
+
+    first(predicate?: (value: T, index: number, array: T[]) => boolean): T {
         return First.execute(this.values, predicate);
     }
 
-    firstOrNull(predicate: (value: T, index: number, array: T[]) => unknown): T | undefined {
+    firstOrNull(predicate?: (value: T, index: number, array: T[]) => boolean): T | undefined {
         return FirstOrNull.execute(this.values, predicate);
     }
 
-    last(predicate: (value: T, index: number, array: T[]) => boolean): T {
+    last(predicate?: (value: T, index: number, array: T[]) => boolean): T {
         return Last.execute(this.values, predicate);
     }
 
-    lastOrNull(predicate: (value: T, index: number, array: T[]) => boolean): T | undefined {
+    lastOrNull(predicate?: (value: T, index: number, array: T[]) => boolean): T | undefined {
         return LastOrNull.execute(this.values, predicate);
-    }
-
-    find(predicate: (value: T, index: number, array: T[]) => boolean): T {
-        // TODO to implement
-        return this.values[0];
     }
 
     reduce<U>(callback: (previousValue: U, currentValue: T, currentIndex: number, array: T[]) => U, initialValue: U): U {

@@ -3,7 +3,18 @@ import {LastOrNull} from './last-or-null';
 
 describe('LastOrNull', () => {
 
-    it('given an empty array, return undefined', () => {
+    it('given an empty array and no predicate, return undefined', () => {
+        // GIVEN
+        const values: any[] = [];
+
+        // WHEN
+        const result = LastOrNull.execute(values);
+
+        // THEN
+        expect(result).toBeUndefined();
+    });
+
+    it('given an empty array and a predicate, return undefined', () => {
         // GIVEN
         const values: any[] = [];
 
@@ -23,6 +34,18 @@ describe('LastOrNull', () => {
 
         // THEN
         expect(result).toBeUndefined();
+    });
+
+    it('given an array of numbers and no predicate, return the last value', () => {
+        // GIVEN
+        const values = [1, 2, 3, 4, 5];
+
+        // WHEN
+        const result = LastOrNull.execute(values);
+
+        // THEN
+        const expected = 5;
+        expect(result).toEqual(expected);
     });
 
     it('given an array of numbers, return the last value matching the predicate', () => {
