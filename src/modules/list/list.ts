@@ -1,3 +1,4 @@
+import {All} from './operations/all/all';
 import {Any} from './operations/any/any';
 import {Count} from './operations/count/count';
 import {Distinct} from './operations/distinct/distinct';
@@ -9,15 +10,18 @@ import {FirstOrNull} from './operations/first-or-null/first-or-null';
 import {First} from './operations/first/first';
 import {Flatmap} from './operations/flatmap/flatmap';
 import {Flatten} from './operations/flatten/flatten';
+import {IsEmpty} from './operations/is-empty/is-empty';
 import {LastOrNull} from './operations/last-or-null/last-or-null';
 import {Last} from './operations/last/last';
 import {Map} from './operations/map/map';
 import {MaxBy} from './operations/max-by/max-by';
+import {MinBy} from './operations/min-by/min-by';
 import {None} from './operations/none/none';
 import {Reduce} from './operations/reduce/reduce';
 import {Reverse} from './operations/reverse/reverse';
 import {Some} from './operations/some/some';
 import {SortBy} from './operations/sort-by/sort-by';
+import {Sum} from './operations/sum/sum';
 import {TakeLast} from './operations/take-last/take-last';
 import {Take} from './operations/take/take';
 import {ToArray} from './operations/to-array/to-array';
@@ -128,8 +132,7 @@ export class List<T> {
     }
 
     minBy<U>(callback: (value: T) => U): T | undefined {
-        // TODO to implement
-        return undefined;
+        return MinBy.execute(this.values, callback);
     }
 
     maxBy<U>(callback: (value: T) => U): T | undefined {
@@ -149,8 +152,7 @@ export class List<T> {
     }
 
     all(predicate: (value: T, index: number, array: T[]) => boolean): boolean {
-        // TODO to implement
-        return false;
+        return All.execute(this.values, predicate);
     }
 
     contains(element: T): boolean {
@@ -159,8 +161,11 @@ export class List<T> {
     }
 
     isEmpty(): boolean {
-        // TODO to implement
-        return false;
+        return IsEmpty.execute(this.values);
+    }
+
+    isNotEmpty(): boolean {
+        return !IsEmpty.execute(this.values);
     }
 
     joinTo(): string {
@@ -169,8 +174,7 @@ export class List<T> {
     }
 
     sum(): number {
-        // TODO to implement
-        return 0;
+        return Sum.execute(this.values);
     }
 
     sumBy(predicate?: (value: T, index: number, array: T[]) => boolean): number {
