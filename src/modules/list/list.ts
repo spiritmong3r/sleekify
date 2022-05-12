@@ -1,3 +1,4 @@
+import {JoinProps} from './models/JoinProps';
 import {All} from './operations/all/all';
 import {Any} from './operations/any/any';
 import {Count} from './operations/count/count';
@@ -11,6 +12,7 @@ import {First} from './operations/first/first';
 import {Flatmap} from './operations/flatmap/flatmap';
 import {Flatten} from './operations/flatten/flatten';
 import {IsEmpty} from './operations/is-empty/is-empty';
+import {Join} from './operations/join/join';
 import {LastOrNull} from './operations/last-or-null/last-or-null';
 import {Last} from './operations/last/last';
 import {Map} from './operations/map/map';
@@ -168,18 +170,12 @@ export class List<T> {
         return !IsEmpty.execute(this.values);
     }
 
-    joinTo(): string {
-        // TODO to implement
-        return '';
+    join<U>(props?: JoinProps, callback?: (value: T) => U): string {
+        return Join.execute(this.values, props, callback);
     }
 
-    sum(): number {
-        return Sum.execute(this.values);
-    }
-
-    sumBy(predicate?: (value: T, index: number, array: T[]) => boolean): number {
-        // TODO to implement
-        return 0;
+    sum<U>(callback?: (value: T) => U): number {
+        return Sum.execute(this.values, callback);
     }
 
     count(predicate?: (value: T, index: number, array: T[]) => boolean): number {
