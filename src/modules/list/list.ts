@@ -48,7 +48,7 @@ export class List<T> {
         return Filter.execute(this.values, predicate);
     }
 
-    onEach(): List<T> {
+    onEach<U>(callback: (value: T, index: number, array: T[]) => T): List<T> {
         // TODO to implement
         return new List();
     }
