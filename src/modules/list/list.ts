@@ -25,9 +25,10 @@ import {NoneOperation} from './operations/none/none.operation';
 import {OnEachOperation} from './operations/on-each/on-each.operation';
 import {ReduceOperation} from './operations/reduce/reduce.operation';
 import {ReverseOperation} from './operations/reverse/reverse.operation';
+import {SizeOperation} from './operations/size/size.operation';
 import {SomeOperation} from './operations/some/some.operation';
 import {SortByOperation} from './operations/sort-by/sort-by.operation';
-import {SumOperation} from './operations/sum/sum.operation';
+import {SumByOperation} from './operations/sum-by/sum-by.operation';
 import {TakeLastOperation} from './operations/take-last/take-last.operation';
 import {TakeOperation} from './operations/take/take.operation';
 import {ToArrayOperation} from './operations/to-array/to-array.operation';
@@ -57,16 +58,16 @@ export class List<T> {
         return FilterOperation.execute(this.values, predicate);
     }
 
-    onEach<U>(callback: (value: T, index: number, array: T[]) => T): List<T> {
-        return OnEachOperation.execute(this.values, callback);
+    onEach<U>(selector: (value: T, index: number, array: T[]) => T): List<T> {
+        return OnEachOperation.execute(this.values, selector);
     }
 
-    map<U>(callback: (value: T, index: number, array: T[]) => U): List<U> {
-        return MapOperation.execute(this.values, callback);
+    map<U>(selector: (value: T, index: number, array: T[]) => U): List<U> {
+        return MapOperation.execute(this.values, selector);
     }
 
-    flatMap<U, This = undefined>(callback: (this: This, value: T, index: number, array: T[]) => U | U[]): List<U> {
-        return FlatmapOperation.execute(this.values, callback);
+    flatMap<U, This = undefined>(selector: (this: This, value: T, index: number, array: T[]) => U | U[]): List<U> {
+        return FlatmapOperation.execute(this.values, selector);
     }
 
     flatten(depth: number = 1): List<T> {
@@ -78,16 +79,16 @@ export class List<T> {
     }
 
     // TODO to improve by adding asc/desc option, etc ...
-    sortBy<U>(callback: (value: T) => U): List<T> {
-        return SortByOperation.execute(this.values, callback);
+    sortBy<U>(selector: (value: T) => U): List<T> {
+        return SortByOperation.execute(this.values, selector);
     }
 
     distinct(): List<T> {
         return DistinctOperation.execute(this.values);
     }
 
-    distinctBy<U>(callback: (value: T) => U): List<T> {
-        return DistinctByOperation.execute(this.values, callback);
+    distinctBy<U>(selector: (value: T) => U): List<T> {
+        return DistinctByOperation.execute(this.values, selector);
     }
 
     take(n: number): List<T> {
@@ -126,20 +127,29 @@ export class List<T> {
         return LastOrNullOperation.execute(this.values, predicate);
     }
 
-    reduce<U>(callback: (previousValue: U, currentValue: T, currentIndex: number, array: T[]) => U, initialValue: U): U {
-        return ReduceOperation.execute(this.values, callback, initialValue);
+    reduce<U>(operation: (previousValue: U, currentValue: T, currentIndex: number, array: T[]) => U, initialValue: U): U {
+        return ReduceOperation.execute(this.values, operation, initialValue);
     }
 
-    groupBy<K>(callback: (value: T) => K): Map<K, T[]> {
-        return GroupByOperation.execute(this.values, callback);
+    groupBy<K>(selector: (value: T) => K): Map<K, T[]> {
+        return GroupByOperation.execute(this.values, selector);
     }
 
-    minBy<U>(callback: (value: T) => U): T | undefined {
-        return MinByOperation.execute(this.values, callback);
+    min<U>(selector?: (value: T) => U): T | undefined {
+        // TODO to implement
+        return undefined;
     }
 
-    maxBy<U>(callback: (value: T) => U): T | undefined {
-        return MaxByOperation.execute(this.values, callback);
+    minBy<U>(selector: (value: T) => U): T | undefined {
+        return MinByOperation.execute(this.values, selector);
+    }
+
+    max<U>(selector?: (value: T) => U): T | undefined {
+        return undefined;
+    }
+
+    maxBy<U>(selector: (value: T) => U): T | undefined {
+        return MaxByOperation.execute(this.values, selector);
     }
 
     some(predicate: (value: T, index: number, array: T[]) => boolean): boolean {
@@ -162,6 +172,10 @@ export class List<T> {
         return ContainsOperation.execute(this.values, element);
     }
 
+    containsAll(elements: T[]): boolean {
+        return false; // TODO to implement
+    }
+
     isEmpty(): boolean {
         return IsEmptyOperation.execute(this.values);
     }
@@ -170,16 +184,20 @@ export class List<T> {
         return !IsEmptyOperation.execute(this.values);
     }
 
-    join<U>(props?: JoinProps, callback?: (value: T) => U): string {
-        return JoinOperation.execute(this.values, props, callback);
+    join<U>(props?: JoinProps, selector?: (value: T) => U): string {
+        return JoinOperation.execute(this.values, props, selector);
     }
 
-    sum<U>(callback?: (value: T) => U): number {
-        return SumOperation.execute(this.values, callback);
+    sum<U>(selector?: (value: T) => U): number {
+        return SumByOperation.execute(this.values, selector);
     }
 
     count(predicate?: (value: T, index: number, array: T[]) => boolean): number {
         return CountOperation.execute(this.values, predicate);
+    }
+
+    size(): number {
+        return SizeOperation.execute(this.values);
     }
 
     toArray(): T[] {

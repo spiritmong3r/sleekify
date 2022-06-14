@@ -11,8 +11,8 @@ describe('listOf', () => {
         const result = listOf(...values);
 
         // THEN
-        const expected = JSON.stringify(new List(1, 2, 3, 4, 5));
-        expect(JSON.stringify(result)).toEqual(expected);
+        const expected = new List(1, 2, 3, 4, 5);
+        expect(result).toEqual(expected);
     });
 
     it('given a string, return a List of string', () => {
@@ -23,8 +23,8 @@ describe('listOf', () => {
         const result = listOf(value);
 
         // THEN
-        const expected = JSON.stringify(new List('hello'));
-        expect(JSON.stringify(result)).toEqual(expected);
+        const expected = new List('hello');
+        expect(result).toEqual(expected);
     });
 
 });

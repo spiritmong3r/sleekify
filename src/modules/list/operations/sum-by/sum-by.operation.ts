@@ -1,7 +1,7 @@
-export abstract class SumOperation {
+export abstract class SumByOperation {
 
-    static execute = <T, U>(values: T[], callback?: (value: T) => U): number => {
-        const valuesFound = (callback) ? values.map(callback) : values;
+    static execute = <T, U>(values: T[], selector?: (value: T) => U): number => {
+        const valuesFound = (selector) ? values.map(selector) : values;
 
         if (valuesFound.some(it => typeof it !== 'number')) throw Error('Type of array is not number');
         else return valuesFound
