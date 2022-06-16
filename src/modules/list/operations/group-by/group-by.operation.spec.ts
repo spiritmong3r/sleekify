@@ -1,11 +1,11 @@
 import {PersonMock} from '../../../../test/mocks/person.mock';
 import * as object from '../../../common/object/deep-equal';
 import {GroupByOperation} from './group-by.operation';
-import clearAllMocks = jest.clearAllMocks;
+import resetAllMocks = jest.resetAllMocks;
 
 describe('GroupByOperation', () => {
 
-    afterEach(() => clearAllMocks());
+    afterEach(() => resetAllMocks());
 
     it('given an empty array, return an empty Map', () => {
         // GIVEN

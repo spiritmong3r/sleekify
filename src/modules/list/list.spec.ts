@@ -6,7 +6,6 @@ import {AllOperation} from './operations/all/all.operation';
 import {AnyOperation} from './operations/any/any.operation';
 import {ContainsOperation} from './operations/contains/contains.operation';
 import {CountOperation} from './operations/count/count.operation';
-import {DistinctByOperation} from './operations/distinct-by/distinct-by.operation';
 import {DistinctOperation} from './operations/distinct/distinct.operation';
 import {DropLastOperation} from './operations/drop-last/drop-last.operation';
 import {DropOperation} from './operations/drop/drop.operation';
@@ -22,23 +21,24 @@ import {JoinOperation} from './operations/join/join.operation';
 import {LastOrNullOperation} from './operations/last-or-null/last-or-null.operation';
 import {LastOperation} from './operations/last/last.operation';
 import {MapOperation} from './operations/map/map.operation';
-import {MaxByOperation} from './operations/max-by/max-by.operation';
-import {MinByOperation} from './operations/min-by/min-by.operation';
+import {MaxOperation} from './operations/max/max.operation';
+import {MinOperation} from './operations/min/min.operation';
 import {NoneOperation} from './operations/none/none.operation';
 import {OnEachOperation} from './operations/on-each/on-each.operation';
 import {ReduceOperation} from './operations/reduce/reduce.operation';
 import {ReverseOperation} from './operations/reverse/reverse.operation';
+import {SizeOperation} from './operations/size/size.operation';
 import {SomeOperation} from './operations/some/some.operation';
-import {SortByOperation} from './operations/sort-by/sort-by.operation';
-import {SumByOperation} from './operations/sum-by/sum-by.operation';
+import {SortOperation} from './operations/sort/sort.operation';
+import {SumOperation} from './operations/sum/sum.operation';
 import {TakeLastOperation} from './operations/take-last/take-last.operation';
 import {TakeOperation} from './operations/take/take.operation';
 import {ToArrayOperation} from './operations/to-array/to-array.operation';
-import clearAllMocks = jest.clearAllMocks;
+import resetAllMocks = jest.resetAllMocks;
 
 describe('List', () => {
 
-    afterEach(() => clearAllMocks());
+    afterEach(() => resetAllMocks());
 
     describe('reset', () => {
         it('assign a new value to the array', () => {
@@ -168,25 +168,38 @@ describe('List', () => {
         });
     });
 
-    describe('sortBy', () => {
-        it('call the SortBy operation class', () => {
+    describe('sort', () => {
+        it('call the Sort operation class without selector', () => {
             // GIVEN
             const list = new List('1', '2', '3', '4', '5', '6', '7', '8');
-            const selector = (it: string) => it;
-            jest.spyOn(SortByOperation, 'execute').mockImplementation(() => new List('1', '2', '3', '4', '5', '6', '7', '8'));
+            jest.spyOn(SortOperation, 'execute').mockImplementation(() => new List('1', '2', '3', '4', '5', '6', '7', '8'));
 
             // WHEN
-            const result = list.sortBy(selector);
+            const result = list.sort();
 
             // THEN
             const expected = new List('1', '2', '3', '4', '5', '6', '7', '8');
             expect(result).toEqual(expected);
-            expect(SortByOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], selector);
+            expect(SortOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], undefined);
+        });
+        it('call the Sort operation class with selector', () => {
+            // GIVEN
+            const list = new List('1', '2', '3', '4', '5', '6', '7', '8');
+            const selector = (it: string) => it;
+            jest.spyOn(SortOperation, 'execute').mockImplementation(() => new List('1', '2', '3', '4', '5', '6', '7', '8'));
+
+            // WHEN
+            const result = list.sort(selector);
+
+            // THEN
+            const expected = new List('1', '2', '3', '4', '5', '6', '7', '8');
+            expect(result).toEqual(expected);
+            expect(SortOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], selector);
         });
     });
 
     describe('distinct', () => {
-        it('call the Distinct operation class', () => {
+        it('call the Distinct operation class without selector', () => {
             // GIVEN
             const list = new List('1', '2', '3', '4', '5', '6', '7', '8');
             jest.spyOn(DistinctOperation, 'execute').mockImplementation(() => new List('1', '2', '3', '4', '5', '6', '7', '8'));
@@ -197,24 +210,21 @@ describe('List', () => {
             // THEN
             const expected = new List('1', '2', '3', '4', '5', '6', '7', '8');
             expect(result).toEqual(expected);
-            expect(DistinctOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8']);
+            expect(DistinctOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], undefined);
         });
-    });
-
-    describe('distinctBy', () => {
-        it('call the DistinctBy operation class', () => {
+        it('call the Distinct operation class with selector', () => {
             // GIVEN
             const list = new List('1', '2', '3', '4', '5', '6', '7', '8');
             const selector = (it: string) => it;
-            jest.spyOn(DistinctByOperation, 'execute').mockImplementation(() => new List('1', '2', '3', '4', '5', '6', '7', '8'));
+            jest.spyOn(DistinctOperation, 'execute').mockImplementation(() => new List('1', '2', '3', '4', '5', '6', '7', '8'));
 
             // WHEN
-            const result = list.distinctBy(selector);
+            const result = list.distinct(selector);
 
             // THEN
             const expected = new List('1', '2', '3', '4', '5', '6', '7', '8');
             expect(result).toEqual(expected);
-            expect(DistinctByOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], selector);
+            expect(DistinctOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], selector);
         });
     });
 
@@ -477,37 +487,63 @@ describe('List', () => {
         });
     });
 
-    describe('minBy', () => {
-        it('call the MinBy operation class', () => {
+    describe('min', () => {
+        it('call the Min operation class without selector', () => {
             // GIVEN
             const list = new List('1', '2', '3', '4', '5', '6', '7', '8');
-            const selector = (it: string) => it;
-            jest.spyOn(MinByOperation, 'execute').mockImplementation(() => '1');
+            jest.spyOn(MinOperation, 'execute').mockImplementation(() => '1');
 
             // WHEN
-            const result = list.minBy(selector);
+            const result = list.min();
 
             // THEN
             const expected = '1';
             expect(result).toEqual(expected);
-            expect(MinByOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], selector);
+            expect(MinOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], undefined);
         });
-    });
-
-    describe('maxBy', () => {
-        it('call the MaxBy operation class', () => {
+        it('call the Min operation class with selector', () => {
             // GIVEN
             const list = new List('1', '2', '3', '4', '5', '6', '7', '8');
             const selector = (it: string) => it;
-            jest.spyOn(MaxByOperation, 'execute').mockImplementation(() => '8');
+            jest.spyOn(MinOperation, 'execute').mockImplementation(() => '1');
 
             // WHEN
-            const result = list.maxBy(selector);
+            const result = list.min(selector);
+
+            // THEN
+            const expected = '1';
+            expect(result).toEqual(expected);
+            expect(MinOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], selector);
+        });
+    });
+
+    describe('max', () => {
+        it('call the Max operation class without operator', () => {
+            // GIVEN
+            const list = new List('1', '2', '3', '4', '5', '6', '7', '8');
+            jest.spyOn(MaxOperation, 'execute').mockImplementation(() => '8');
+
+            // WHEN
+            const result = list.max();
 
             // THEN
             const expected = '8';
             expect(result).toEqual(expected);
-            expect(MaxByOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], selector);
+            expect(MaxOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], undefined);
+        });
+        it('call the Max operation class with operator', () => {
+            // GIVEN
+            const list = new List('1', '2', '3', '4', '5', '6', '7', '8');
+            const selector = (it: string) => it;
+            jest.spyOn(MaxOperation, 'execute').mockImplementation(() => '8');
+
+            // WHEN
+            const result = list.max(selector);
+
+            // THEN
+            const expected = '8';
+            expect(result).toEqual(expected);
+            expect(MaxOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], selector);
         });
     });
 
@@ -738,10 +774,10 @@ describe('List', () => {
     });
 
     describe('sum', () => {
-        it('call the SumBy operation class without selector', () => {
+        it('call the Sum operation class without selector', () => {
             // GIVEN
             const list = new List('1', '2', '3', '4', '5', '6', '7', '8');
-            jest.spyOn(SumByOperation, 'execute').mockImplementation(() => 8);
+            jest.spyOn(SumOperation, 'execute').mockImplementation(() => 8);
 
             // WHEN
             const result = list.sum();
@@ -749,24 +785,21 @@ describe('List', () => {
             // THEN
             const expected = 8;
             expect(result).toEqual(expected);
-            expect(SumByOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8']);
+            expect(SumOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], undefined);
         });
-    });
-
-    describe('sumBy', () => {
-        it('call the SumBy operation class with selector', () => {
+        it('call the Sum operation class with selector', () => {
             // GIVEN
             const list = new List('1', '2', '3', '4', '5', '6', '7', '8');
             const selector = (it: string) => it;
-            jest.spyOn(SumByOperation, 'execute').mockImplementation(() => 8);
+            jest.spyOn(SumOperation, 'execute').mockImplementation(() => 8);
 
             // WHEN
-            const result = list.sumBy(selector);
+            const result = list.sum(selector);
 
             // THEN
             const expected = 8;
             expect(result).toEqual(expected);
-            expect(SumByOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], selector);
+            expect(SumOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], selector);
         });
     });
 
@@ -797,6 +830,22 @@ describe('List', () => {
             const expected = 8;
             expect(result).toEqual(expected);
             expect(CountOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], undefined);
+        });
+    });
+
+    describe('size', () => {
+        it('call the Size operation class', () => {
+            // GIVEN
+            const list = new List('1', '2', '3', '4', '5', '6', '7', '8');
+            jest.spyOn(SizeOperation, 'execute').mockImplementation(() => 8);
+
+            // WHEN
+            const result = list.size();
+
+            // THEN
+            const expected = 8;
+            expect(result).toEqual(expected);
+            expect(SizeOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8']);
         });
     });
 

@@ -3,7 +3,6 @@ import {AllOperation} from './operations/all/all.operation';
 import {AnyOperation} from './operations/any/any.operation';
 import {ContainsOperation} from './operations/contains/contains.operation';
 import {CountOperation} from './operations/count/count.operation';
-import {DistinctByOperation} from './operations/distinct-by/distinct-by.operation';
 import {DistinctOperation} from './operations/distinct/distinct.operation';
 import {DropLastOperation} from './operations/drop-last/drop-last.operation';
 import {DropOperation} from './operations/drop/drop.operation';
@@ -19,16 +18,16 @@ import {JoinOperation} from './operations/join/join.operation';
 import {LastOrNullOperation} from './operations/last-or-null/last-or-null.operation';
 import {LastOperation} from './operations/last/last.operation';
 import {MapOperation} from './operations/map/map.operation';
-import {MaxByOperation} from './operations/max-by/max-by.operation';
-import {MinByOperation} from './operations/min-by/min-by.operation';
+import {MaxOperation} from './operations/max/max.operation';
+import {MinOperation} from './operations/min/min.operation';
 import {NoneOperation} from './operations/none/none.operation';
 import {OnEachOperation} from './operations/on-each/on-each.operation';
 import {ReduceOperation} from './operations/reduce/reduce.operation';
 import {ReverseOperation} from './operations/reverse/reverse.operation';
 import {SizeOperation} from './operations/size/size.operation';
 import {SomeOperation} from './operations/some/some.operation';
-import {SortByOperation} from './operations/sort-by/sort-by.operation';
-import {SumByOperation} from './operations/sum-by/sum-by.operation';
+import {SortOperation} from './operations/sort/sort.operation';
+import {SumOperation} from './operations/sum/sum.operation';
 import {TakeLastOperation} from './operations/take-last/take-last.operation';
 import {TakeOperation} from './operations/take/take.operation';
 import {ToArrayOperation} from './operations/to-array/to-array.operation';
@@ -79,16 +78,12 @@ export class List<T> {
     }
 
     // TODO to improve by adding asc/desc option, etc ...
-    sortBy<U>(selector: (value: T) => U): List<T> {
-        return SortByOperation.execute(this.values, selector);
+    sort<U>(selector?: (value: T) => U): List<T> {
+        return SortOperation.execute(this.values, selector);
     }
 
-    distinct(): List<T> {
-        return DistinctOperation.execute(this.values);
-    }
-
-    distinctBy<U>(selector: (value: T) => U): List<T> {
-        return DistinctByOperation.execute(this.values, selector);
+    distinct<U>(selector?: (value: T) => U): List<T> {
+        return DistinctOperation.execute(this.values, selector);
     }
 
     take(n: number): List<T> {
@@ -136,20 +131,11 @@ export class List<T> {
     }
 
     min<U>(selector?: (value: T) => U): T | undefined {
-        // TODO to implement
-        return undefined;
-    }
-
-    minBy<U>(selector: (value: T) => U): T | undefined {
-        return MinByOperation.execute(this.values, selector);
+        return MinOperation.execute(this.values, selector);
     }
 
     max<U>(selector?: (value: T) => U): T | undefined {
-        return undefined;
-    }
-
-    maxBy<U>(selector: (value: T) => U): T | undefined {
-        return MaxByOperation.execute(this.values, selector);
+        return MaxOperation.execute(this.values, selector);
     }
 
     some(predicate: (value: T, index: number, array: T[]) => boolean): boolean {
@@ -189,7 +175,7 @@ export class List<T> {
     }
 
     sum<U>(selector?: (value: T) => U): number {
-        return SumByOperation.execute(this.values, selector);
+        return SumOperation.execute(this.values, selector);
     }
 
     count(predicate?: (value: T, index: number, array: T[]) => boolean): number {

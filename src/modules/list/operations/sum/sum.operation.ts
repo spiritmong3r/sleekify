@@ -1,4 +1,4 @@
-export abstract class SumByOperation {
+export abstract class SumOperation {
 
     static execute = <T, U>(values: T[], selector?: (value: T) => U): number => {
         const valuesFound = (selector) ? values.map(selector) : values;
