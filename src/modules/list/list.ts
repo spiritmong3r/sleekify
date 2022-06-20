@@ -1,6 +1,7 @@
 import {JoinProps} from './models/JoinProps';
 import {AllOperation} from './operations/all/all.operation';
 import {AnyOperation} from './operations/any/any.operation';
+import {ContainsAllOperation} from './operations/contains-all/contains-all.operation';
 import {ContainsOperation} from './operations/contains/contains.operation';
 import {CountOperation} from './operations/count/count.operation';
 import {DistinctOperation} from './operations/distinct/distinct.operation';
@@ -12,6 +13,7 @@ import {FirstOrNullOperation} from './operations/first-or-null/first-or-null.ope
 import {FirstOperation} from './operations/first/first.operation';
 import {FlatmapOperation} from './operations/flatmap/flatmap.operation';
 import {FlattenOperation} from './operations/flatten/flatten.operation';
+import {ForEachOperation} from './operations/for-each/for-each.operation';
 import {GroupByOperation} from './operations/group-by/group-by.operation';
 import {IsEmptyOperation} from './operations/is-empty/is-empty.operation';
 import {JoinOperation} from './operations/join/join.operation';
@@ -57,8 +59,12 @@ export class List<T> {
         return FilterOperation.execute(this.values, predicate);
     }
 
-    onEach<U>(selector: (value: T, index: number, array: T[]) => T): List<T> {
+    onEach<U>(selector: (value: T, index: number, array: T[]) => void): List<T> {
         return OnEachOperation.execute(this.values, selector);
+    }
+
+    forEach(selector: (value: T, index: number, array: T[]) => void): void {
+        ForEachOperation.execute(this.values, selector);
     }
 
     map<U>(selector: (value: T, index: number, array: T[]) => U): List<U> {
@@ -159,7 +165,7 @@ export class List<T> {
     }
 
     containsAll(elements: T[]): boolean {
-        return false; // TODO to implement
+        return ContainsAllOperation.execute(this.values, elements);
     }
 
     isEmpty(): boolean {

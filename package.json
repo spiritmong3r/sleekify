@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "test": "jest",
+    "test": "jest --runInBand",
     "coverage": "jest --coverage"
   },
   "repository": {
@@ -19,9 +19,12 @@
   },
   "homepage": "https://github.com/spiritmong3r/sleekify#readme",
   "dependencies": {
+    "@stryker-mutator/core": "^6.0.2",
+    "@stryker-mutator/jest-runner": "^6.0.2",
     "@types/jest": "^27.4.1"
   },
   "devDependencies": {
+    "@stryker-mutator/typescript-checker": "^6.0.2",
     "jest": "^28.1.0",
     "ts-jest": "^28.0.2",
     "typescript": "^4.6.4"

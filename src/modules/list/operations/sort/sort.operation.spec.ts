@@ -4,9 +4,9 @@ import {SortOperation} from './sort.operation';
 
 describe('SortByOperation', () => {
 
-    it('given an array of strings, return this List sorted from the lowest to the highest', () => {
+    it('given an array of strings, return a List sorted from the lowest to the highest', () => {
         // GIVEN
-        const values = ['1', '2', '5', '4', '3', '9', '0'];
+        const values = ['1', '0', '2', '5', '4', '3', '9'];
 
         // WHEN
         const result = SortOperation.execute(values);
@@ -16,7 +16,7 @@ describe('SortByOperation', () => {
         expect(result).toEqual(expected);
     });
 
-    it('given an array of persons, return this List in the same order', () => {
+    it('given an array of persons, return a List in the same order', () => {
         // GIVEN
         const values = [PersonMock.ed(), PersonMock.jane(), PersonMock.jo(), PersonMock.bob()];
 
@@ -28,7 +28,7 @@ describe('SortByOperation', () => {
         expect(result).toEqual(expected);
     });
 
-    it('given a selector and an array of strings, return this List sorted from the lowest to the highest', () => {
+    it('given a selector and an array of strings, return a List sorted from the lowest to the highest', () => {
         // GIVEN
         const values = ['1', '2', '5', '4', '3', '9', '0'];
 
@@ -40,7 +40,7 @@ describe('SortByOperation', () => {
         expect(result).toEqual(expected);
     });
 
-    it('given a selector and an array of persons, return this List sorted from youngest to the oldest', () => {
+    it('given a selector and an array of persons, return a List sorted from youngest to the oldest', () => {
         // GIVEN
         const values = [PersonMock.ed(), PersonMock.jane(), PersonMock.jo(), PersonMock.bob()];
 

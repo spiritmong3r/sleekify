@@ -13,7 +13,8 @@ export abstract class MultidimensionalArrayHelper {
             return array.reduce((previous: T[], current: T) => {
                 let previousAsArray: T[] = ArrayHelper.transformToArray(previous);
                 let currentAsArray: T[] = ArrayHelper.transformToArray(current);
-                return previousAsArray.concat(MultidimensionalArrayHelper.flatDeep(currentAsArray, depth - 1));
+                previousAsArray.push(...MultidimensionalArrayHelper.flatDeep(currentAsArray, depth - 1));
+                return previousAsArray;
             }, [] as T[]);
         } else {
             return array.slice();

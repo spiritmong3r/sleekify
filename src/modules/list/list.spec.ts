@@ -4,6 +4,7 @@ import {List} from './list';
 import {JoinProps} from './models/JoinProps';
 import {AllOperation} from './operations/all/all.operation';
 import {AnyOperation} from './operations/any/any.operation';
+import {ContainsAllOperation} from './operations/contains-all/contains-all.operation';
 import {ContainsOperation} from './operations/contains/contains.operation';
 import {CountOperation} from './operations/count/count.operation';
 import {DistinctOperation} from './operations/distinct/distinct.operation';
@@ -15,6 +16,7 @@ import {FirstOrNullOperation} from './operations/first-or-null/first-or-null.ope
 import {FirstOperation} from './operations/first/first.operation';
 import {FlatmapOperation} from './operations/flatmap/flatmap.operation';
 import {FlattenOperation} from './operations/flatten/flatten.operation';
+import {ForEachOperation} from './operations/for-each/for-each.operation';
 import {GroupByOperation} from './operations/group-by/group-by.operation';
 import {IsEmptyOperation} from './operations/is-empty/is-empty.operation';
 import {JoinOperation} from './operations/join/join.operation';
@@ -99,6 +101,21 @@ describe('List', () => {
             const expected = new List('1', '2', '3', '4', '5', '6', '7', '8');
             expect(result).toEqual(expected);
             expect(OnEachOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], selector);
+        });
+    });
+
+    describe('forEach', () => {
+        it('call the ForEach operation class', () => {
+            // GIVEN
+            const list = new List('1', '2', '3', '4', '5', '6', '7', '8');
+            const selector = (it: string) => it;
+            jest.spyOn(ForEachOperation, 'execute').mockImplementation();
+
+            // WHEN
+            list.forEach(selector);
+
+            // THEN
+            expect(ForEachOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], selector);
         });
     });
 
@@ -687,6 +704,33 @@ describe('List', () => {
             // THEN
             expect(result).toBeFalsy();
             expect(ContainsOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], '9');
+        });
+    });
+
+    describe('containsAll', () => {
+        it('call the ContainsAll operation class, return true', () => {
+            // GIVEN
+            const list = new List('1', '2', '3', '4', '5', '6', '7', '8');
+            jest.spyOn(ContainsAllOperation, 'execute').mockImplementation(() => true);
+
+            // WHEN
+            const result = list.containsAll(['1']);
+
+            // THEN
+            expect(result).toBeTruthy();
+            expect(ContainsAllOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], ['1']);
+        });
+        it('call the ContainsAll operation class, return false', () => {
+            // GIVEN
+            const list = new List('1', '2', '3', '4', '5', '6', '7', '8');
+            jest.spyOn(ContainsAllOperation, 'execute').mockImplementation(() => false);
+
+            // WHEN
+            const result = list.containsAll(['9']);
+
+            // THEN
+            expect(result).toBeFalsy();
+            expect(ContainsAllOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], ['9']);
         });
     });
 

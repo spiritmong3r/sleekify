@@ -2,6 +2,7 @@ import {Person} from '../models/person';
 
 export abstract class PersonMock {
 
+
     static bob = (): Person => ({name: 'Todd', firstName: 'Bob', age: 18, country: {name: 'US'}});
 
     static ed = (): Person => ({name: 'Todd', firstName: 'Ed', age: 19, country: {name: 'US'}});

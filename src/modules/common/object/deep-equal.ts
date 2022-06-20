@@ -1,5 +1,4 @@
 /**
- * TODO CMT: TU
  *
  * @param object1
  * @param object2
