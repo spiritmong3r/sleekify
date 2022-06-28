@@ -37,12 +37,22 @@ import {ToArrayOperation} from './operations/to-array/to-array.operation';
 /**
  * @author cleme_mo
  */
-export class List<T> {
+export class List<T> implements Iterable<T> {
 
     protected values: T[];
 
     constructor(...value: T[]) {
         this.values = value;
+    }
+
+    [Symbol.iterator](): Iterator<T, T, T | undefined> {
+        let position = 0;
+        return {
+            next: (): IteratorResult<T, T> => ({
+                value: this.values[position++],
+                done: position === this.values.length - 1
+            })
+        };
     }
 
     reset(values: T[]): List<T> {
