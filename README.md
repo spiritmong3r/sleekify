@@ -1,26 +1,7 @@
-<style>
-    pre {
-      counter-reset: line;
-    }
-    line {
-      counter-increment: line;
-    }
-    line::before {
-      content: counter(line);
-      display: inline-block;
-      width: 1.5em; /* Fixed width */
-      border-right: 1px solid #ddd;
-      padding: 0 .5em;
-      margin-right: .5em;
-      color: #888;
-      -webkit-user-select: none;
-    }
-</style>
-
-<p style="text-align: center">
+<h3 align=center>
     <img src="logo_sleekify.png" alt="Sublime's custom image" style="text-align: center"/>
-</p>
-<div style="text-align: center; font-weight: bold">Typescript library that offers elegant and powerful utility functions.</div>
+    <div style="text-align: center; font-weight: bold">Typescript library that offers elegant and powerful utility functions.</div>
+</h3>
 
 <br/>
 
