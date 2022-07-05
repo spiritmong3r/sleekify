@@ -1,21 +1,47 @@
 <h3 align=center>
     <img src="logo_sleekify.png" alt="Sublime's custom image" style="text-align: center"/>
-    <div style="text-align: center; font-weight: bold">Typescript library that offers elegant and powerful utility functions.</div>
 </h3>
+<h4 align=center>
+    <div>Typescript library that offers elegant and powerful utility functions.</div>
+</h4>
+
+<br/>
+
+## Why sleekify ?
+
+Sleekify provides powerful utility functions that makes your code more lightweight. The idea is to offer the possibility to the developer to write less code thanks to these functions.
+
+<br/>
+
+## Getting start
+
+### Prerequisites
+
+- npm
+- node
+
+### Installation
+
+  ```sh
+  npm i sleekify
+  ```
+
+### Usage
+
+  ```ts
+  import List from 'sleekify';
+  ```
 
 <br/>
 
 ## API documentation
 
----
-
-## list
-
----
+### ⇨ list
 
 `List` is an array wrapper that offers many operations.
 
-### ⇨ `all`
+
+<details><summary><code>all</code></summary>
 
 > Check if every element matches the predicate, if that's the case then returns `true`, else `false`
 
@@ -27,7 +53,10 @@ values.all(value => !isNaN(value)); // returns true
 values.all(value => isNaN(value)); // returns false
 ```
 
-### ⇨ `any`
+</details>
+
+<details><summary><code>any</code></summary>
+
 
 > Check if there's at least one element matching the predicate, if that's the case then returns `true`, else `false`
 
@@ -39,7 +68,9 @@ values.any(value => value === 3); // returns true
 values.any(value => value === 0); // returns false
 ```
 
-### ⇨ `contains`
+</details>
+
+<details><summary><code>contains</code></summary>
 
 > Check if there's at least one element matching the given entry, if that's the case then returns `true`, else `false`
 
@@ -54,7 +85,9 @@ values.contains({name: 'Jo', age: 22}); // returns true
 values.contains({name: 'Jo', age: 23}); // returns false
 ```
 
-### ⇨ `containsAll`
+</details>
+
+<details><summary><code>containsAll</code></summary>
 
 > Check if the given entries are presents in the list, if that's the case then returns `true`, else `false`
 
@@ -69,69 +102,111 @@ values.containsAll([{name: 'Bob', age: 18}, {name: 'Jo', age: 22}]); // returns 
 values.containsAll({name: 'Bob', age: 18}, {name: 'Jo', age: 23}); // returns false
 ```
 
-### ⇨ `count`
+</details>
 
-### ⇨ `distinct`
+<details><summary><code>count</code></summary>
+</details>
 
-### ⇨ `drop`
+<details><summary><code>distinct</code></summary>
+</details>
 
-### ⇨ `dropLast`
+<details><summary><code>drop</code></summary>
+</details>
 
-### ⇨ `filter`
+<details><summary><code>dropLast</code></summary>
+</details>
 
-### ⇨ `find`
+<details><summary><code>filter</code></summary>
+</details>
 
-### ⇨ `first`
+<details><summary><code>find</code></summary>
+</details>
 
-### ⇨ `firstOrNull`
+<details><summary><code>first</code></summary>
+</details>
 
-### ⇨ `flatmap`
+<details><summary><code>firstOrNull</code></summary>
+</details>
 
-### ⇨ `flatten`
+<details><summary><code>flatmap</code></summary>
+</details>
 
-### ⇨ `forEach`
+<details><summary><code>flatten</code></summary>
+</details>
 
-### ⇨ `groupBy`
+<details><summary><code>forEach</code></summary>
+</details>
 
-### ⇨ `isEmpty`
+<details><summary><code>groupBy</code></summary>
+</details>
 
-### ⇨ `join`
+<details><summary><code>isEmpty</code></summary>
+</details>
 
-### ⇨ `last`
+<details><summary><code>join</code></summary>
+</details>
 
-### ⇨ `lastOrNull`
+<details><summary><code>last</code></summary>
+</details>
 
-### ⇨ `map`
+<details><summary><code>lastOrNull</code></summary>
+</details>
 
-### ⇨ `max`
+<details><summary><code>map</code></summary>
+</details>
 
-### ⇨ `min`
+<details><summary><code>max</code></summary>
+</details>
 
-### ⇨ `none`
+<details><summary><code>min</code></summary>
+</details>
 
-### ⇨ `onEach`
+<details><summary><code>none</code></summary>
+</details>
 
-### ⇨ `reduce`
+<details><summary><code>onEach</code></summary>
+</details>
 
-### ⇨ `reverse`
+<details><summary><code>reduce</code></summary>
+</details>
 
-### ⇨ `size`
+<details><summary><code>reverse</code></summary>
+</details>
 
-### ⇨ `some`
+<details><summary><code>size</code></summary>
+</details>
 
-### ⇨ `sort`
+<details><summary><code>some</code></summary>
+</details>
 
-### ⇨ `sum`
+<details><summary><code>sort</code></summary>
+</details>
 
-### ⇨ `take`
+<details><summary><code>sum</code></summary>
+</details>
 
-### ⇨ `takeLast`
+<details><summary><code>take</code></summary>
+</details>
 
-### ⇨ `toArray`
+<details><summary><code>takeLast</code></summary>
+</details>
 
-## when
+<details><summary><code>toArray</code></summary>
+</details>
 
----
+### ⇨ listOf
+
+<p>
+    <code>listOf</code> is a utility fonction to instantiate a <code>List</code>.
+</p>
+
+<b>examples</b>
+
+```ts
+const values = listOf(1, 2, 3, 4, 5);
+```
+
+### ⇨ when
 
 <p>
 <code>when</code> is similar to the <code>switch</code> statement, it defines a conditional expression with multiples branches. Every branch condition is checked sequentially until a matching is met.
@@ -141,8 +216,7 @@ It can also be used without argument. In this case it is similar to the <code>if
 <code>when</code> is a function, which means it's an expression unlike <code>switch</code> or <code>if/else</code>, which means that `when` returns a value that you can directly attribuate to a variable for example.
 </p>
 
-**examples :**
-
+<details><summary><b>examples</b></summary>
 <table>
 <th><code>with argument</code></th>
 <th><code>without argument</code></th>
@@ -168,7 +242,7 @@ const darkColorName = getRandomColor();
 const lightColorName = getRandomColor();
 
 const color = when([
-    darkColorName === 'grey', () => new Grey(),
+    darkColorName === 'black', () => new Black(),
     lightColorName === 'white', () => new White(),
     lightColorName === 'yellow', () => new Yellow(),
     () => undefined // default value
@@ -178,8 +252,10 @@ const color = when([
 </td>
 </tr>
 </table>
+</details>
 
-**comparison with conditionals statements :**
+`when` function is more lightweight in term of code than the other conditional options.
+<details><summary><b>comparison with conditionals statements</b></summary>
 <table>
 <th><code>when</code></th>
 <th><code>if/else</code> with brackets</th>
@@ -284,5 +360,4 @@ switch (color) {
 </td>
 </tr>
 </table>
-
-`when` function is more lightweight than the other options.
+</details>

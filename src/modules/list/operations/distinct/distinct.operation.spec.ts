@@ -1,6 +1,5 @@
 import {PersonMock} from '../../../../test/mocks/person.mock';
 import * as object from '../../../common/object/deep-equal';
-import {List} from '../../list';
 import {DistinctOperation} from './distinct.operation';
 import resetAllMocks = jest.resetAllMocks;
 
@@ -8,7 +7,7 @@ describe('DistinctOperation', () => {
 
     afterEach(() => resetAllMocks());
 
-    it('given an empty array, return an empty List', () => {
+    it('given an empty array, return an empty array', () => {
         // GIVEN
         const values: any[] = [];
         jest.spyOn(object, 'deepEqual');
@@ -17,12 +16,12 @@ describe('DistinctOperation', () => {
         const result = DistinctOperation.execute(values);
 
         // THEN
-        const expected = new List();
+        const expected: any[] = [];
         expect(result).toEqual(expected);
         expect(object.deepEqual).toHaveBeenCalledTimes(0);
     });
 
-    it('given an array of strings not containing any duplicate, return the same List', () => {
+    it('given an array of strings not containing any duplicate, return the same array', () => {
         // GIVEN
         const values = ['1', '2'];
         jest.spyOn(object, 'deepEqual')
@@ -34,7 +33,7 @@ describe('DistinctOperation', () => {
         const result = DistinctOperation.execute(values);
 
         // THEN
-        const expected = new List('1', '2');
+        const expected = ['1', '2'];
         expect(result).toEqual(expected);
         expect(object.deepEqual).toHaveBeenNthCalledWith(1, '1', '1');
         expect(object.deepEqual).toHaveBeenNthCalledWith(2, '1', '2');
@@ -42,7 +41,7 @@ describe('DistinctOperation', () => {
         expect(object.deepEqual).toHaveBeenCalledTimes(3);
     });
 
-    it('given an array of strings containing duplicates, return a List without any duplicate', () => {
+    it('given an array of strings containing duplicates, return a array without any duplicate', () => {
         // GIVEN
         const values = ['1', '2', '2'];
         jest.spyOn(object, 'deepEqual')
@@ -56,7 +55,7 @@ describe('DistinctOperation', () => {
         const result = DistinctOperation.execute(values);
 
         // THEN
-        const expected = new List('1', '2');
+        const expected = ['1', '2'];
         expect(result).toEqual(expected);
         expect(object.deepEqual).toHaveBeenNthCalledWith(1, '1', '1');
         expect(object.deepEqual).toHaveBeenNthCalledWith(2, '1', '2');
@@ -66,7 +65,7 @@ describe('DistinctOperation', () => {
         expect(object.deepEqual).toHaveBeenCalledTimes(5);
     });
 
-    it('given an array of persons containing duplicates, return a List without any duplicate', () => {
+    it('given an array of persons containing duplicates, return a array without any duplicate', () => {
         // GIVEN
         const values = [PersonMock.jo(), PersonMock.bob(), PersonMock.bob()];
         jest.spyOn(object, 'deepEqual')
@@ -82,7 +81,7 @@ describe('DistinctOperation', () => {
         const result = DistinctOperation.execute(values);
 
         // THEN
-        const expected = new List(PersonMock.jo(), PersonMock.bob());
+        const expected = [PersonMock.jo(), PersonMock.bob()];
         expect(result).toEqual(expected);
         expect(object.deepEqual).toHaveBeenNthCalledWith(1, PersonMock.jo(), PersonMock.jo());
         expect(object.deepEqual).toHaveBeenNthCalledWith(2, PersonMock.jo(), PersonMock.bob());
@@ -92,7 +91,7 @@ describe('DistinctOperation', () => {
         expect(object.deepEqual).toHaveBeenCalledTimes(5);
     });
 
-    it('given a selector and an empty array, return an empty List', () => {
+    it('given a selector and an empty array, return an empty array', () => {
         // GIVEN
         const values: any[] = [];
         jest.spyOn(object, 'deepEqual');
@@ -101,12 +100,12 @@ describe('DistinctOperation', () => {
         const result = DistinctOperation.execute(values, (it) => it);
 
         // THEN
-        const expected = new List();
+        const expected: any[] = [];
         expect(result).toEqual(expected);
         expect(object.deepEqual).toHaveBeenCalledTimes(0);
     });
 
-    it('given a selector and an array of strings not containing any duplicate, return the same List', () => {
+    it('given a selector and an array of strings not containing any duplicate, return the same array', () => {
         // GIVEN
         const values = ['1', '2'];
         jest.spyOn(object, 'deepEqual')
@@ -118,7 +117,7 @@ describe('DistinctOperation', () => {
         const result = DistinctOperation.execute(values, (it) => it);
 
         // THEN
-        const expected = new List('1', '2');
+        const expected = ['1', '2'];
         expect(result).toEqual(expected);
         expect(object.deepEqual).toHaveBeenNthCalledWith(1, '1', '1');
         expect(object.deepEqual).toHaveBeenNthCalledWith(2, '1', '2');
@@ -126,7 +125,7 @@ describe('DistinctOperation', () => {
         expect(object.deepEqual).toHaveBeenCalledTimes(3);
     });
 
-    it('given a selector and an array of strings containing duplicates, return a List without any duplicate', () => {
+    it('given a selector and an array of strings containing duplicates, return a array without any duplicate', () => {
         // GIVEN
         const values = ['1', '2', '2'];
         jest.spyOn(object, 'deepEqual')
@@ -140,7 +139,7 @@ describe('DistinctOperation', () => {
         const result = DistinctOperation.execute(values, (it) => it);
 
         // THEN
-        const expected = new List('1', '2');
+        const expected = ['1', '2'];
         expect(result).toEqual(expected);
         expect(object.deepEqual).toHaveBeenNthCalledWith(1, '1', '1');
         expect(object.deepEqual).toHaveBeenNthCalledWith(2, '1', '2');
@@ -150,7 +149,7 @@ describe('DistinctOperation', () => {
         expect(object.deepEqual).toHaveBeenCalledTimes(5);
     });
 
-    it('given a selector and an array of persons with the same name, return a List with the first person', () => {
+    it('given a selector and an array of persons with the same name, return a array with the first person', () => {
         // GIVEN
         const values = [PersonMock.jo(), PersonMock.bob(), PersonMock.bob()];
         jest.spyOn(object, 'deepEqual')
@@ -166,7 +165,7 @@ describe('DistinctOperation', () => {
         const result = DistinctOperation.execute(values, (it) => it.firstName);
 
         // THEN
-        const expected = new List(PersonMock.jo(), PersonMock.bob());
+        const expected = [PersonMock.jo(), PersonMock.bob()];
         expect(result).toEqual(expected);
         expect(object.deepEqual).toHaveBeenNthCalledWith(1, 'Jo', 'Jo');
         expect(object.deepEqual).toHaveBeenNthCalledWith(2, 'Jo', 'Bob');

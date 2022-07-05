@@ -1,4 +1,3 @@
-import {List} from '../../list/list';
 import {ArrayHelper} from './array.helper';
 
 describe('ArrayHelper', () => {
@@ -29,7 +28,7 @@ describe('ArrayHelper', () => {
 
         it('given a List containing numbers, return an array of the same numbers', () => {
             // GIVEN
-            const data = new List(1, 2, 3, 4, 5);
+            const data = [1, 2, 3, 4, 5];
 
             // WHEN
             const result = ArrayHelper.transformToArray(data);

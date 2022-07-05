@@ -6,7 +6,7 @@ describe.skip('performance', () => {
 
     it('filter', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
+        const values = new List<Person>(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
         const startTime = new Date().getTime();
 
         // WHEN
@@ -20,7 +20,7 @@ describe.skip('performance', () => {
 
     it('onEach', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
+        const values = new List<Person>(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
         const startTime = new Date().getTime();
 
         // WHEN
@@ -34,7 +34,7 @@ describe.skip('performance', () => {
 
     it('forEach', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
+        const values = new List<Person>(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
         const startTime = new Date().getTime();
 
         // WHEN
@@ -48,7 +48,7 @@ describe.skip('performance', () => {
 
     it('map', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
+        const values = new List<Person>(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
         const startTime = new Date().getTime();
 
         // WHEN
@@ -62,7 +62,7 @@ describe.skip('performance', () => {
 
     it('flatMap', () => {
         // GIVEN
-        const values = new List<List<Person>>().reset(Array.from(Array(10_000_000).keys()).map(() => new List(PersonMock.bob())));
+        const values = new List<List<Person>>(Array.from(Array(10_000_000).keys()).map(() => new List([PersonMock.bob()])));
         const startTime = new Date().getTime();
 
         // WHEN
@@ -76,7 +76,7 @@ describe.skip('performance', () => {
 
     it('flatten', () => {
         // GIVEN
-        const values = new List<List<Person>>().reset(Array.from(Array(10_000_000).keys()).map(() => new List(PersonMock.bob())));
+        const values = new List<List<Person>>(Array.from(Array(10_000_000).keys()).map(() => new List([PersonMock.bob()])));
         const startTime = new Date().getTime();
 
         // WHEN
@@ -90,7 +90,7 @@ describe.skip('performance', () => {
 
     it('reverse', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
+        const values = new List<Person>(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
         const startTime = new Date().getTime();
 
         // WHEN
@@ -119,7 +119,7 @@ describe.skip('performance', () => {
 
         it('without selector', () => {
             // GIVEN
-            const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
+            const values = new List<Person>(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
             const startTime = new Date().getTime();
 
             // WHEN
@@ -134,7 +134,7 @@ describe.skip('performance', () => {
         // TODO check if it can be improved
         it('with selector', () => {
             // GIVEN
-            const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
+            const values = new List<Person>(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
             const startTime = new Date().getTime();
 
             // WHEN
@@ -151,7 +151,7 @@ describe.skip('performance', () => {
         // TODO: check how to improve distinct
         it('without selector', () => {
             // GIVEN
-            const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
+            const values = new List<Person>(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
             const startTime = new Date().getTime();
 
             // WHEN
@@ -165,7 +165,7 @@ describe.skip('performance', () => {
 
         it('with selector', () => {
             // GIVEN
-            const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
+            const values = new List<Person>(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
             const startTime = new Date().getTime();
 
             // WHEN
@@ -181,7 +181,7 @@ describe.skip('performance', () => {
 
     it('take', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
+        const values = new List<Person>(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
         const startTime = new Date().getTime();
 
         // WHEN
@@ -195,7 +195,7 @@ describe.skip('performance', () => {
 
     it('takeLast', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
+        const values = new List<Person>(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
         const startTime = new Date().getTime();
 
         // WHEN
@@ -209,7 +209,7 @@ describe.skip('performance', () => {
 
     it('drop', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
+        const values = new List<Person>(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
         const startTime = new Date().getTime();
 
         // WHEN
@@ -223,7 +223,7 @@ describe.skip('performance', () => {
 
     it('dropLast', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
+        const values = new List<Person>(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
         const startTime = new Date().getTime();
 
         // WHEN
@@ -237,7 +237,7 @@ describe.skip('performance', () => {
 
     it('find', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())).add(PersonMock.jo());
+        const values = new List<Person>(...[Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())], PersonMock.jo());
         const startTime = new Date().getTime();
 
         // WHEN
@@ -251,7 +251,7 @@ describe.skip('performance', () => {
 
     it('first', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())).add(PersonMock.jo());
+        const values = new List<Person>(...[Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())], PersonMock.jo());
         const startTime = new Date().getTime();
 
         // WHEN
@@ -265,7 +265,7 @@ describe.skip('performance', () => {
 
     it('firstOrNull', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())).add(PersonMock.jo());
+        const values = new List<Person>(...[Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())], PersonMock.jo());
         const startTime = new Date().getTime();
 
         // WHEN
@@ -279,7 +279,7 @@ describe.skip('performance', () => {
 
     it('last', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
+        const values = new List<Person>(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
         const startTime = new Date().getTime();
 
         // WHEN
@@ -293,7 +293,7 @@ describe.skip('performance', () => {
 
     it('lastOrNull', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
+        const values = new List<Person>(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
         const startTime = new Date().getTime();
 
         // WHEN
@@ -307,7 +307,7 @@ describe.skip('performance', () => {
 
     it('reduce', () => {
         // GIVEN
-        const values = new List<number>().reset(Array.from(Array(10_000_000).keys()).map(() => 1));
+        const values = new List<number>(Array.from(Array(10_000_000).keys()).map(() => 1));
         const startTime = new Date().getTime();
 
         // WHEN
@@ -322,7 +322,7 @@ describe.skip('performance', () => {
     it('groupBy', () => {
         // TODO check if it can be improved
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
+        const values = new List<Person>(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
         const startTime = new Date().getTime();
 
         // WHEN
@@ -336,7 +336,7 @@ describe.skip('performance', () => {
 
     it('min', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
+        const values = new List<Person>(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
         const startTime = new Date().getTime();
 
         // WHEN
@@ -350,7 +350,7 @@ describe.skip('performance', () => {
 
     it('max', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
+        const values = new List<Person>(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
         const startTime = new Date().getTime();
 
         // WHEN
@@ -364,7 +364,7 @@ describe.skip('performance', () => {
 
     it('some', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())).add(PersonMock.jo());
+        const values = new List<Person>(...[Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())], PersonMock.jo());
         const startTime = new Date().getTime();
 
         // WHEN
@@ -378,7 +378,7 @@ describe.skip('performance', () => {
 
     it('any', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())).add(PersonMock.jo());
+        const values = new List<Person>(...[Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())], PersonMock.jo());
         const startTime = new Date().getTime();
 
         // WHEN
@@ -392,7 +392,7 @@ describe.skip('performance', () => {
 
     it('none', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())).add(PersonMock.jo());
+        const values = new List<Person>(...[Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())], PersonMock.jo());
         const startTime = new Date().getTime();
 
         // WHEN
@@ -406,7 +406,7 @@ describe.skip('performance', () => {
 
     it('all', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())).add(PersonMock.jo());
+        const values = new List<Person>(...[Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())], PersonMock.jo());
         const startTime = new Date().getTime();
 
         // WHEN
@@ -421,7 +421,7 @@ describe.skip('performance', () => {
     it('contains', () => {
         // TODO check if it can be improved
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())).add(PersonMock.jo());
+        const values = new List<Person>(...[Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())], PersonMock.jo());
         const startTime = new Date().getTime();
 
         // WHEN
@@ -436,7 +436,7 @@ describe.skip('performance', () => {
     it('containsAll', () => {
         // TODO check if it can be improved
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())).add(PersonMock.jo());
+        const values = new List<Person>(...[Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())], PersonMock.jo());
         const startTime = new Date().getTime();
 
         // WHEN
@@ -450,7 +450,7 @@ describe.skip('performance', () => {
 
     it('isEmpty', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())).add(PersonMock.jo());
+        const values = new List<Person>(...[Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())], PersonMock.jo());
         const startTime = new Date().getTime();
 
         // WHEN
@@ -464,7 +464,7 @@ describe.skip('performance', () => {
 
     it('isNotEmpty', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())).add(PersonMock.jo());
+        const values = new List<Person>(...[Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())], PersonMock.jo());
         const startTime = new Date().getTime();
 
         // WHEN
@@ -478,7 +478,7 @@ describe.skip('performance', () => {
 
     it('join', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())).add(PersonMock.jo());
+        const values = new List<Person>(...[Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())], PersonMock.jo());
         const startTime = new Date().getTime();
 
         // WHEN
@@ -493,7 +493,7 @@ describe.skip('performance', () => {
     it('sum', () => {
         // TODO check if it can be improved
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())).add(PersonMock.jo());
+        const values = new List<Person>(...[Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())], PersonMock.jo());
         const startTime = new Date().getTime();
 
         // WHEN
@@ -508,7 +508,7 @@ describe.skip('performance', () => {
     describe('count', () => {
         it('without predicate', () => {
             // GIVEN
-            const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())).add(PersonMock.jo());
+            const values = new List<Person>(...[Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())], PersonMock.jo());
             const startTime = new Date().getTime();
 
             // WHEN
@@ -522,7 +522,7 @@ describe.skip('performance', () => {
 
         it('with predicate', () => {
             // GIVEN
-            const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())).add(PersonMock.jo());
+            const values = new List<Person>(...[Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())], PersonMock.jo());
             const startTime = new Date().getTime();
 
             // WHEN
@@ -537,7 +537,7 @@ describe.skip('performance', () => {
 
     it('size', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())).add(PersonMock.jo());
+        const values = new List<Person>(...[Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())], PersonMock.jo());
         const startTime = new Date().getTime();
 
         // WHEN
@@ -551,7 +551,7 @@ describe.skip('performance', () => {
 
     it('toArray', () => {
         // GIVEN
-        const values = new List<Person>().reset(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())).add(PersonMock.jo());
+        const values = new List<Person>(...[Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())], PersonMock.jo());
         const startTime = new Date().getTime();
 
         // WHEN

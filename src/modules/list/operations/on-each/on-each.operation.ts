@@ -1,10 +1,8 @@
-import {List} from '../../list';
-
 export abstract class OnEachOperation {
 
-    static execute = <T, U>(values: T[], selector: (value: T, index: number, array: T[]) => void): List<T> => {
+    static execute = <T, U>(values: T[], selector: (value: T, index: number, array: T[]) => void): T[] => {
         values.forEach(selector);
-        return new List<T>().reset(values);
+        return values;
     };
 
 }

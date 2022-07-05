@@ -1,9 +1,8 @@
-import {List} from '../../list';
 import {TakeLastOperation} from './take-last.operation';
 
 describe('TakeLastOperation', () => {
 
-    it('given an empty array, take last 5 and return an empty List', () => {
+    it('given an empty array, take last 5 and return an empty array', () => {
         // GIVEN
         const values: any[] = [];
         const n = 5;
@@ -12,11 +11,11 @@ describe('TakeLastOperation', () => {
         const result = TakeLastOperation.execute(values, n);
 
         // THEN
-        const expected = new List();
+        const expected: any[] = [];
         expect(result).toEqual(expected);
     });
 
-    it('given an array of numbers, take last 0 and return an empty List', () => {
+    it('given an array of numbers, take last 0 and return an empty array', () => {
         // GIVEN
         const values = [1, 2, 3, 4, 5];
         const n = 0;
@@ -25,7 +24,7 @@ describe('TakeLastOperation', () => {
         const result = TakeLastOperation.execute(values, n);
 
         // THEN
-        const expected = new List();
+        const expected: any[] = [];
         expect(result).toEqual(expected);
     });
 
@@ -38,7 +37,7 @@ describe('TakeLastOperation', () => {
         const result = TakeLastOperation.execute(values, n);
 
         // THEN
-        const expected = new List(4, 5);
+        const expected = [4, 5];
         expect(result).toEqual(expected);
     });
 

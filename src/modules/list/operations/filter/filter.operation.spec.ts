@@ -1,9 +1,8 @@
-import {List} from '../../list';
 import {FilterOperation} from './filter.operation';
 
 describe('FilterOperation', () => {
 
-    it('given an empty array, return an empty List', () => {
+    it('given an empty array, return an empty array', () => {
         // GIVEN
         const values: number[] = [];
 
@@ -11,11 +10,11 @@ describe('FilterOperation', () => {
         const result = FilterOperation.execute(values, it => it % 2 === 0);
 
         // THEN
-        const expected = new List();
+        const expected: any[] = [];
         expect(result).toEqual(expected);
     });
 
-    it('given an array of numbers, return a List with only even numbers', () => {
+    it('given an array of numbers, return a array with only even numbers', () => {
         // GIVEN
         const values = [1, 2, 3, 4, 5];
 
@@ -23,7 +22,7 @@ describe('FilterOperation', () => {
         const result = FilterOperation.execute(values, it => it % 2 === 0);
 
         // THEN
-        const expected = new List(2, 4);
+        const expected = [2, 4];
         expect(result).toEqual(expected);
     });
 

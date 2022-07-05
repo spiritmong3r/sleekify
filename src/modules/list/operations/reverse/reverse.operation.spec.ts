@@ -1,10 +1,9 @@
 import {PersonMock} from '../../../../test/mocks/person.mock';
-import {List} from '../../list';
 import {ReverseOperation} from './reverse.operation';
 
 describe('ReverseOperation', () => {
 
-    it('given an empty array, return an empty List', () => {
+    it('given an empty array, return an empty array', () => {
         // GIVEN
         const values: any[] = [];
 
@@ -12,7 +11,7 @@ describe('ReverseOperation', () => {
         const result = ReverseOperation.execute(values);
 
         // THEN
-        const expected = new List();
+        const expected: any[] = [];
         expect(result).toEqual(expected);
     });
 
@@ -24,8 +23,20 @@ describe('ReverseOperation', () => {
         const result = ReverseOperation.execute(values);
 
         // THEN
-        const expected = new List(5, 4, 3, 2, 1);
+        const expected = [5, 4, 3, 2, 1];
         expect(result).toEqual(expected);
+    });
+
+    it('given an array of number, check this initial array has not been modified', () => {
+        // GIVEN
+        const values = [1, 2, 3];
+
+        // WHEN
+        ReverseOperation.execute(values);
+
+        // THEN
+        const expected = [1, 2, 3];
+        expect(values).toEqual(expected);
     });
 
     it('given an array of persons, return the same array but reversed', () => {
@@ -36,7 +47,7 @@ describe('ReverseOperation', () => {
         const result = ReverseOperation.execute(values);
 
         // THEN
-        const expected = new List(PersonMock.jane(), PersonMock.jo(), PersonMock.bob());
+        const expected = [PersonMock.jane(), PersonMock.jo(), PersonMock.bob()];
         expect(result).toEqual(expected);
     });
 

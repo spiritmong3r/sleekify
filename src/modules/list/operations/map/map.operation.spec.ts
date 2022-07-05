@@ -1,5 +1,4 @@
 import {PersonMock} from '../../../../test/mocks/person.mock';
-import {List} from '../../list';
 import {MapOperation} from './map.operation';
 
 describe('MapOperation', () => {
@@ -12,7 +11,7 @@ describe('MapOperation', () => {
         const result = MapOperation.execute(values, (it) => it);
 
         // THEN
-        const expected = new List();
+        const expected: any[] = [];
         expect(result).toEqual(expected);
     });
 
@@ -24,7 +23,7 @@ describe('MapOperation', () => {
         const result = MapOperation.execute(values, (it) => it.toString());
 
         // THEN
-        const expected = new List('1', '2', '3', '4', '5');
+        const expected = ['1', '2', '3', '4', '5'];
         expect(result).toEqual(expected);
     });
 
@@ -36,7 +35,7 @@ describe('MapOperation', () => {
         const result = MapOperation.execute(values, (it) => it.age);
 
         // THEN
-        const expected = new List(18, 19, 24);
+        const expected = [18, 19, 24];
         expect(result).toEqual(expected);
     });
 

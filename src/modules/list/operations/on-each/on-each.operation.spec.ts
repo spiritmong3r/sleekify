@@ -1,5 +1,4 @@
 import {PersonMock} from '../../../../test/mocks/person.mock';
-import {List} from '../../list';
 import {OnEachOperation} from './on-each.operation';
 
 describe('OnEachOperation', () => {
@@ -12,7 +11,7 @@ describe('OnEachOperation', () => {
         const result = OnEachOperation.execute(values, (it) => it);
 
         // THEN
-        const expected = new List();
+        const expected: any[] = [];
         expect(result).toEqual(expected);
     });
 
@@ -24,7 +23,7 @@ describe('OnEachOperation', () => {
         const result = OnEachOperation.execute(values, (it) => it);
 
         // THEN
-        const expected = new List(PersonMock.bob(), PersonMock.jo(), PersonMock.jane());
+        const expected = [PersonMock.bob(), PersonMock.jo(), PersonMock.jane()];
         expect(result).toEqual(expected);
     });
 
@@ -36,7 +35,7 @@ describe('OnEachOperation', () => {
         const result = OnEachOperation.execute(values, (it) => it.age = 11);
 
         // THEN
-        const expected = new List({...PersonMock.bob(), age: 11}, {...PersonMock.jo(), age: 11}, {...PersonMock.jane(), age: 11});
+        const expected = [{...PersonMock.bob(), age: 11}, {...PersonMock.jo(), age: 11}, {...PersonMock.jane(), age: 11}];
         expect(result).toEqual(expected);
     });
 

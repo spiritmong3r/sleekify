@@ -1,5 +1,4 @@
 import {PersonMock} from '../../../../test/mocks/person.mock';
-import {List} from '../../list';
 import {SortOperation} from './sort.operation';
 
 describe('SortByOperation', () => {
@@ -12,7 +11,7 @@ describe('SortByOperation', () => {
         const result = SortOperation.execute(values);
 
         // THEN
-        const expected = new List('0', '1', '2', '3', '4', '5', '9');
+        const expected = ['0', '1', '2', '3', '4', '5', '9'];
         expect(result).toEqual(expected);
     });
 
@@ -24,7 +23,7 @@ describe('SortByOperation', () => {
         const result = SortOperation.execute(values);
 
         // THEN
-        const expected = new List(PersonMock.ed(), PersonMock.jane(), PersonMock.jo(), PersonMock.bob());
+        const expected = [PersonMock.ed(), PersonMock.jane(), PersonMock.jo(), PersonMock.bob()];
         expect(result).toEqual(expected);
     });
 
@@ -36,8 +35,21 @@ describe('SortByOperation', () => {
         const result = SortOperation.execute(values, (it) => it);
 
         // THEN
-        const expected = new List('0', '1', '2', '3', '4', '5', '9');
+        const expected = ['0', '1', '2', '3', '4', '5', '9'];
         expect(result).toEqual(expected);
+    });
+
+    it('given an array of numbers, check this initial array has not been modified', () => {
+        // GIVEN
+        const values = ['1', '2', '5', '4', '3', '9', '0'];
+
+        // WHEN
+        SortOperation.execute(values);
+
+        // THEN
+        const expected = ['1', '2', '5', '4', '3', '9', '0'];
+        expect(values).toEqual(expected);
+
     });
 
     it('given a selector and an array of persons, return a List sorted from youngest to the oldest', () => {
@@ -48,7 +60,7 @@ describe('SortByOperation', () => {
         const result = SortOperation.execute(values, (it) => it.age);
 
         // THEN
-        const expected = new List(PersonMock.bob(), PersonMock.ed(), PersonMock.jo(), PersonMock.jane());
+        const expected = [PersonMock.bob(), PersonMock.ed(), PersonMock.jo(), PersonMock.jane()];
         expect(result).toEqual(expected);
     });
 
