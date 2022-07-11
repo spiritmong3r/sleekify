@@ -5,11 +5,13 @@
     <div>Typescript library that offers elegant and powerful utility functions.</div>
 </h4>
 
+
 <br/>
 
 ## Why sleekify ?
 
 Sleekify provides powerful utility functions that makes your code more lightweight. The idea is to offer the possibility to the developer to write less code thanks to these functions.
+
 
 <br/>
 
@@ -22,27 +24,28 @@ Sleekify provides powerful utility functions that makes your code more lightweig
 
 ### Installation
 
-  ```sh
-  npm i sleekify
-  ```
+```sh
+npm i sleekify
+```
 
 ### Usage
 
-  ```ts
-  import List from 'sleekify';
-  ```
+```ts
+import List from 'sleekify';
+```
 
 <br/>
 
 ## API documentation
 
-### ⇨ list
+<br/>
+<details>
+<summary><code><font size="4"><b>List</b></font></code></summary>
+<br/>
 
-`List` is an array wrapper that offers many operations.
+`List` is an array wrapper that offers many operations. It is an immutable iterable.
 
-
-<details><summary><code>all</code></summary>
-
+⇨ <code>all</code>
 > Check if every element matches the predicate, if that's the case then returns `true`, else `false`
 
 **example :**
@@ -53,11 +56,7 @@ values.all(value => !isNaN(value)); // returns true
 values.all(value => isNaN(value)); // returns false
 ```
 
-</details>
-
-<details><summary><code>any</code></summary>
-
-
+⇨ <code>any</code>
 > Check if there's at least one element matching the predicate, if that's the case then returns `true`, else `false`
 
 **example :**
@@ -68,10 +67,7 @@ values.any(value => value === 3); // returns true
 values.any(value => value === 0); // returns false
 ```
 
-</details>
-
-<details><summary><code>contains</code></summary>
-
+⇨ <code>contains</code>
 > Check if there's at least one element matching the given entry, if that's the case then returns `true`, else `false`
 
 **example :**
@@ -85,10 +81,7 @@ values.contains({name: 'Jo', age: 22}); // returns true
 values.contains({name: 'Jo', age: 23}); // returns false
 ```
 
-</details>
-
-<details><summary><code>containsAll</code></summary>
-
+⇨ <code>containsAll</code>
 > Check if the given entries are presents in the list, if that's the case then returns `true`, else `false`
 
 **example :**
@@ -102,103 +95,87 @@ values.containsAll([{name: 'Bob', age: 18}, {name: 'Jo', age: 22}]); // returns 
 values.containsAll({name: 'Bob', age: 18}, {name: 'Jo', age: 23}); // returns false
 ```
 
+⇨ <code>count</code>
+
+⇨ <code>distinct</code>
+
+⇨ <code>drop</code>
+
+⇨ <code>dropLast</code>
+
+⇨ <code>filter</code>
+
+⇨ <code>find</code>
+
+⇨ <code>first</code>
+
+⇨ <code>firstOrNull</code>
+
+⇨ <code>flatmap</code>
+
+⇨ <code>flatten</code>
+
+⇨ <code>forEach</code>
+
+⇨ <code>get</code>
+
+⇨ <code>groupBy</code>
+
+⇨ <code>isEmpty</code>
+
+⇨ <code>join</code>
+
+⇨ <code>last</code>
+
+⇨ <code>lastOrNull</code>
+
+⇨ <code>map</code>
+
+⇨ <code>max</code>
+
+⇨ <code>min</code>
+
+⇨ <code>none</code>
+
+⇨ <code>onEach</code>
+
+⇨ <code>reduce</code>
+
+⇨ <code>reverse</code>
+
+⇨ <code>size</code>
+
+⇨ <code>some</code>
+
+⇨ <code>sort</code>
+
+⇨ <code>sum</code>
+
+⇨ <code>take</code>
+
+⇨ <code>takeLast</code>
+
+⇨ <code>toArray</code>
+
+
 </details>
 
-<details><summary><code>count</code></summary>
+
+<br/>
+<details>
+<summary><code><font size="4"><b>MutableList</b></font></code></summary>
+<br/>
+
+`MutableList` is an array wrapper that offers many operations. It is a mutable iterable.
+
 </details>
 
-<details><summary><code>distinct</code></summary>
-</details>
 
-<details><summary><code>drop</code></summary>
-</details>
-
-<details><summary><code>dropLast</code></summary>
-</details>
-
-<details><summary><code>filter</code></summary>
-</details>
-
-<details><summary><code>find</code></summary>
-</details>
-
-<details><summary><code>first</code></summary>
-</details>
-
-<details><summary><code>firstOrNull</code></summary>
-</details>
-
-<details><summary><code>flatmap</code></summary>
-</details>
-
-<details><summary><code>flatten</code></summary>
-</details>
-
-<details><summary><code>forEach</code></summary>
-</details>
-
-<details><summary><code>groupBy</code></summary>
-</details>
-
-<details><summary><code>isEmpty</code></summary>
-</details>
-
-<details><summary><code>join</code></summary>
-</details>
-
-<details><summary><code>last</code></summary>
-</details>
-
-<details><summary><code>lastOrNull</code></summary>
-</details>
-
-<details><summary><code>map</code></summary>
-</details>
-
-<details><summary><code>max</code></summary>
-</details>
-
-<details><summary><code>min</code></summary>
-</details>
-
-<details><summary><code>none</code></summary>
-</details>
-
-<details><summary><code>onEach</code></summary>
-</details>
-
-<details><summary><code>reduce</code></summary>
-</details>
-
-<details><summary><code>reverse</code></summary>
-</details>
-
-<details><summary><code>size</code></summary>
-</details>
-
-<details><summary><code>some</code></summary>
-</details>
-
-<details><summary><code>sort</code></summary>
-</details>
-
-<details><summary><code>sum</code></summary>
-</details>
-
-<details><summary><code>take</code></summary>
-</details>
-
-<details><summary><code>takeLast</code></summary>
-</details>
-
-<details><summary><code>toArray</code></summary>
-</details>
-
-### ⇨ listOf
-
-<p>
-    <code>listOf</code> is a utility fonction to instantiate a <code>List</code>.
-</p>
+<br/>
+<details>
+<summary><code><font size="4"><b>listOf</b></font></code></summary>
+<br/>
+<p><code>listOf</code> is a utility fonction to instantiate a <code>List</code>.</p>
 
 <b>examples</b>
 
@@ -206,8 +183,28 @@ values.containsAll({name: 'Bob', age: 18}, {name: 'Jo', age: 23}); // returns fa
 const values = listOf(1, 2, 3, 4, 5);
 ```
 
-### ⇨ when
+</details>
 
+
+<br/>
+<details>
+<summary><code><font size="4"><b>mutableListOf</b></font></code></summary>
+<br/>
+<p><code>mutableListOf</code> is a utility fonction to instantiate a <code>MutableList</code>.</p>
+
+<b>examples</b>
+
+```ts
+const values = mutableListOf(1, 2, 3, 4, 5);
+```
+
+</details>
+
+
+<br/>
+<details>
+<summary><code><font size="4"><b>when</b></font></code></summary>
+<br/>
 <p>
 <code>when</code> is similar to the <code>switch</code> statement, it defines a conditional expression with multiples branches. Every branch condition is checked sequentially until a matching is met.
 
@@ -360,4 +357,5 @@ switch (color) {
 </td>
 </tr>
 </table>
+</details>
 </details>

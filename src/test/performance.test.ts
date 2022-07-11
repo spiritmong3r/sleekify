@@ -1,4 +1,4 @@
-import {List} from '../modules/list/list';
+import {List} from '../modules/iterable/impl/list/list';
 import {PersonMock} from './mocks/person.mock';
 import {Person} from './models/person';
 

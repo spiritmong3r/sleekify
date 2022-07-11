@@ -63,4 +63,19 @@ describe('DeepEqual', () => {
         expect(result).toBeFalsy();
     });
 
+    it('check immutability', () => {
+        // GIVEN
+        const bob = PersonMock.bob();
+        const jo = PersonMock.jo();
+        const bobCopy = bob;
+        const joCopy = jo;
+
+        // WHEN
+        deepEqual(bob, jo);
+
+        // THEN
+        expect(bob === bobCopy).toBeTruthy();
+        expect(jo === joCopy).toBeTruthy();
+    });
+
 });
