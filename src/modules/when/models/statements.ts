@@ -1,4 +1,4 @@
-type Statement<I, O> = Statement1<I, O> |
+export type Statement<I, O> = Statement1<I, O> |
     Statement2<I, O> |
     Statement3<I, O> |
     Statement4<I, O> |

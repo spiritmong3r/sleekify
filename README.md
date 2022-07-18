@@ -1,5 +1,5 @@
 <h3 align=center>
-    <img src="logo_sleekify.png" alt="Sublime's custom image" style="text-align: center"/>
+    <img src="logo_sleekify.png" alt="Sublime's custom image"/>
 </h3>
 <h4 align=center>
     <div>Typescript library that offers elegant and powerful utility functions.</div>
