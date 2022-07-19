@@ -1,5 +1,5 @@
 {
-  "name": "@spiritmonger/sleekify",
+  "name": "sleekify",
   "version": "1.0.0",
   "description": "Typescript library that offers elegant and powerful utility functions",
   "main": "dist/cjs/index.js",
@@ -12,6 +12,9 @@
     "build:types": "tsc -p config/tsconfig.types.json",
     "test": "jest --runInBand",
     "coverage": "jest --coverage"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "type": "git",

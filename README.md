@@ -31,7 +31,7 @@ npm i sleekify
 ### Usage
 
 ```ts
-import List from 'sleekify';
+import {List, MutableList, listOf, mutableListOf, when} from 'sleekify';
 ```
 
 <br/>
