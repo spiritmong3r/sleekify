@@ -1,4 +1,4 @@
-import {AbstractList} from '../../abstract-list';
+import {AddOperation} from '../../operations/add/add.operation';
 import {DistinctOperation} from '../../operations/distinct/distinct.operation';
 import {DropLastOperation} from '../../operations/drop-last/drop-last.operation';
 import {DropOperation} from '../../operations/drop/drop.operation';
@@ -7,22 +7,47 @@ import {FlatmapOperation} from '../../operations/flatmap/flatmap.operation';
 import {FlattenOperation} from '../../operations/flatten/flatten.operation';
 import {MapOperation} from '../../operations/map/map.operation';
 import {OnEachOperation} from '../../operations/on-each/on-each.operation';
+import {RemoveAllOperation} from '../../operations/remove-all/remove-all.operation';
+import {RemoveFirstOperation} from '../../operations/remove-first/remove-first.operation';
+import {RemoveLastOperation} from '../../operations/remove-last/remove-last.operation';
+import {RemoveOperation} from '../../operations/remove/remove.operation';
 import {ReverseOperation} from '../../operations/reverse/reverse.operation';
 import {SortOperation} from '../../operations/sort/sort.operation';
 import {TakeLastOperation} from '../../operations/take-last/take-last.operation';
 import {TakeOperation} from '../../operations/take/take.operation';
+import {List} from '../list/list';
 
 /**
  * @author cleme_mo
  */
-export class MutableList<T> extends AbstractList<T> {
+export class MutableList<T> extends List<T> {
 
     constructor(value: T[] = []) {
         super(value);
     }
 
     add(value: T): MutableList<T> {
-        this.values.push(value);
+        AddOperation.execute(this.values, value);
+        return this;
+    }
+
+    remove(index: number): MutableList<T> {
+        RemoveOperation.execute(this.values, index);
+        return this;
+    }
+
+    removeFirst(): MutableList<T> {
+        RemoveFirstOperation.execute(this.values);
+        return this;
+    }
+
+    removeLast(): MutableList<T> {
+        RemoveLastOperation.execute(this.values);
+        return this;
+    }
+
+    removeAll(predicate: (value: T, index: number, array: T[]) => boolean): MutableList<T> {
+        RemoveAllOperation.execute(this.values, predicate);
         return this;
     }
 
@@ -56,7 +81,14 @@ export class MutableList<T> extends AbstractList<T> {
     }
 
     distinct<U>(selector?: (value: T) => U): MutableList<T> {
-        return new MutableList(DistinctOperation.execute(this.values, selector));
+        const res = DistinctOperation.execute(this.values, selector);
+        return new MutableList(res);
+    }
+
+    distinct2<U>(selector?: (value: T) => U): T[] {
+        const res = DistinctOperation.execute(this.values, selector);
+        new MutableList(res);
+        return res;
     }
 
     take(n: number): MutableList<T> {

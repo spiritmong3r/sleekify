@@ -183,7 +183,6 @@ describe('DistinctOperation', () => {
         const values = [bob, jo, jane];
         jest.spyOn(object, 'deepEqual').mockImplementationOnce(() => true);
 
-
         // WHEN
         DistinctOperation.execute(values, it => it.firstName);
 

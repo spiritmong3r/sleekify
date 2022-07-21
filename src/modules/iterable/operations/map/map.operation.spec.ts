@@ -3,7 +3,7 @@ import {MapOperation} from './map.operation';
 
 describe('MapOperation', () => {
 
-    it('given an empty array, return an empty List', () => {
+    it('given an empty array, return an empty array', () => {
         // GIVEN
         const values: any[] = [];
 
@@ -15,7 +15,7 @@ describe('MapOperation', () => {
         expect(result).toEqual(expected);
     });
 
-    it('given an array of numbers, return a List of strings', () => {
+    it('given an array of numbers, return a array of strings', () => {
         // GIVEN
         const values = [1, 2, 3, 4, 5];
 
@@ -27,7 +27,7 @@ describe('MapOperation', () => {
         expect(result).toEqual(expected);
     });
 
-    it('given an array of persons, return a List of age', () => {
+    it('given an array of persons, return a array of age', () => {
         // GIVEN
         const values = [PersonMock.bob(), PersonMock.jo(), PersonMock.jane()];
 

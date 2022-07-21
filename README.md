@@ -5,22 +5,27 @@
     <div>Typescript library that offers elegant and powerful utility functions.</div>
 </h4>
 
-
 <br/>
 
 ## Why sleekify ?
 
-Sleekify provides powerful utility functions that makes your code more lightweight. The idea is to offer the possibility to the developer to write less code thanks to these functions.
+Sleekify provides powerful features that make your code more lightweight.
+
+* **Fluent iterable API**
+
+  Offers many operations thanks to both `List` and `MutableList`, which are iterable implementations.
 
 
-<br/>
+* **Type safe**
+
+  The whole librairy is implemented in typescript.
+
+
+* **Powerful utility function**
+
+  `when` function is a switch-like **expression**, it is more elegant than traditional conditional statements.
 
 ## Getting start
-
-### Prerequisites
-
-- npm
-- node
 
 ### Installation
 
@@ -34,8 +39,6 @@ npm i sleekify
 import {List, MutableList, listOf, mutableListOf, when} from 'sleekify';
 ```
 
-<br/>
-
 ## API documentation
 
 <br/>
@@ -46,29 +49,31 @@ import {List, MutableList, listOf, mutableListOf, when} from 'sleekify';
 `List` is an array wrapper that offers many operations. It is an immutable iterable.
 
 ⇨ <code>all</code>
-> Check if every element matches the predicate, if that's the case then returns `true`, else `false`
+> Check if every element matches the predicate, if that's the case then returns `true`, else `false`.
 
 **example :**
 
 ```ts
-const values = new List(1, 2, 3, 4, 5);
+const values = new List([1, 2, 3, 4, 5]);
 values.all(value => !isNaN(value)); // returns true
 values.all(value => isNaN(value)); // returns false
 ```
 
 ⇨ <code>any</code>
-> Check if there's at least one element matching the predicate, if that's the case then returns `true`, else `false`
+> Check if there's at least one element matching the predicate, if that's the case then returns `true`, else `false`.
+>
+> Alias for `some` function.
 
 **example :**
 
 ```ts
-const values = new List(1, 2, 3, 4, 5);
+const values = new List([1, 2, 3, 4, 5]);
 values.any(value => value === 3); // returns true
 values.any(value => value === 0); // returns false
 ```
 
 ⇨ <code>contains</code>
-> Check if there's at least one element matching the given entry, if that's the case then returns `true`, else `false`
+> Check if there's at least one element matching the given entry, if that's the case then returns `true`, else `false`.
 
 **example :**
 
@@ -76,13 +81,13 @@ values.any(value => value === 0); // returns false
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List(bob, jo);
+const values = new List([bob, jo]);
 values.contains({name: 'Jo', age: 22}); // returns true
 values.contains({name: 'Jo', age: 23}); // returns false
 ```
 
 ⇨ <code>containsAll</code>
-> Check if the given entries are presents in the list, if that's the case then returns `true`, else `false`
+> Check if the given entries are presents in the list, if that's the case then returns `true`, else `false`.
 
 **example :**
 
@@ -90,73 +95,455 @@ values.contains({name: 'Jo', age: 23}); // returns false
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List(bob, jo);
+const values = new List([bob, jo]);
 values.containsAll([{name: 'Bob', age: 18}, {name: 'Jo', age: 22}]); // returns true
 values.containsAll({name: 'Bob', age: 18}, {name: 'Jo', age: 23}); // returns false
 ```
 
 ⇨ <code>count</code>
+> Returns the number of elements matching the given predicate. If no predicate then behaves just like `length`
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.count(); // returns 2
+values.count(value => value.age === 18); // returns 1
+```
 
 ⇨ <code>distinct</code>
+> Returns a new `List` without any duplicates. If a predicate is given then only duplicates among the matching elements will be removed
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo2: Person = {name: 'Jo', age: 22};
+const jo3: Person = {name: 'Jo', age: 23};
+
+const values = new List([bob, jo, jo2, jo3]);
+values.distinct(); // returns List([bob, jo, jo3])
+values.distinct(value => value.name === 'Jo'); // returns List([bob, jo])
+```
 
 ⇨ <code>drop</code>
+> Returns a new `List` without the n first elements
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.drop(1); // returns List([jo])
+```
 
 ⇨ <code>dropLast</code>
+> Returns a new `List` without the n last elements
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.dropLast(1); // returns List([bob])
+```
 
 ⇨ <code>filter</code>
+> Returns a new `List` with only the elements matching the predicate
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.filter(value => value.age === 18); // returns List([bob])
+```
 
 ⇨ <code>find</code>
+> Returns the first element matching the predicate
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo1: Person = {name: 'Jo', age: 23};
+
+const values = new List([bob, jo, jo1]);
+values.first(value => value.name === 'jo'); // returns jo
+values.first(value => value.name === 'jane'); // returns undefined
+
+```
 
 ⇨ <code>first</code>
+> Returns the first element matching the predicate, throw an error if there's not matching
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo1: Person = {name: 'Jo', age: 23};
+
+const values = new List([bob, jo, jo1]);
+values.first(value => value.name === 'jo'); // returns jo
+values.first(value => value.name === 'jane'); // throw an error 'No value matches the predicate'
+```
 
 ⇨ <code>firstOrNull</code>
+> Returns the first element matching the predicate, alias for `find` function
 
-⇨ <code>flatmap</code>
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo1: Person = {name: 'Jo', age: 23};
+
+const values = new List([bob, jo, jo1]);
+values.first(value => value.name === 'jo'); // returns jo
+values.first(value => value.name === 'jane'); // returns undefined
+```
+
+⇨ <code>flatMap</code>
+> Returns a new `List`, apply the given selector and then flatten (1 level deep) the results
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([[bob], jo]);
+values.flatMap(value => value.name); // returns List(['bob', 'jo'])
+```
 
 ⇨ <code>flatten</code>
+> Returns a new `List` flattened 1 level deep by default, if a depth is specified then apply it
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jane: Person = {name: 'Jo', age: 22};
+
+const values = new List([[bob], jo, [[jane]]]);
+values.flatten(); // returns List([bob, jo, [jane]])
+values.flatten(2); // returns List([bob, jo, jane])
+```
 
 ⇨ <code>forEach</code>
+> void function that applies a given selector on every elements of the List
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.forEach(value => value.age = 18); // returns nothing but every Person of the List are now 18
+```
 
 ⇨ <code>get</code>
+> Returns the element at the given index or `undefined` if the index doesn't exists
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.get(0); // returns bob
+values.get(2); // returns undefined
+```
 
 ⇨ <code>groupBy</code>
+> Returns a Map object where the key is provided by the given selector and value is an array of all the elements matching this key
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jane: Person = {name: 'Jane', age: 22};
+
+const values = new List([bob, jo, jane]);
+values.groupBy(value => value.age);
+// returns a map like so: 
+// Map([
+//    [18, [{name: 'Bob', age: 18}]], 
+//    [22, [{name: 'Jo', age: 22}, {name: 'Jane', age: 22}]]
+// ])
+```
 
 ⇨ <code>isEmpty</code>
+> Check if the List is empty or not
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+new List([bob, jo]).isEmpty(); // returns false
+new List().isEmpty(); // returns true
+```
 
 ⇨ <code>join</code>
+> Returns a string resulting from converting each element of the List to a string and then concatenating them together
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.join({separator: ' / '}, value => value.name); // returns 'bob / jo'
+```
 
 ⇨ <code>last</code>
+> Returns the last element matching the predicate, throw an error if there's not matching
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo1: Person = {name: 'Jo', age: 23};
+
+const values = new List([bob, jo, jo1]);
+values.last(value => value.name === 'jo'); // returns jo1
+values.last(value => value.name === 'jane'); // throw an error 'No value matches the predicate'
+```
 
 ⇨ <code>lastOrNull</code>
+> Returns the last element matching the predicate, or `undefined` if no matching
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo1: Person = {name: 'Jo', age: 23};
+
+const values = new List([bob, jo, jo1]);
+values.last(value => value.name === 'jo'); // returns jo1
+values.last(value => value.name === 'jane'); // returns undefined
+```
 
 ⇨ <code>map</code>
+> Returns a new `List` where a given selector is applied on every elements
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.map(value => {
+    value.age = 18;
+    return value;
+}); // returns a new List similar to values but where every Person is now 18
+```
 
 ⇨ <code>max</code>
+> Returns the max value or object according to the given selector.
+>
+> If no selector, then just returns the max among all values. The array must consist of numbers only, otherwise an error is thrown.
+
+**examples :**
+
+```ts
+const values = new List([1, 2, 3, 4, 5]);
+values.max(); // returns 5
+```
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.max(value => value.age); // returns jo
+values.max(); // throw an Error 'Type of array is not number'
+```
 
 ⇨ <code>min</code>
+> Returns the min value or object according to the given selector.
+>
+> If no selector, then just returns the min among all values. The array must consist of numbers only, otherwise an error is thrown.
+
+**examples :**
+
+```ts
+const values = new List([1, 2, 3, 4, 5]);
+values.min(); // returns 1
+```
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.min(value => value.age); // returns bob
+values.min(); // throw an Error 'Type of array is not number'
+```
 
 ⇨ <code>none</code>
+> Check if there's no element matching the predicate, if that's the case then returns `true`, else `false`
+
+**example :**
+
+```ts
+const values = new List([1, 2, 3, 4, 5]);
+values.none(value => value === 3); // returns false
+values.none(value => value === 0); // returns true
+```
 
 ⇨ <code>onEach</code>
+> Returns a new `List` where a given selector is applied on every elements, the selector silently returns `this`.
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.onEach(value => value.age = 18); // returns a new List similar to values but where every Person is now 18
+```
 
 ⇨ <code>reduce</code>
+> Returns a value obtained after an operation (accumulator) is applied on every element of the List.
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.reduce((acc, value) => acc + value.age, 0); // returns 40
+```
 
 ⇨ <code>reverse</code>
+> Returns a new `List` where all elements are reversed: first element become last, last become first and so on.
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.reverse(); // returns List([jo, bob])
+```
 
 ⇨ <code>size</code>
+> Returns the number of elements in the List.
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.size(); // returns 2
+```
 
 ⇨ <code>some</code>
+> Check if there's at least one element matching the predicate, if that's the case then returns `true`, else `false`.
+
+**example :**
+
+```ts
+const values = new List([1, 2, 3, 4, 5]);
+values.some(value => value === 3); // returns true
+values.some(value => value === 0); // returns false
+```
 
 ⇨ <code>sort</code>
+> Returns a new `List` where elements are sorted according to the selector if given.
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([jo, bob]);
+values.sort(value => value.age); // returns List([bob, jo])
+```
 
 ⇨ <code>sum</code>
+> Calculate the sum of the array according to the selector if given.
+>
+> If no selector is given, the `List` must be composed of numbers otherwise an error will be thrown.
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.sum(value => value.age); // returns 40
+values.sum(); // throw an error 'Type of array is not number'
+```
 
 ⇨ <code>take</code>
+> Returns a new `List` with only the n first elements.
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.take(1); // returns List([bob])
+```
 
 ⇨ <code>takeLast</code>
+> Returns a new `List` with only the n last elements.
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.takeLast(1); // returns List([jo])
+```
 
 ⇨ <code>toArray</code>
+> Returns an array out of the `List`.
 
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.toArray(); // returns [bob, jo]
+```
 
 </details>
 
@@ -167,6 +554,567 @@ values.containsAll({name: 'Bob', age: 18}, {name: 'Jo', age: 23}); // returns fa
 <br/>
 
 `MutableList` is an array wrapper that offers many operations. It is a mutable iterable.
+
+⇨ <code>add</code>
+> Add a new element to the current `List` and returns `this`.
+>
+> Mutable operation.
+
+**example :**
+
+```ts
+const values = new List([1, 2, 3, 4, 5]);
+values.add(6); // returns List([1, 2, 3, 4, 5, 6])
+```
+
+⇨ <code>all</code>
+> Check if every element matches the predicate, if that's the case then returns `true`, else `false`.
+
+**example :**
+
+```ts
+const values = new List([1, 2, 3, 4, 5]);
+values.all(value => !isNaN(value)); // returns true
+values.all(value => isNaN(value)); // returns false
+```
+
+⇨ <code>any</code>
+> Check if there's at least one element matching the predicate, if that's the case then returns `true`, else `false`.
+>
+> Alias for `some` function.
+
+**example :**
+
+```ts
+const values = new List([1, 2, 3, 4, 5]);
+values.any(value => value === 3); // returns true
+values.any(value => value === 0); // returns false
+```
+
+⇨ <code>contains</code>
+> Check if there's at least one element matching the given entry, if that's the case then returns `true`, else `false`.
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.contains({name: 'Jo', age: 22}); // returns true
+values.contains({name: 'Jo', age: 23}); // returns false
+```
+
+⇨ <code>containsAll</code>
+> Check if the given entries are presents in the list, if that's the case then returns `true`, else `false`.
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.containsAll([{name: 'Bob', age: 18}, {name: 'Jo', age: 22}]); // returns true
+values.containsAll({name: 'Bob', age: 18}, {name: 'Jo', age: 23}); // returns false
+```
+
+⇨ <code>count</code>
+> Returns the number of elements matching the given predicate. If no predicate then behaves just like `length`
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.count(); // returns 2
+values.count(value => value.age === 18); // returns 1
+```
+
+⇨ <code>distinct</code>
+> Returns a new `List` without any duplicates. If a predicate is given then only duplicates among the matching elements will be removed
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo2: Person = {name: 'Jo', age: 22};
+const jo3: Person = {name: 'Jo', age: 23};
+
+const values = new List([bob, jo, jo2, jo3]);
+values.distinct(); // returns List([bob, jo, jo3])
+values.distinct(value => value.name === 'Jo'); // returns List([bob, jo])
+```
+
+⇨ <code>drop</code>
+> Returns a new `List` without the n first elements
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.drop(1); // returns List([jo])
+```
+
+⇨ <code>dropLast</code>
+> Returns a new `List` without the n last elements
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.dropLast(1); // returns List([bob])
+```
+
+⇨ <code>filter</code>
+> Returns a new `List` with only the elements matching the predicate
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.filter(value => value.age === 18); // returns List([bob])
+```
+
+⇨ <code>find</code>
+> Returns the first element matching the predicate
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo1: Person = {name: 'Jo', age: 23};
+
+const values = new List([bob, jo, jo1]);
+values.first(value => value.name === 'jo'); // returns jo
+values.first(value => value.name === 'jane'); // returns undefined
+
+```
+
+⇨ <code>first</code>
+> Returns the first element matching the predicate, throw an error if there's not matching
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo1: Person = {name: 'Jo', age: 23};
+
+const values = new List([bob, jo, jo1]);
+values.first(value => value.name === 'jo'); // returns jo
+values.first(value => value.name === 'jane'); // throw an error 'No value matches the predicate'
+```
+
+⇨ <code>firstOrNull</code>
+> Returns the first element matching the predicate, alias for `find` function
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo1: Person = {name: 'Jo', age: 23};
+
+const values = new List([bob, jo, jo1]);
+values.first(value => value.name === 'jo'); // returns jo
+values.first(value => value.name === 'jane'); // returns undefined
+```
+
+⇨ <code>flatMap</code>
+> Returns a new `List`, apply the given selector and then flatten (1 level deep) the results
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([[bob], jo]);
+values.flatMap(value => value.name); // returns List(['bob', 'jo'])
+```
+
+⇨ <code>flatten</code>
+> Returns a new `List` flattened 1 level deep by default, if a depth is specified then apply it
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jane: Person = {name: 'Jo', age: 22};
+
+const values = new List([[bob], jo, [[jane]]]);
+values.flatten(); // returns List([bob, jo, [jane]])
+values.flatten(2); // returns List([bob, jo, jane])
+```
+
+⇨ <code>forEach</code>
+> void function that applies a given selector on every elements of the List
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.forEach(value => value.age = 18); // returns nothing but every Person of the List are now 18
+```
+
+⇨ <code>get</code>
+> Returns the element at the given index or `undefined` if the index doesn't exists
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.get(0); // returns bob
+values.get(2); // returns undefined
+```
+
+⇨ <code>groupBy</code>
+> Returns a Map object where the key is provided by the given selector and value is an array of all the elements matching this key
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jane: Person = {name: 'Jane', age: 22};
+
+const values = new List([bob, jo, jane]);
+values.groupBy(value => value.age);
+// returns a map like so: 
+// Map([
+//    [18, [{name: 'Bob', age: 18}]], 
+//    [22, [{name: 'Jo', age: 22}, {name: 'Jane', age: 22}]]
+// ])
+```
+
+⇨ <code>isEmpty</code>
+> Check if the List is empty or not
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+new List([bob, jo]).isEmpty(); // returns false
+new List().isEmpty(); // returns true
+```
+
+⇨ <code>join</code>
+> Returns a string resulting from converting each element of the List to a string and then concatenating them together
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.join({separator: ' / '}, value => value.name); // returns 'bob / jo'
+```
+
+⇨ <code>last</code>
+> Returns the last element matching the predicate, throw an error if there's not matching
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo1: Person = {name: 'Jo', age: 23};
+
+const values = new List([bob, jo, jo1]);
+values.last(value => value.name === 'jo'); // returns jo1
+values.last(value => value.name === 'jane'); // throw an error 'No value matches the predicate'
+```
+
+⇨ <code>lastOrNull</code>
+> Returns the last element matching the predicate, or `undefined` if no matching
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo1: Person = {name: 'Jo', age: 23};
+
+const values = new List([bob, jo, jo1]);
+values.last(value => value.name === 'jo'); // returns jo1
+values.last(value => value.name === 'jane'); // returns undefined
+```
+
+⇨ <code>map</code>
+> Returns a new `List` where a given selector is applied on every elements
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.map(value => {
+    value.age = 18;
+    return value;
+}); // returns a new List similar to values but where every Person is now 18
+```
+
+⇨ <code>max</code>
+> Returns the max value or object according to the given selector.
+>
+> If no selector, then just returns the max among all values. The array must consist of numbers only, otherwise an error is thrown.
+
+**examples :**
+
+```ts
+const values = new List([1, 2, 3, 4, 5]);
+values.max(); // returns 5
+```
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.max(value => value.age); // returns jo
+values.max(); // throw an Error 'Type of array is not number'
+```
+
+⇨ <code>min</code>
+> Returns the min value or object according to the given selector.
+>
+> If no selector, then just returns the min among all values. The array must consist of numbers only, otherwise an error is thrown.
+
+**examples :**
+
+```ts
+const values = new List([1, 2, 3, 4, 5]);
+values.min(); // returns 1
+```
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.min(value => value.age); // returns bob
+values.min(); // throw an Error 'Type of array is not number'
+```
+
+⇨ <code>none</code>
+> Check if there's no element matching the predicate, if that's the case then returns `true`, else `false`
+
+**example :**
+
+```ts
+const values = new List([1, 2, 3, 4, 5]);
+values.none(value => value === 3); // returns false
+values.none(value => value === 0); // returns true
+```
+
+⇨ <code>onEach</code>
+> Returns a new `List` where a given selector is applied on every elements, the selector silently returns `this`.
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.onEach(value => value.age = 18); // returns a new List similar to values but where every Person is now 18
+```
+
+⇨ <code>reduce</code>
+> Returns a value obtained after an operation (accumulator) is applied on every element of the List.
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.reduce((acc, value) => acc + value.age, 0); // returns 40
+```
+
+⇨ <code>remove</code>
+> Remove the element at the given index from the current `List` and returns `this`.
+>
+> Mutable operation.
+
+**example :**
+
+```ts
+const values = new List([1, 2, 3, 4, 5, 6]);
+values.remove(5); // returns List([1, 2, 3, 4, 5])
+```
+
+⇨ <code>removeFirst</code>
+> Remove the first element the current `List` and returns `this`.
+>
+> Mutable operation.
+
+**example :**
+
+```ts
+const values = new List([1, 2, 3, 4, 5, 6]);
+values.removeFirst(); // returns List([2, 3, 4, 5, 6])
+```
+
+⇨ <code>removeLast</code>
+> Remove the last element the current `List` and returns `this`.
+>
+> Mutable operation.
+
+**example :**
+
+```ts
+const values = new List([1, 2, 3, 4, 5, 6]);
+values.removeLast(); // returns List([1, 2, 3, 4, 5])
+```
+
+⇨ <code>removeAll</code>
+> Remove the last element the current `List` and returns `this`.
+>
+> Mutable operation.
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jane: Person = {name: 'Jane', age: 22};
+
+const values = new List([bob, jo, jane]);
+values.removeAll(value => value.age === 22); // returns List([bob])
+```
+
+⇨ <code>reverse</code>
+> Returns a new `List` where all elements are reversed: first element become last, last become first and so on.
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.reverse(); // returns List([jo, bob])
+```
+
+⇨ <code>size</code>
+> Returns the number of elements in the List.
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.size(); // returns 2
+```
+
+⇨ <code>some</code>
+> Check if there's at least one element matching the predicate, if that's the case then returns `true`, else `false`.
+
+**example :**
+
+```ts
+const values = new List([1, 2, 3, 4, 5]);
+values.some(value => value === 3); // returns true
+values.some(value => value === 0); // returns false
+```
+
+⇨ <code>sort</code>
+> Returns a new `List` where elements are sorted according to the selector if given.
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([jo, bob]);
+values.sort(value => value.age); // returns List([bob, jo])
+```
+
+⇨ <code>sum</code>
+> Calculate the sum of the array according to the selector if given.
+>
+> If no selector is given, the `List` must be composed of numbers otherwise an error will be thrown.
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.sum(value => value.age); // returns 40
+values.sum(); // throw an error 'Type of array is not number'
+```
+
+⇨ <code>take</code>
+> Returns a new `List` with only the n first elements.
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.take(1); // returns List([bob])
+```
+
+⇨ <code>takeLast</code>
+> Returns a new `List` with only the n last elements.
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.takeLast(1); // returns List([jo])
+```
+
+⇨ <code>toArray</code>
+> Returns an array out of the `List`.
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.toArray(); // returns [bob, jo]
+```
 
 </details>
 
