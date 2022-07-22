@@ -1,46 +1,45 @@
-import {PersonMock} from '../../../../test/mocks/person.mock';
-import {Person} from '../../../../test/models/person';
-import {JoinProps} from '../../models/JoinProps';
-import {AllOperation} from '../../operations/all/all.operation';
-import {AnyOperation} from '../../operations/any/any.operation';
-import {ContainsAllOperation} from '../../operations/contains-all/contains-all.operation';
-import {ContainsOperation} from '../../operations/contains/contains.operation';
-import {CountOperation} from '../../operations/count/count.operation';
-import {DistinctOperation} from '../../operations/distinct/distinct.operation';
-import {DropLastOperation} from '../../operations/drop-last/drop-last.operation';
-import {DropOperation} from '../../operations/drop/drop.operation';
-import {FilterOperation} from '../../operations/filter/filter.operation';
-import {FindOperation} from '../../operations/find/find.operation';
-import {FirstOrNullOperation} from '../../operations/first-or-null/first-or-null.operation';
-import {FirstOperation} from '../../operations/first/first.operation';
-import {FlatmapOperation} from '../../operations/flatmap/flatmap.operation';
-import {FlattenOperation} from '../../operations/flatten/flatten.operation';
-import {ForEachOperation} from '../../operations/for-each/for-each.operation';
-import {GetOperation} from '../../operations/get/get.operation';
-import {GroupByOperation} from '../../operations/group-by/group-by.operation';
-import {IsEmptyOperation} from '../../operations/is-empty/is-empty.operation';
-import {JoinOperation} from '../../operations/join/join.operation';
-import {LastOrNullOperation} from '../../operations/last-or-null/last-or-null.operation';
-import {LastOperation} from '../../operations/last/last.operation';
-import {MapOperation} from '../../operations/map/map.operation';
-import {MaxOperation} from '../../operations/max/max.operation';
-import {MinOperation} from '../../operations/min/min.operation';
-import {NoneOperation} from '../../operations/none/none.operation';
-import {OnEachOperation} from '../../operations/on-each/on-each.operation';
-import {ReduceOperation} from '../../operations/reduce/reduce.operation';
-import {ReverseOperation} from '../../operations/reverse/reverse.operation';
-import {SizeOperation} from '../../operations/size/size.operation';
-import {SomeOperation} from '../../operations/some/some.operation';
-import {SortOperation} from '../../operations/sort/sort.operation';
-import {SumOperation} from '../../operations/sum/sum.operation';
-import {TakeLastOperation} from '../../operations/take-last/take-last.operation';
-import {TakeOperation} from '../../operations/take/take.operation';
-import {ToArrayOperation} from '../../operations/to-array/to-array.operation';
-import {List} from './list';
+import { PersonMock } from '../../../../test/mocks/person.mock';
+import { Person } from '../../../../test/models/person';
+import { JoinProps } from '../../models/JoinProps';
+import { AllOperation } from '../../operations/all/all.operation';
+import { AnyOperation } from '../../operations/any/any.operation';
+import { ContainsAllOperation } from '../../operations/contains-all/contains-all.operation';
+import { ContainsOperation } from '../../operations/contains/contains.operation';
+import { CountOperation } from '../../operations/count/count.operation';
+import { DistinctOperation } from '../../operations/distinct/distinct.operation';
+import { DropLastOperation } from '../../operations/drop-last/drop-last.operation';
+import { DropOperation } from '../../operations/drop/drop.operation';
+import { FilterOperation } from '../../operations/filter/filter.operation';
+import { FindOperation } from '../../operations/find/find.operation';
+import { FirstOrNullOperation } from '../../operations/first-or-null/first-or-null.operation';
+import { FirstOperation } from '../../operations/first/first.operation';
+import { FlatmapOperation } from '../../operations/flatmap/flatmap.operation';
+import { FlattenOperation } from '../../operations/flatten/flatten.operation';
+import { ForEachOperation } from '../../operations/for-each/for-each.operation';
+import { GetOperation } from '../../operations/get/get.operation';
+import { GroupByOperation } from '../../operations/group-by/group-by.operation';
+import { IsEmptyOperation } from '../../operations/is-empty/is-empty.operation';
+import { JoinOperation } from '../../operations/join/join.operation';
+import { LastOrNullOperation } from '../../operations/last-or-null/last-or-null.operation';
+import { LastOperation } from '../../operations/last/last.operation';
+import { MapOperation } from '../../operations/map/map.operation';
+import { MaxOperation } from '../../operations/max/max.operation';
+import { MinOperation } from '../../operations/min/min.operation';
+import { NoneOperation } from '../../operations/none/none.operation';
+import { OnEachOperation } from '../../operations/on-each/on-each.operation';
+import { ReduceOperation } from '../../operations/reduce/reduce.operation';
+import { ReverseOperation } from '../../operations/reverse/reverse.operation';
+import { SizeOperation } from '../../operations/size/size.operation';
+import { SomeOperation } from '../../operations/some/some.operation';
+import { SortOperation } from '../../operations/sort/sort.operation';
+import { SumOperation } from '../../operations/sum/sum.operation';
+import { TakeLastOperation } from '../../operations/take-last/take-last.operation';
+import { TakeOperation } from '../../operations/take/take.operation';
+import { ToArrayOperation } from '../../operations/to-array/to-array.operation';
+import { List } from './list';
 import restoreAllMocks = jest.restoreAllMocks;
 
 describe('List', () => {
-
     afterEach(() => restoreAllMocks());
 
     describe('filter', () => {
@@ -67,7 +66,7 @@ describe('List', () => {
             const list = new List([bob, jo, jane]);
 
             // WHEN
-            list.filter(it => it.firstName === 'Bob');
+            list.filter((it) => it.firstName === 'Bob');
 
             // THEN
             expect(list.size()).toEqual(3);
@@ -81,14 +80,18 @@ describe('List', () => {
         it('call the OnEach operation class', () => {
             // GIVEN
             const list = new List([PersonMock.bob(), PersonMock.jo(), PersonMock.jane()]);
-            const selector = (it: Person) => it.age = 18;
+            const selector = (it: Person) => (it.age = 18);
             jest.spyOn(OnEachOperation, 'execute');
 
             // WHEN
             const result = list.onEach(selector);
 
             // THEN
-            const expected = new List([{...PersonMock.bob(), age: 18}, {...PersonMock.jo(), age: 18}, {...PersonMock.jane(), age: 18}]);
+            const expected = new List([
+                { ...PersonMock.bob(), age: 18 },
+                { ...PersonMock.jo(), age: 18 },
+                { ...PersonMock.jane(), age: 18 },
+            ]);
             expect(result).toEqual(expected);
             expect(OnEachOperation.execute).toHaveBeenCalled();
         });
@@ -101,7 +104,7 @@ describe('List', () => {
             const list = new List([bob, jo, jane]);
 
             // WHEN
-            list.onEach(it => it.firstName = 'Bob');
+            list.onEach((it) => (it.firstName = 'Bob'));
 
             // THEN
             expect(list.size()).toEqual(3);
@@ -125,7 +128,10 @@ describe('List', () => {
             list.forEach(selector);
 
             // THEN
-            const expected = new List([{...PersonMock.ted(), name: 'Hololo'}, {...PersonMock.jo(), name: 'Hololo'}]);
+            const expected = new List([
+                { ...PersonMock.ted(), name: 'Hololo' },
+                { ...PersonMock.jo(), name: 'Hololo' },
+            ]);
             expect(list).toEqual(expected);
             expect(ForEachOperation.execute).toHaveBeenCalled();
         });
@@ -138,7 +144,7 @@ describe('List', () => {
             const list = new List([bob, jo, jane]);
 
             // WHEN
-            list.forEach(it => it.firstName = 'Bob');
+            list.forEach((it) => (it.firstName = 'Bob'));
 
             // THEN
             expect(list.size()).toEqual(3);
@@ -172,7 +178,7 @@ describe('List', () => {
             const list = new List([bob, jo, jane]);
 
             // WHEN
-            list.map(it => it.firstName);
+            list.map((it) => it.firstName);
 
             // THEN
             expect(list.size()).toEqual(3);
@@ -186,7 +192,7 @@ describe('List', () => {
         it('call the Flatmap operation class', () => {
             // GIVEN
             const list = new List([[PersonMock.ted()], [PersonMock.bob()]]);
-            const selector = (it: Person[]) => it.map(person => person.firstName);
+            const selector = (it: Person[]) => it.map((person) => person.firstName);
             jest.spyOn(FlatmapOperation, 'execute');
 
             // WHEN
@@ -206,7 +212,7 @@ describe('List', () => {
             const list = new List([bob, jo, jane]);
 
             // WHEN
-            list.flatMap(it => it.firstName);
+            list.flatMap((it) => it.firstName);
 
             // THEN
             expect(list.size()).toEqual(3);
@@ -219,7 +225,10 @@ describe('List', () => {
     describe('flatten', () => {
         it('call the Flatten operation class', () => {
             // GIVEN
-            const list = new List([['1', '2', '3', '4', '5', '6'], ['7', '8']]);
+            const list = new List([
+                ['1', '2', '3', '4', '5', '6'],
+                ['7', '8'],
+            ]);
             jest.spyOn(FlattenOperation, 'execute');
 
             // WHEN
@@ -228,7 +237,13 @@ describe('List', () => {
             // THEN
             const expected = new List(['1', '2', '3', '4', '5', '6', '7', '8']);
             expect(result).toEqual(expected);
-            expect(FlattenOperation.execute).toHaveBeenCalledWith([['1', '2', '3', '4', '5', '6'], ['7', '8']], 1);
+            expect(FlattenOperation.execute).toHaveBeenCalledWith(
+                [
+                    ['1', '2', '3', '4', '5', '6'],
+                    ['7', '8'],
+                ],
+                1
+            );
         });
 
         it('check immutability', () => {
@@ -347,7 +362,7 @@ describe('List', () => {
 
         it('call the Distinct operation class with selector', () => {
             // GIVEN
-            const list = new List([{name: 'bob'}, {name: 'bob'}, {name: 'ted'}]);
+            const list = new List([{ name: 'bob' }, { name: 'bob' }, { name: 'ted' }]);
             const selector = (it: any) => it.name;
             jest.spyOn(DistinctOperation, 'execute');
 
@@ -355,9 +370,9 @@ describe('List', () => {
             const result = list.distinct(selector);
 
             // THEN
-            const expected = new List([{name: 'bob'}, {name: 'ted'}]);
+            const expected = new List([{ name: 'bob' }, { name: 'ted' }]);
             expect(result).toEqual(expected);
-            expect(DistinctOperation.execute).toHaveBeenCalledWith([{name: 'bob'}, {name: 'bob'}, {name: 'ted'}], selector);
+            expect(DistinctOperation.execute).toHaveBeenCalledWith([{ name: 'bob' }, { name: 'bob' }, { name: 'ted' }], selector);
         });
 
         it('check immutability', () => {
@@ -1042,7 +1057,7 @@ describe('List', () => {
         it('call the Join operation class with both parameters', () => {
             // GIVEN
             const list = new List(['1', '2', '3', '4', '5', '6', '7', '8']);
-            const props: JoinProps = {separator: '/'};
+            const props: JoinProps = { separator: '/' };
             const selector = (it: string) => it;
             jest.spyOn(JoinOperation, 'execute');
 
@@ -1163,5 +1178,4 @@ describe('List', () => {
             expect(ToArrayOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8']);
         });
     });
-
 });

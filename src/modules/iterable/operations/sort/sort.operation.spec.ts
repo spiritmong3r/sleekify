@@ -1,8 +1,7 @@
-import {PersonMock} from '../../../../test/mocks/person.mock';
-import {SortOperation} from './sort.operation';
+import { PersonMock } from '../../../../test/mocks/person.mock';
+import { SortOperation } from './sort.operation';
 
 describe('SortByOperation', () => {
-
     it('given an array of strings, return an array sorted from the lowest to the highest', () => {
         // GIVEN
         const values = ['1', '0', '2', '5', '4', '3', '9'];
@@ -49,7 +48,6 @@ describe('SortByOperation', () => {
         // THEN
         const expected = ['1', '2', '5', '4', '3', '9', '0'];
         expect(values).toEqual(expected);
-
     });
 
     it('given a selector and an array of persons, return an array sorted from youngest to the oldest', () => {
@@ -72,7 +70,7 @@ describe('SortByOperation', () => {
         const values = [bob, jo, jane];
 
         // WHEN
-        SortOperation.execute(values, it => it.firstName);
+        SortOperation.execute(values, (it) => it.firstName);
 
         // THEN
         expect(values.length).toEqual(3);
@@ -80,5 +78,4 @@ describe('SortByOperation', () => {
         expect(values[1] === jo).toBeTruthy();
         expect(values[2] === jane).toBeTruthy();
     });
-
 });

@@ -1,10 +1,9 @@
-import {PersonMock} from '../../../../test/mocks/person.mock';
+import { PersonMock } from '../../../../test/mocks/person.mock';
 import * as object from '../../../common/object/deep-equal';
-import {GroupByOperation} from './group-by.operation';
+import { GroupByOperation } from './group-by.operation';
 import resetAllMocks = jest.resetAllMocks;
 
 describe('GroupByOperation', () => {
-
     afterEach(() => resetAllMocks());
 
     it('given an empty array, return an empty Map', () => {
@@ -33,7 +32,7 @@ describe('GroupByOperation', () => {
         const expected = new Map([
             [1, ['i']],
             [2, ['am']],
-            [5, ['hello', 'groot']]
+            [5, ['hello', 'groot']],
         ]);
         expect(result).toEqual(expected);
         expect(object.deepEqual).toHaveBeenCalledTimes(0);
@@ -51,7 +50,7 @@ describe('GroupByOperation', () => {
         const expected = new Map([
             [18, [PersonMock.bob(), PersonMock.ted()]],
             [19, [PersonMock.jo(), PersonMock.ed()]],
-            [24, [PersonMock.jane()]]
+            [24, [PersonMock.jane()]],
         ]);
         expect(result).toEqual(expected);
         expect(object.deepEqual).toHaveBeenCalledTimes(0);
@@ -71,15 +70,14 @@ describe('GroupByOperation', () => {
 
         // THEN
         const expected = new Map([
-            [{name: 'US'}, [PersonMock.bob()]],
-            [{name: 'CA'}, [PersonMock.jo()]]
+            [{ name: 'US' }, [PersonMock.bob()]],
+            [{ name: 'CA' }, [PersonMock.jo()]],
         ]);
         expect(result).toEqual(expected);
-        expect(object.deepEqual).toHaveBeenNthCalledWith(1, {name: 'US'}, {name: 'US'});
-        expect(object.deepEqual).toHaveBeenNthCalledWith(2, {name: 'US'}, {name: 'CA'});
-        expect(object.deepEqual).toHaveBeenNthCalledWith(3, {name: 'US'}, {name: 'CA'});
-        expect(object.deepEqual).toHaveBeenNthCalledWith(4, {name: 'CA'}, {name: 'CA'});
+        expect(object.deepEqual).toHaveBeenNthCalledWith(1, { name: 'US' }, { name: 'US' });
+        expect(object.deepEqual).toHaveBeenNthCalledWith(2, { name: 'US' }, { name: 'CA' });
+        expect(object.deepEqual).toHaveBeenNthCalledWith(3, { name: 'US' }, { name: 'CA' });
+        expect(object.deepEqual).toHaveBeenNthCalledWith(4, { name: 'CA' }, { name: 'CA' });
         expect(object.deepEqual).toHaveBeenCalledTimes(4);
     });
-
 });

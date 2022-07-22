@@ -1,8 +1,7 @@
-import {PersonMock} from '../../../../test/mocks/person.mock';
-import {CountOperation} from './count.operation';
+import { PersonMock } from '../../../../test/mocks/person.mock';
+import { CountOperation } from './count.operation';
 
 describe('CountOperation', () => {
-
     it('given an empty array and no predicate, return 0', () => {
         // GIVEN
         const values: any[] = [];
@@ -101,5 +100,4 @@ describe('CountOperation', () => {
         // THEN
         expect(result).toEqual(2);
     });
-
 });

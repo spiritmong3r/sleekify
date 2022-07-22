@@ -1,7 +1,6 @@
-import {ReduceOperation} from './reduce.operation';
+import { ReduceOperation } from './reduce.operation';
 
 describe('ReduceOperation', () => {
-
     it('given an empty array of strings, return an empty string', () => {
         // GIVEN
         const values: any[] = [];
@@ -52,7 +51,10 @@ describe('ReduceOperation', () => {
 
     it('given a bidimensional array of numbers, return an array of numbers', () => {
         // GIVEN
-        const values = [[1, 2, 3, 4, 5], [6, 7, 8]];
+        const values = [
+            [1, 2, 3, 4, 5],
+            [6, 7, 8],
+        ];
 
         // WHEN
         const result = ReduceOperation.execute(values, (acc, value) => acc.concat(value), [] as number[]);
@@ -61,5 +63,4 @@ describe('ReduceOperation', () => {
         const expected = [1, 2, 3, 4, 5, 6, 7, 8];
         expect(result).toEqual(expected);
     });
-
 });

@@ -1,8 +1,7 @@
-import {PersonMock} from '../../../../test/mocks/person.mock';
-import {FindOperation} from './find.operation';
+import { PersonMock } from '../../../../test/mocks/person.mock';
+import { FindOperation } from './find.operation';
 
 describe('FindOperation', () => {
-
     it('given an empty array, return undefined', () => {
         // GIVEN
         const values: any[] = [];
@@ -48,5 +47,4 @@ describe('FindOperation', () => {
         const expected = PersonMock.jane();
         expect(result).toEqual(expected);
     });
-
 });

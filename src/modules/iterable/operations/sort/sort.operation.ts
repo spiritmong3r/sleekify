@@ -1,5 +1,4 @@
 export abstract class SortOperation {
-
     static execute = <T, U>(values: T[], selector?: (value: T) => U): T[] => {
         const valuesToSort = [...values];
 
@@ -17,5 +16,4 @@ export abstract class SortOperation {
 
         return valuesToSort;
     };
-
 }

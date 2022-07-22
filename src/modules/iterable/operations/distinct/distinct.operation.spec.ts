@@ -1,10 +1,9 @@
-import {PersonMock} from '../../../../test/mocks/person.mock';
+import { PersonMock } from '../../../../test/mocks/person.mock';
 import * as object from '../../../common/object/deep-equal';
-import {DistinctOperation} from './distinct.operation';
+import { DistinctOperation } from './distinct.operation';
 import resetAllMocks = jest.resetAllMocks;
 
 describe('DistinctOperation', () => {
-
     afterEach(() => resetAllMocks());
 
     it('given an empty array, return an empty array', () => {
@@ -184,7 +183,7 @@ describe('DistinctOperation', () => {
         jest.spyOn(object, 'deepEqual').mockImplementationOnce(() => true);
 
         // WHEN
-        DistinctOperation.execute(values, it => it.firstName);
+        DistinctOperation.execute(values, (it) => it.firstName);
 
         // THEN
         expect(values.length).toEqual(3);
@@ -192,5 +191,4 @@ describe('DistinctOperation', () => {
         expect(values[1] === jo).toBeTruthy();
         expect(values[2] === jane).toBeTruthy();
     });
-
 });

@@ -1,9 +1,8 @@
-import {JoinProps} from '../../models/JoinProps';
+import { JoinProps } from '../../models/JoinProps';
 
 export abstract class JoinOperation {
-
     static execute = <T, U>(values: T[], partialProps?: JoinProps, selector?: (value: T) => U): string => {
-        const valuesUpdated = (selector) ? values.map(selector) : values;
+        const valuesUpdated = selector ? values.map(selector) : values;
 
         if (!partialProps) return valuesUpdated.join(', ');
         else {
@@ -17,5 +16,4 @@ export abstract class JoinOperation {
             return `${props.prefix}${valueAsString}${props.postfix}`;
         }
     };
-
 }

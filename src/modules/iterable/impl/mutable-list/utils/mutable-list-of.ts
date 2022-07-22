@@ -1,4 +1,4 @@
-import {MutableList} from '../mutable-list';
+import { MutableList } from '../mutable-list';
 
 /**
  *

@@ -1,8 +1,7 @@
-import {PersonMock} from '../../../../test/mocks/person.mock';
-import {FirstOperation} from './first.operation';
+import { PersonMock } from '../../../../test/mocks/person.mock';
+import { FirstOperation } from './first.operation';
 
 describe('FirstOperation', () => {
-
     it('given an empty array and no predicate, throw an exception', () => {
         // GIVEN
         const values: any[] = [];
@@ -71,5 +70,4 @@ describe('FirstOperation', () => {
         const expected = PersonMock.jo();
         expect(result).toEqual(expected);
     });
-
 });

@@ -1,8 +1,7 @@
-import {PersonMock} from '../../../../test/mocks/person.mock';
-import {MaxOperation} from './max.operation';
+import { PersonMock } from '../../../../test/mocks/person.mock';
+import { MaxOperation } from './max.operation';
 
 describe('MaxOperation', () => {
-
     it('given an empty array, return undefined value', () => {
         // GIVEN
         const values: any[] = [];
@@ -83,5 +82,4 @@ describe('MaxOperation', () => {
         const expected = PersonMock.jo();
         expect(result).toEqual(expected);
     });
-
 });

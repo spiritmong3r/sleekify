@@ -1,9 +1,7 @@
-import {ArrayHelper} from './array.helper';
+import { ArrayHelper } from './array.helper';
 
 describe('ArrayHelper', () => {
-
     describe('transformToArray', () => {
-
         it('given an array of numbers, return the same array', () => {
             // GIVEN
             const data = [1, 2, 3, 4, 5];
@@ -58,7 +56,5 @@ describe('ArrayHelper', () => {
             // THEN
             expect(result).toEqual([]);
         });
-
     });
-
 });

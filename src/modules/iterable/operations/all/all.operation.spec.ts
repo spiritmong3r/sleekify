@@ -1,8 +1,7 @@
-import {PersonMock} from '../../../../test/mocks/person.mock';
-import {AllOperation} from './all.operation';
+import { PersonMock } from '../../../../test/mocks/person.mock';
+import { AllOperation } from './all.operation';
 
 describe('AllOperation', () => {
-
     it('given an array of strings containing a single value 4, return false', () => {
         // GIVEN
         const values = ['1', '2', '5', '4', '3', '9', '0'];
@@ -90,5 +89,4 @@ describe('AllOperation', () => {
         // THEN
         expect(result).toBeTruthy();
     });
-
 });

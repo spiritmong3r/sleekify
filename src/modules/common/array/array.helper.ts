@@ -1,7 +1,6 @@
-import {List} from '../../iterable/impl/list/list';
+import { List } from '../../iterable/impl/list/list';
 
 export abstract class ArrayHelper {
-
     /**
      * Transform an object to array.
      *
@@ -18,5 +17,4 @@ export abstract class ArrayHelper {
 
         return array;
     };
-
 }

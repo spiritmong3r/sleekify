@@ -1,8 +1,7 @@
-import {PersonMock} from '../../../../test/mocks/person.mock';
-import {OnEachOperation} from './on-each.operation';
+import { PersonMock } from '../../../../test/mocks/person.mock';
+import { OnEachOperation } from './on-each.operation';
 
 describe('OnEachOperation', () => {
-
     it('given an empty array, return an empty List', () => {
         // GIVEN
         const values: any[] = [];
@@ -32,10 +31,14 @@ describe('OnEachOperation', () => {
         const values = [PersonMock.bob(), PersonMock.jo(), PersonMock.jane()];
 
         // WHEN
-        const result = OnEachOperation.execute(values, (it) => it.age = 11);
+        const result = OnEachOperation.execute(values, (it) => (it.age = 11));
 
         // THEN
-        const expected = [{...PersonMock.bob(), age: 11}, {...PersonMock.jo(), age: 11}, {...PersonMock.jane(), age: 11}];
+        const expected = [
+            { ...PersonMock.bob(), age: 11 },
+            { ...PersonMock.jo(), age: 11 },
+            { ...PersonMock.jane(), age: 11 },
+        ];
         expect(result).toEqual(expected);
     });
 
@@ -47,7 +50,7 @@ describe('OnEachOperation', () => {
         const values = [bob, jo, jane];
 
         // WHEN
-        OnEachOperation.execute(values, (it) => it.age = 11);
+        OnEachOperation.execute(values, (it) => (it.age = 11));
 
         // THEN
         expect(values.length).toEqual(3);
@@ -55,5 +58,4 @@ describe('OnEachOperation', () => {
         expect(values[1] === jo).toBeTruthy();
         expect(values[2] === jane).toBeTruthy();
     });
-
 });

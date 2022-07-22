@@ -1,9 +1,8 @@
-import {MutableList} from '../mutable-list';
-import {mutableListOf} from './mutable-list-of';
+import { MutableList } from '../mutable-list';
+import { mutableListOf } from './mutable-list-of';
 import resetAllMocks = jest.resetAllMocks;
 
 describe('mutableListOf', () => {
-
     afterEach(() => resetAllMocks());
 
     it('given multiples numbers, return a MutableList of numbers', () => {
@@ -29,5 +28,4 @@ describe('mutableListOf', () => {
         const expected = new MutableList(['hello', 'here']);
         expect(result).toEqual(expected);
     });
-
 });

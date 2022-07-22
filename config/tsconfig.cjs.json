@@ -1,9 +1,9 @@
 {
-  "extends": "../tsconfig",
-  "compilerOptions": {
-    /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
-    "module": "CommonJS",
-    /* Redirect output structure to the directory. */
-    "outDir": "../dist/cjs"
-  }
+    "extends": "../tsconfig",
+    "compilerOptions": {
+        /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+        "module": "CommonJS",
+        /* Redirect output structure to the directory. */
+        "outDir": "../dist/cjs"
+    }
 }

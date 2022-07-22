@@ -1,5 +1,4 @@
 export class JoinProps {
-
     separator?: string = ', ';
 
     prefix?: string = '';
@@ -13,5 +12,4 @@ export class JoinProps {
     public constructor(init?: Partial<JoinProps>) {
         Object.assign(this, init);
     }
-
 }

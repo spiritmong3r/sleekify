@@ -1,4 +1,4 @@
-import {Statement} from './models/statements';
+import { Statement } from './models/statements';
 
 /**
  * Given an expression or value, check if there's a matching input and then execute the associated code.
@@ -23,7 +23,7 @@ import {Statement} from './models/statements';
  * @return An object of type `R` or `undefined`.
  */
 export function when<I extends boolean, R>(statements: Statement<I, R>): R | undefined;
-export function when<I, R>(input: I, statements: Statement<I, R>): R | undefined
+export function when<I, R>(input: I, statements: Statement<I, R>): R | undefined;
 export function when<I, R>(arg1: I | Statement<I, R>, arg2?: Statement<I, R>): R | undefined {
     let statements: Statement<I, R>;
     let isStatementToExecute: (index: number) => boolean;
@@ -31,10 +31,11 @@ export function when<I, R>(arg1: I | Statement<I, R>, arg2?: Statement<I, R>): R
     if (arg2) {
         const input = arg1 as I;
         statements = arg2;
-        isStatementToExecute = (index: number) => Array.isArray(statements[index]) && (statements[index] as []).some(it => it === input) || statements[index] === input;
+        isStatementToExecute = (index: number) =>
+            (Array.isArray(statements[index]) && (statements[index] as []).some((it) => it === input)) || statements[index] === input;
     } else {
         statements = arg1 as Statement<I, R>;
-        isStatementToExecute = (index: number) => ((typeof statements[index] == 'boolean') ? !!statements[index] : false);
+        isStatementToExecute = (index: number) => (typeof statements[index] == 'boolean' ? !!statements[index] : false);
     }
 
     for (let index = 0; index < statements.length; index = index + 2) {

@@ -1,14 +1,13 @@
-import {PersonMock} from '../../../../test/mocks/person.mock';
-import {FilterOperation} from './filter.operation';
+import { PersonMock } from '../../../../test/mocks/person.mock';
+import { FilterOperation } from './filter.operation';
 
 describe('FilterOperation', () => {
-
     it('given an empty array, return an empty array', () => {
         // GIVEN
         const values: number[] = [];
 
         // WHEN
-        const result = FilterOperation.execute(values, it => it % 2 === 0);
+        const result = FilterOperation.execute(values, (it) => it % 2 === 0);
 
         // THEN
         const expected: any[] = [];
@@ -20,7 +19,7 @@ describe('FilterOperation', () => {
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        const result = FilterOperation.execute(values, it => it % 2 === 0);
+        const result = FilterOperation.execute(values, (it) => it % 2 === 0);
 
         // THEN
         const expected = [2, 4];
@@ -35,7 +34,7 @@ describe('FilterOperation', () => {
         const values = [bob, jo, jane];
 
         // WHEN
-        FilterOperation.execute(values, it => it.firstName === 'Bob');
+        FilterOperation.execute(values, (it) => it.firstName === 'Bob');
 
         // THEN
         expect(values.length).toEqual(3);
@@ -43,5 +42,4 @@ describe('FilterOperation', () => {
         expect(values[1] === jo).toBeTruthy();
         expect(values[2] === jane).toBeTruthy();
     });
-
 });

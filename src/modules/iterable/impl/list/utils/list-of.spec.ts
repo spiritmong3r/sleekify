@@ -1,9 +1,8 @@
-import {List} from '../list';
-import {listOf} from './list-of';
+import { List } from '../list';
+import { listOf } from './list-of';
 import resetAllMocks = jest.resetAllMocks;
 
 describe('listOf', () => {
-
     afterEach(() => resetAllMocks());
 
     it('given multiples numbers, return a List of numbers', () => {
@@ -29,5 +28,4 @@ describe('listOf', () => {
         const expected = new List(['hello', 'here']);
         expect(result).toEqual(expected);
     });
-
 });

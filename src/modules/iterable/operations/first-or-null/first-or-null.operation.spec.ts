@@ -1,8 +1,7 @@
-import {PersonMock} from '../../../../test/mocks/person.mock';
-import {FirstOrNullOperation} from './first-or-null.operation';
+import { PersonMock } from '../../../../test/mocks/person.mock';
+import { FirstOrNullOperation } from './first-or-null.operation';
 
 describe('FirstOrNullOperation', () => {
-
     it('given an empty array and no predicate, return undefined', () => {
         // GIVEN
         const values: any[] = [];
@@ -71,5 +70,4 @@ describe('FirstOrNullOperation', () => {
         const expected = PersonMock.jane();
         expect(result).toEqual(expected);
     });
-
 });

@@ -1,9 +1,8 @@
-import {PersonMock} from '../../../../test/mocks/person.mock';
-import {MultidimensionalArrayHelper} from '../../../common/array/multidimensional-array.helper';
-import {FlatmapOperation} from './flatmap.operation';
+import { PersonMock } from '../../../../test/mocks/person.mock';
+import { MultidimensionalArrayHelper } from '../../../common/array/multidimensional-array.helper';
+import { FlatmapOperation } from './flatmap.operation';
 
 describe('FlatmapOperation', () => {
-
     it('given an empty array, return an empty array', () => {
         // GIVEN
         const values: any[] = [];
@@ -34,7 +33,10 @@ describe('FlatmapOperation', () => {
 
     it('given a bidimensional array of numbers, return a flattened array of numbers', () => {
         // GIVEN
-        const values = [[1, 2, 3, 4, 5], [6, 7, 8]];
+        const values = [
+            [1, 2, 3, 4, 5],
+            [6, 7, 8],
+        ];
         MultidimensionalArrayHelper.flatDeep = jest.fn().mockReturnValue([1, 2, 3, 4, 5, 6, 7, 8]);
 
         // WHEN
@@ -43,12 +45,18 @@ describe('FlatmapOperation', () => {
         // THEN
         const expected = [1, 2, 3, 4, 5, 6, 7, 8];
         expect(result).toEqual(expected);
-        expect(MultidimensionalArrayHelper.flatDeep).toHaveBeenCalledWith([[1, 2, 3, 4, 5], [6, 7, 8]]);
+        expect(MultidimensionalArrayHelper.flatDeep).toHaveBeenCalledWith([
+            [1, 2, 3, 4, 5],
+            [6, 7, 8],
+        ]);
     });
 
     it('given a bidimensional array of numbers, return a flattened array of strings', () => {
         // GIVEN
-        const values = [[1, 2, 3, 4, 5], [6, 7, 8]];
+        const values = [
+            [1, 2, 3, 4, 5],
+            [6, 7, 8],
+        ];
         MultidimensionalArrayHelper.flatDeep = jest.fn().mockReturnValue(['1', '2', '3', '4', '5', '6', '7', '8']);
 
         // WHEN
@@ -57,35 +65,70 @@ describe('FlatmapOperation', () => {
         // THEN
         const expected = ['1', '2', '3', '4', '5', '6', '7', '8'];
         expect(result).toEqual(expected);
-        expect(MultidimensionalArrayHelper.flatDeep).toHaveBeenCalledWith([['1', '2', '3', '4', '5'], ['6', '7', '8']]);
+        expect(MultidimensionalArrayHelper.flatDeep).toHaveBeenCalledWith([
+            ['1', '2', '3', '4', '5'],
+            ['6', '7', '8'],
+        ]);
     });
 
     it('given a tridimensional array of numbers, return a bidimensional array of strings', () => {
         // GIVEN
-        const values = [[[1, 2, 3, 4, 5], [6, 7, 8]]];
-        MultidimensionalArrayHelper.flatDeep = jest.fn().mockReturnValue([['1', '2', '3', '4', '5'], ['6', '7', '8']]);
+        const values = [
+            [
+                [1, 2, 3, 4, 5],
+                [6, 7, 8],
+            ],
+        ];
+        MultidimensionalArrayHelper.flatDeep = jest.fn().mockReturnValue([
+            ['1', '2', '3', '4', '5'],
+            ['6', '7', '8'],
+        ]);
 
         // WHEN
         const result = FlatmapOperation.execute(values, (it) => it.map((value1) => value1.map((value2) => value2.toString())));
 
         // THEN
-        const expected = [['1', '2', '3', '4', '5'], ['6', '7', '8']];
+        const expected = [
+            ['1', '2', '3', '4', '5'],
+            ['6', '7', '8'],
+        ];
         expect(result).toEqual(expected);
-        expect(MultidimensionalArrayHelper.flatDeep).toHaveBeenCalledWith([[['1', '2', '3', '4', '5'], ['6', '7', '8']]]);
+        expect(MultidimensionalArrayHelper.flatDeep).toHaveBeenCalledWith([
+            [
+                ['1', '2', '3', '4', '5'],
+                ['6', '7', '8'],
+            ],
+        ]);
     });
 
     it('given a tridimensional array of persons, return a bidimensional array of firstnames', () => {
         // GIVEN
-        const values = [[[PersonMock.ed(), PersonMock.bob()], [PersonMock.jo(), PersonMock.ted()]]];
-        MultidimensionalArrayHelper.flatDeep = jest.fn().mockReturnValue([['Ed', 'Bob'], ['Jo', 'Ted']]);
+        const values = [
+            [
+                [PersonMock.ed(), PersonMock.bob()],
+                [PersonMock.jo(), PersonMock.ted()],
+            ],
+        ];
+        MultidimensionalArrayHelper.flatDeep = jest.fn().mockReturnValue([
+            ['Ed', 'Bob'],
+            ['Jo', 'Ted'],
+        ]);
 
         // WHEN
         const result = FlatmapOperation.execute(values, (it) => it.map((value1) => value1.map((value2) => value2.firstName)));
 
         // THEN
-        const expected = [['Ed', 'Bob'], ['Jo', 'Ted']];
+        const expected = [
+            ['Ed', 'Bob'],
+            ['Jo', 'Ted'],
+        ];
         expect(result).toEqual(expected);
-        expect(MultidimensionalArrayHelper.flatDeep).toHaveBeenCalledWith([[['Ed', 'Bob'], ['Jo', 'Ted']]]);
+        expect(MultidimensionalArrayHelper.flatDeep).toHaveBeenCalledWith([
+            [
+                ['Ed', 'Bob'],
+                ['Jo', 'Ted'],
+            ],
+        ]);
     });
 
     it('check immutability', () => {
@@ -97,7 +140,7 @@ describe('FlatmapOperation', () => {
         MultidimensionalArrayHelper.flatDeep = jest.fn().mockReturnValue([bob, jo, jane]);
 
         // WHEN
-        FlatmapOperation.execute(values, it => it.firstName);
+        FlatmapOperation.execute(values, (it) => it.firstName);
 
         // THEN
         expect(values.length).toEqual(3);
@@ -105,5 +148,4 @@ describe('FlatmapOperation', () => {
         expect(values[1] === jo).toBeTruthy();
         expect(values[2] === jane).toBeTruthy();
     });
-
 });

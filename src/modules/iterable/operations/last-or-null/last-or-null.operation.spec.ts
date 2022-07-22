@@ -1,8 +1,7 @@
-import {PersonMock} from '../../../../test/mocks/person.mock';
-import {LastOrNullOperation} from './last-or-null.operation';
+import { PersonMock } from '../../../../test/mocks/person.mock';
+import { LastOrNullOperation } from './last-or-null.operation';
 
 describe('LastOrNullOperation', () => {
-
     it('given an empty array and no predicate, return undefined', () => {
         // GIVEN
         const values: any[] = [];
@@ -71,5 +70,4 @@ describe('LastOrNullOperation', () => {
         const expected = PersonMock.ed();
         expect(result).toEqual(expected);
     });
-
 });

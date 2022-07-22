@@ -1,9 +1,8 @@
-import {PersonMock} from '../../../../test/mocks/person.mock';
-import {Person} from '../../../../test/models/person';
-import {MinOperation} from './min.operation';
+import { PersonMock } from '../../../../test/mocks/person.mock';
+import { Person } from '../../../../test/models/person';
+import { MinOperation } from './min.operation';
 
 describe('MinOperation', () => {
-
     it('given an empty array, return undefined value', () => {
         // GIVEN
         const values: any[] = [];
@@ -84,5 +83,4 @@ describe('MinOperation', () => {
         const expected: Person = PersonMock.bob();
         expect(result).toEqual(expected);
     });
-
 });

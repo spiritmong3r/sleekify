@@ -1,7 +1,6 @@
-import {GetOperation} from './get.operation';
+import { GetOperation } from './get.operation';
 
 describe('GetOperation', () => {
-
     it('given an empty array, return undefined', () => {
         // GIVEN
         const values: any[] = [];
@@ -26,5 +25,4 @@ describe('GetOperation', () => {
         const expected = 4;
         expect(result).toEqual(expected);
     });
-
 });

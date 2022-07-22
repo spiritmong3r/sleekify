@@ -1,8 +1,7 @@
-import {PersonMock} from '../../../../test/mocks/person.mock';
-import {MapOperation} from './map.operation';
+import { PersonMock } from '../../../../test/mocks/person.mock';
+import { MapOperation } from './map.operation';
 
 describe('MapOperation', () => {
-
     it('given an empty array, return an empty array', () => {
         // GIVEN
         const values: any[] = [];
@@ -47,7 +46,7 @@ describe('MapOperation', () => {
         const values = [bob, jo, jane];
 
         // WHEN
-        MapOperation.execute(values, it => it.firstName);
+        MapOperation.execute(values, (it) => it.firstName);
 
         // THEN
         expect(values.length).toEqual(3);
@@ -55,5 +54,4 @@ describe('MapOperation', () => {
         expect(values[1] === jo).toBeTruthy();
         expect(values[2] === jane).toBeTruthy();
     });
-
 });

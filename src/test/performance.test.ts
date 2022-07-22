@@ -1,16 +1,15 @@
-import {List} from '../modules/iterable/impl/list/list';
-import {PersonMock} from './mocks/person.mock';
-import {Person} from './models/person';
+import { List } from '../modules/iterable/impl/list/list';
+import { PersonMock } from './mocks/person.mock';
+import { Person } from './models/person';
 
 describe.skip('performance', () => {
-
     it('filter', () => {
         // GIVEN
         const values = new List<Person>(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
         const startTime = new Date().getTime();
 
         // WHEN
-        values.filter(it => it.age === 18);
+        values.filter((it) => it.age === 18);
 
         // THEN
         const endTime = new Date().getTime();
@@ -24,7 +23,7 @@ describe.skip('performance', () => {
         const startTime = new Date().getTime();
 
         // WHEN
-        values.onEach(it => it.age = 18);
+        values.onEach((it) => (it.age = 18));
 
         // THEN
         const endTime = new Date().getTime();
@@ -38,7 +37,7 @@ describe.skip('performance', () => {
         const startTime = new Date().getTime();
 
         // WHEN
-        values.forEach(it => it.age = 18);
+        values.forEach((it) => (it.age = 18));
 
         // THEN
         const endTime = new Date().getTime();
@@ -52,7 +51,7 @@ describe.skip('performance', () => {
         const startTime = new Date().getTime();
 
         // WHEN
-        values.map(it => it.age);
+        values.map((it) => it.age);
 
         // THEN
         const endTime = new Date().getTime();
@@ -66,7 +65,7 @@ describe.skip('performance', () => {
         const startTime = new Date().getTime();
 
         // WHEN
-        values.flatMap(it => it);
+        values.flatMap((it) => it);
 
         // THEN
         const endTime = new Date().getTime();
@@ -138,7 +137,7 @@ describe.skip('performance', () => {
             const startTime = new Date().getTime();
 
             // WHEN
-            values.sort(it => it.age);
+            values.sort((it) => it.age);
 
             // THEN
             const endTime = new Date().getTime();
@@ -169,13 +168,12 @@ describe.skip('performance', () => {
             const startTime = new Date().getTime();
 
             // WHEN
-            values.distinct(it => it.name);
+            values.distinct((it) => it.name);
 
             // THEN
             const endTime = new Date().getTime();
             const timeElapsed = endTime - startTime;
             console.log(`sleekify method => ${endTime} - ${startTime} = ${timeElapsed} ms`);
-
         });
     });
 
@@ -241,7 +239,7 @@ describe.skip('performance', () => {
         const startTime = new Date().getTime();
 
         // WHEN
-        values.find(it => it.firstName === 'Jo');
+        values.find((it) => it.firstName === 'Jo');
 
         // THEN
         const endTime = new Date().getTime();
@@ -255,7 +253,7 @@ describe.skip('performance', () => {
         const startTime = new Date().getTime();
 
         // WHEN
-        values.first(it => it.firstName === 'Jo');
+        values.first((it) => it.firstName === 'Jo');
 
         // THEN
         const endTime = new Date().getTime();
@@ -269,7 +267,7 @@ describe.skip('performance', () => {
         const startTime = new Date().getTime();
 
         // WHEN
-        values.firstOrNull(it => it.firstName === 'Jo');
+        values.firstOrNull((it) => it.firstName === 'Jo');
 
         // THEN
         const endTime = new Date().getTime();
@@ -283,7 +281,7 @@ describe.skip('performance', () => {
         const startTime = new Date().getTime();
 
         // WHEN
-        values.last(it => it.firstName === 'Bob');
+        values.last((it) => it.firstName === 'Bob');
 
         // THEN
         const endTime = new Date().getTime();
@@ -297,7 +295,7 @@ describe.skip('performance', () => {
         const startTime = new Date().getTime();
 
         // WHEN
-        values.lastOrNull(it => it.firstName === 'Bob');
+        values.lastOrNull((it) => it.firstName === 'Bob');
 
         // THEN
         const endTime = new Date().getTime();
@@ -326,7 +324,7 @@ describe.skip('performance', () => {
         const startTime = new Date().getTime();
 
         // WHEN
-        values.groupBy(it => it.name);
+        values.groupBy((it) => it.name);
 
         // THEN
         const endTime = new Date().getTime();
@@ -340,7 +338,7 @@ describe.skip('performance', () => {
         const startTime = new Date().getTime();
 
         // WHEN
-        values.min(it => it.name);
+        values.min((it) => it.name);
 
         // THEN
         const endTime = new Date().getTime();
@@ -354,7 +352,7 @@ describe.skip('performance', () => {
         const startTime = new Date().getTime();
 
         // WHEN
-        values.max(it => it.name);
+        values.max((it) => it.name);
 
         // THEN
         const endTime = new Date().getTime();
@@ -368,7 +366,7 @@ describe.skip('performance', () => {
         const startTime = new Date().getTime();
 
         // WHEN
-        values.some(it => it.firstName === 'Jo');
+        values.some((it) => it.firstName === 'Jo');
 
         // THEN
         const endTime = new Date().getTime();
@@ -382,7 +380,7 @@ describe.skip('performance', () => {
         const startTime = new Date().getTime();
 
         // WHEN
-        values.any(it => it.firstName === 'Jo');
+        values.any((it) => it.firstName === 'Jo');
 
         // THEN
         const endTime = new Date().getTime();
@@ -396,7 +394,7 @@ describe.skip('performance', () => {
         const startTime = new Date().getTime();
 
         // WHEN
-        values.none(it => it.firstName === 'Jo');
+        values.none((it) => it.firstName === 'Jo');
 
         // THEN
         const endTime = new Date().getTime();
@@ -410,7 +408,7 @@ describe.skip('performance', () => {
         const startTime = new Date().getTime();
 
         // WHEN
-        values.all(it => it.firstName === 'Jo');
+        values.all((it) => it.firstName === 'Jo');
 
         // THEN
         const endTime = new Date().getTime();
@@ -497,7 +495,7 @@ describe.skip('performance', () => {
         const startTime = new Date().getTime();
 
         // WHEN
-        values.sum(it => it.age);
+        values.sum((it) => it.age);
 
         // THEN
         const endTime = new Date().getTime();
@@ -526,7 +524,7 @@ describe.skip('performance', () => {
             const startTime = new Date().getTime();
 
             // WHEN
-            values.count(it => it.firstName === 'Bob');
+            values.count((it) => it.firstName === 'Bob');
 
             // THEN
             const endTime = new Date().getTime();
@@ -562,5 +560,4 @@ describe.skip('performance', () => {
         const timeElapsed = endTime - startTime;
         console.log(`sleekify method => ${endTime} - ${startTime} = ${timeElapsed} ms`);
     });
-
 });

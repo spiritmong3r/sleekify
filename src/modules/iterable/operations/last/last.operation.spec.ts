@@ -1,8 +1,7 @@
-import {PersonMock} from '../../../../test/mocks/person.mock';
-import {LastOperation} from './last.operation';
+import { PersonMock } from '../../../../test/mocks/person.mock';
+import { LastOperation } from './last.operation';
 
 describe('LastOperation', () => {
-
     it('given an empty array and no predicate, throw an exception', () => {
         // GIVEN
         const values: any[] = [];
@@ -71,5 +70,4 @@ describe('LastOperation', () => {
         const expected = PersonMock.ed();
         expect(result).toEqual(expected);
     });
-
 });

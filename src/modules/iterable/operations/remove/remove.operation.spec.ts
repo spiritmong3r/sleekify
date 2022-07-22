@@ -1,7 +1,6 @@
-import {RemoveOperation} from './remove.operation';
+import { RemoveOperation } from './remove.operation';
 
 describe('RemoveOperation', () => {
-
     it('given an empty array, do nothing', () => {
         // GIVEN
         const values: any[] = [];
@@ -27,5 +26,4 @@ describe('RemoveOperation', () => {
         const expected = [1, 3, 4, 5];
         expect(values).toEqual(expected);
     });
-
 });

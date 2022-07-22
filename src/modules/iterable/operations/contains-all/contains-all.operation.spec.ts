@@ -1,10 +1,9 @@
-import {PersonMock} from '../../../../test/mocks/person.mock';
+import { PersonMock } from '../../../../test/mocks/person.mock';
 import * as object from '../../../common/object/deep-equal';
-import {ContainsAllOperation} from './contains-all.operation';
+import { ContainsAllOperation } from './contains-all.operation';
 import resetAllMocks = jest.resetAllMocks;
 
 describe('ContainsAllOperation', () => {
-
     afterEach(() => resetAllMocks());
 
     it('given an empty array, return false', () => {
@@ -57,8 +56,7 @@ describe('ContainsAllOperation', () => {
     it('given an array of persons and an array of values present in this array, return true', () => {
         // GIVEN
         const values = [PersonMock.ed(), PersonMock.jo()];
-        jest.spyOn(object, 'deepEqual')
-            .mockImplementationOnce(() => true);
+        jest.spyOn(object, 'deepEqual').mockImplementationOnce(() => true);
 
         // WHEN
         const result = ContainsAllOperation.execute(values, [PersonMock.ed()]);
@@ -85,5 +83,4 @@ describe('ContainsAllOperation', () => {
         expect(object.deepEqual).toHaveBeenNthCalledWith(2, PersonMock.ed(), PersonMock.ed());
         expect(object.deepEqual).toHaveBeenCalledTimes(2);
     });
-
 });

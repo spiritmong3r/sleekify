@@ -16,7 +16,7 @@ export const deepEqual = <T>(object1: any, object2: any): boolean => {
         const value1 = object1[key];
         const value2 = object2[key];
         const areObjects = isObject(value1) && isObject(value2);
-        if (areObjects && !deepEqual(value1, value2) || !areObjects && value1 !== value2) {
+        if ((areObjects && !deepEqual(value1, value2)) || (!areObjects && value1 !== value2)) {
             return false;
         }
     }

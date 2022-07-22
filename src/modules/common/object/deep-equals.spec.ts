@@ -1,8 +1,7 @@
-import {PersonMock} from '../../../test/mocks/person.mock';
-import {deepEqual} from './deep-equal';
+import { PersonMock } from '../../../test/mocks/person.mock';
+import { deepEqual } from './deep-equal';
 
 describe('DeepEqual', () => {
-
     it('given 2 identical string, return true', () => {
         // GIVEN
         const object1 = 'bob';
@@ -42,7 +41,7 @@ describe('DeepEqual', () => {
     it('given 2 identical nested objects with different datas, return false', () => {
         // GIVEN
         const object1 = PersonMock.bob();
-        const object2 = {...PersonMock.bob(), country: {name: 'FR'}};
+        const object2 = { ...PersonMock.bob(), country: { name: 'FR' } };
 
         // WHEN
         const result = deepEqual(object1, object2);
@@ -54,7 +53,7 @@ describe('DeepEqual', () => {
     it('given 2 different nested objects, return false', () => {
         // GIVEN
         const object1 = PersonMock.bob();
-        const object2 = {id: 1};
+        const object2 = { id: 1 };
 
         // WHEN
         const result = deepEqual(object1, object2);
@@ -77,5 +76,4 @@ describe('DeepEqual', () => {
         expect(bob === bobCopy).toBeTruthy();
         expect(jo === joCopy).toBeTruthy();
     });
-
 });

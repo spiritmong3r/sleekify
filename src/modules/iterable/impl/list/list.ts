@@ -1,45 +1,44 @@
-import {JoinProps} from '../../models/JoinProps';
-import {AllOperation} from '../../operations/all/all.operation';
-import {AnyOperation} from '../../operations/any/any.operation';
-import {ContainsAllOperation} from '../../operations/contains-all/contains-all.operation';
-import {ContainsOperation} from '../../operations/contains/contains.operation';
-import {CountOperation} from '../../operations/count/count.operation';
-import {DistinctOperation} from '../../operations/distinct/distinct.operation';
-import {DropLastOperation} from '../../operations/drop-last/drop-last.operation';
-import {DropOperation} from '../../operations/drop/drop.operation';
-import {FilterOperation} from '../../operations/filter/filter.operation';
-import {FindOperation} from '../../operations/find/find.operation';
-import {FirstOrNullOperation} from '../../operations/first-or-null/first-or-null.operation';
-import {FirstOperation} from '../../operations/first/first.operation';
-import {FlatmapOperation} from '../../operations/flatmap/flatmap.operation';
-import {FlattenOperation} from '../../operations/flatten/flatten.operation';
-import {ForEachOperation} from '../../operations/for-each/for-each.operation';
-import {GetOperation} from '../../operations/get/get.operation';
-import {GroupByOperation} from '../../operations/group-by/group-by.operation';
-import {IsEmptyOperation} from '../../operations/is-empty/is-empty.operation';
-import {JoinOperation} from '../../operations/join/join.operation';
-import {LastOrNullOperation} from '../../operations/last-or-null/last-or-null.operation';
-import {LastOperation} from '../../operations/last/last.operation';
-import {MapOperation} from '../../operations/map/map.operation';
-import {MaxOperation} from '../../operations/max/max.operation';
-import {MinOperation} from '../../operations/min/min.operation';
-import {NoneOperation} from '../../operations/none/none.operation';
-import {OnEachOperation} from '../../operations/on-each/on-each.operation';
-import {ReduceOperation} from '../../operations/reduce/reduce.operation';
-import {ReverseOperation} from '../../operations/reverse/reverse.operation';
-import {SizeOperation} from '../../operations/size/size.operation';
-import {SomeOperation} from '../../operations/some/some.operation';
-import {SortOperation} from '../../operations/sort/sort.operation';
-import {SumOperation} from '../../operations/sum/sum.operation';
-import {TakeLastOperation} from '../../operations/take-last/take-last.operation';
-import {TakeOperation} from '../../operations/take/take.operation';
-import {ToArrayOperation} from '../../operations/to-array/to-array.operation';
+import { JoinProps } from '../../models/JoinProps';
+import { AllOperation } from '../../operations/all/all.operation';
+import { AnyOperation } from '../../operations/any/any.operation';
+import { ContainsAllOperation } from '../../operations/contains-all/contains-all.operation';
+import { ContainsOperation } from '../../operations/contains/contains.operation';
+import { CountOperation } from '../../operations/count/count.operation';
+import { DistinctOperation } from '../../operations/distinct/distinct.operation';
+import { DropLastOperation } from '../../operations/drop-last/drop-last.operation';
+import { DropOperation } from '../../operations/drop/drop.operation';
+import { FilterOperation } from '../../operations/filter/filter.operation';
+import { FindOperation } from '../../operations/find/find.operation';
+import { FirstOrNullOperation } from '../../operations/first-or-null/first-or-null.operation';
+import { FirstOperation } from '../../operations/first/first.operation';
+import { FlatmapOperation } from '../../operations/flatmap/flatmap.operation';
+import { FlattenOperation } from '../../operations/flatten/flatten.operation';
+import { ForEachOperation } from '../../operations/for-each/for-each.operation';
+import { GetOperation } from '../../operations/get/get.operation';
+import { GroupByOperation } from '../../operations/group-by/group-by.operation';
+import { IsEmptyOperation } from '../../operations/is-empty/is-empty.operation';
+import { JoinOperation } from '../../operations/join/join.operation';
+import { LastOrNullOperation } from '../../operations/last-or-null/last-or-null.operation';
+import { LastOperation } from '../../operations/last/last.operation';
+import { MapOperation } from '../../operations/map/map.operation';
+import { MaxOperation } from '../../operations/max/max.operation';
+import { MinOperation } from '../../operations/min/min.operation';
+import { NoneOperation } from '../../operations/none/none.operation';
+import { OnEachOperation } from '../../operations/on-each/on-each.operation';
+import { ReduceOperation } from '../../operations/reduce/reduce.operation';
+import { ReverseOperation } from '../../operations/reverse/reverse.operation';
+import { SizeOperation } from '../../operations/size/size.operation';
+import { SomeOperation } from '../../operations/some/some.operation';
+import { SortOperation } from '../../operations/sort/sort.operation';
+import { SumOperation } from '../../operations/sum/sum.operation';
+import { TakeLastOperation } from '../../operations/take-last/take-last.operation';
+import { TakeOperation } from '../../operations/take/take.operation';
+import { ToArrayOperation } from '../../operations/to-array/to-array.operation';
 
 /**
  * @author cleme_mo
  */
 export class List<T> implements Iterable<T> {
-
     protected values: T[];
 
     constructor(value: T[] = []) {
@@ -51,8 +50,8 @@ export class List<T> implements Iterable<T> {
         return {
             next: (): IteratorResult<T, T> => ({
                 value: this.values[position++],
-                done: position === this.values.length - 1
-            })
+                done: position === this.values.length - 1,
+            }),
         };
     }
 
@@ -200,5 +199,4 @@ export class List<T> implements Iterable<T> {
     toArray(): T[] {
         return ToArrayOperation.execute(this.values);
     }
-
 }

@@ -1,7 +1,6 @@
-import {ArrayHelper} from './array.helper';
+import { ArrayHelper } from './array.helper';
 
 export abstract class MultidimensionalArrayHelper {
-
     /**
      *
      * @param array
@@ -20,5 +19,4 @@ export abstract class MultidimensionalArrayHelper {
             return array.slice();
         }
     };
-
 }

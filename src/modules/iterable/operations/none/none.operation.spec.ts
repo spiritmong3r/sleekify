@@ -1,8 +1,7 @@
-import {PersonMock} from '../../../../test/mocks/person.mock';
-import {NoneOperation} from './none.operation';
+import { PersonMock } from '../../../../test/mocks/person.mock';
+import { NoneOperation } from './none.operation';
 
 describe('None', () => {
-
     it('given an array of strings containing a single value 4, return false', () => {
         // GIVEN
         const values = ['1', '2', '5', '4', '3', '9', '0'];
@@ -68,5 +67,4 @@ describe('None', () => {
         // THEN
         expect(result).toBeTruthy();
     });
-
 });

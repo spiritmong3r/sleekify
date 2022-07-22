@@ -1,8 +1,7 @@
-import {PersonMock} from '../../../../test/mocks/person.mock';
-import {DropOperation} from './drop.operation';
+import { PersonMock } from '../../../../test/mocks/person.mock';
+import { DropOperation } from './drop.operation';
 
 describe('DropOperation', () => {
-
     it('given an empty array, drop 5 and return an empty array', () => {
         // GIVEN
         const values: any[] = [];
@@ -59,5 +58,4 @@ describe('DropOperation', () => {
         expect(values[1] === jo).toBeTruthy();
         expect(values[2] === jane).toBeTruthy();
     });
-
 });

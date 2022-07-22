@@ -1,8 +1,7 @@
-import {PersonMock} from '../../../../test/mocks/person.mock';
-import {RemoveAllOperation} from './remove-all.operation';
+import { PersonMock } from '../../../../test/mocks/person.mock';
+import { RemoveAllOperation } from './remove-all.operation';
 
 describe('RemoveAllOperation', () => {
-
     it('given an empty array, do nothing', () => {
         // GIVEN
         const values: any[] = [];
@@ -26,5 +25,4 @@ describe('RemoveAllOperation', () => {
         const expected = [PersonMock.bob(), PersonMock.ted()];
         expect(values).toEqual(expected);
     });
-
 });

@@ -1,8 +1,7 @@
-import {PersonMock} from '../../../../test/mocks/person.mock';
-import {ReverseOperation} from './reverse.operation';
+import { PersonMock } from '../../../../test/mocks/person.mock';
+import { ReverseOperation } from './reverse.operation';
 
 describe('ReverseOperation', () => {
-
     it('given an empty array, return an empty array', () => {
         // GIVEN
         const values: any[] = [];
@@ -67,5 +66,4 @@ describe('ReverseOperation', () => {
         expect(values[1] === jo).toBeTruthy();
         expect(values[2] === jane).toBeTruthy();
     });
-
 });
