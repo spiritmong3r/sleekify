@@ -10,7 +10,7 @@ export abstract class GroupByOperation {
             // Check if key is a primitive or an object
             if (key !== Object(key)) {
                 if (!map.has(key)) map.set(key, []);
-                map.get(key)?.push(value);
+                map.get(key)!.push(value);
             } else {
                 const isNotExisting = !Array.from(map.keys()).some((it) => deepEqual(it, key));
                 if (isNotExisting) map.set(key, []);
