@@ -19,6 +19,8 @@ jobs:
           command: yarn build
           name: Build app
       - codecov/upload
+        parameters:
+          file: coverage/clover.xml
 
 # Invoke jobs via workflows
 workflows:
