@@ -24,7 +24,7 @@ workflows:
   build_and_test-workflow:
     jobs:
       - build_and_test
-  codecov-workflow:
+  upload-to-codecov:
     jobs:
       - checkout
       - codecov/upload
