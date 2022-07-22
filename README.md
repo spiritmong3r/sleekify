@@ -5,23 +5,30 @@
     <div>Typescript library that offers elegant and powerful utility functions.</div>
 </h4>
 
+<br />
+
+<div align="center">
+
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![npm version](https://img.shields.io/badge/npm-v1.0.1-brightgreen?style=flat-square)](https://www.npmjs.com/package/sleekify)
+
+</div>
 
 ## Why sleekify ?
 
 Sleekify provides powerful features that make your code more lightweight.
 
--   **Fluent iterable API**
+- **Fluent iterable API**
 
-    Offers many operations thanks to both `List` and `MutableList`, which are iterable implementations.
+  Offers many operations thanks to both `List` and `MutableList`, which are iterable implementations.
 
--   **Type safe**
+- **Type safe**
 
-    The whole librairy is implemented in typescript.
+  The whole librairy is implemented in typescript.
 
--   **Powerful utility function**
+- **Powerful utility function**
 
-    `when` function is a switch-like **expression**, it is more elegant than traditional conditional statements.
+  `when` function is a switch-like **expression**, it is more elegant than traditional conditional statements.
 
 ## Getting start
 
@@ -99,8 +106,8 @@ const jo: Person = { name: 'Jo', age: 22 };
 
 const values = new List([bob, jo]);
 values.containsAll([
-    { name: 'Bob', age: 18 },
-    { name: 'Jo', age: 22 },
+  { name: 'Bob', age: 18 },
+  { name: 'Jo', age: 22 },
 ]); // returns true
 values.containsAll({ name: 'Bob', age: 18 }, { name: 'Jo', age: 23 }); // returns false
 ```
@@ -378,8 +385,8 @@ const jo: Person = { name: 'Jo', age: 22 };
 
 const values = new List([bob, jo]);
 values.map((value) => {
-    value.age = 18;
-    return value;
+  value.age = 18;
+  return value;
 }); // returns a new List similar to values but where every Person is now 18
 ```
 
@@ -655,8 +662,8 @@ const jo: Person = { name: 'Jo', age: 22 };
 
 const values = new List([bob, jo]);
 values.containsAll([
-    { name: 'Bob', age: 18 },
-    { name: 'Jo', age: 22 },
+  { name: 'Bob', age: 18 },
+  { name: 'Jo', age: 22 },
 ]); // returns true
 values.containsAll({ name: 'Bob', age: 18 }, { name: 'Jo', age: 23 }); // returns false
 ```
@@ -934,8 +941,8 @@ const jo: Person = { name: 'Jo', age: 22 };
 
 const values = new List([bob, jo]);
 values.map((value) => {
-    value.age = 18;
-    return value;
+  value.age = 18;
+  return value;
 }); // returns a new List similar to values but where every Person is now 18
 ```
 
@@ -1244,13 +1251,13 @@ It can also be used without argument. In this case it is similar to the <code>if
 const colorName = getRandomColor();
 
 const color = when(colorName, [
-    'orange',
-    () => new Orange(),
-    ['red', 'redish'],
-    () => new Red(),
-    'green',
-    () => new Green(),
-    () => undefined, // default value
+  'orange',
+  () => new Orange(),
+  ['red', 'redish'],
+  () => new Red(),
+  'green',
+  () => new Green(),
+  () => undefined, // default value
 ]);
 ```
 
@@ -1262,13 +1269,13 @@ const darkColorName = getRandomColor();
 const lightColorName = getRandomColor();
 
 const color = when([
-    darkColorName === 'black',
-    () => new Black(),
-    lightColorName === 'white',
-    () => new White(),
-    lightColorName === 'yellow',
-    () => new Yellow(),
-    () => undefined, // default value
+  darkColorName === 'black',
+  () => new Black(),
+  lightColorName === 'white',
+  () => new White(),
+  lightColorName === 'yellow',
+  () => new Yellow(),
+  () => undefined, // default value
 ]);
 ```
 
@@ -1300,11 +1307,11 @@ const colorName = getRandomColor();
 
 let color = undefined;
 if (colorName === 'orange') {
-    color = new Orange();
+  color = new Orange();
 } else if (colorName === 'red' || colorName === 'redish') {
-    color = new Red();
+  color = new Red();
 } else if (colorName === 'green') {
-    color = new Green();
+  color = new Green();
 }
 ```
 
@@ -1329,19 +1336,19 @@ const colorName = getRandomColor();
 
 let color;
 switch (color) {
-    case 'orange':
-        color = new Orange();
-        break;
-    case 'red':
-    case 'redish':
-        color = new Red();
-        break;
-    case 'green':
-        color = new Green();
-        break;
-    default:
-        color = undefined;
-        break;
+  case 'orange':
+    color = new Orange();
+    break;
+  case 'red':
+  case 'redish':
+    color = new Red();
+    break;
+  case 'green':
+    color = new Green();
+    break;
+  default:
+    color = undefined;
+    break;
 }
 ```
 
