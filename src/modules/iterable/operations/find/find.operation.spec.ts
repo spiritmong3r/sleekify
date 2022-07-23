@@ -1,13 +1,13 @@
 import { PersonMock } from '../../../../test/mocks/person.mock';
-import { FindOperation } from './find.operation';
+import findOperation from './find.operation';
 
-describe('FindOperation', () => {
+describe('findOperation', () => {
     it('given an empty array, return undefined', () => {
         // GIVEN
         const values: any[] = [];
 
         // WHEN
-        const result = FindOperation.execute(values, (it) => it);
+        const result = findOperation(values, (it) => it);
 
         // THEN
         expect(result).toBeUndefined();
@@ -18,7 +18,7 @@ describe('FindOperation', () => {
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        const result = FindOperation.execute(values, (it) => it === 0);
+        const result = findOperation(values, (it) => it === 0);
 
         // THEN
         expect(result).toBeUndefined();
@@ -29,7 +29,7 @@ describe('FindOperation', () => {
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        const result = FindOperation.execute(values, (it) => it === 3);
+        const result = findOperation(values, (it) => it === 3);
 
         // THEN
         const expected = 3;
@@ -41,7 +41,7 @@ describe('FindOperation', () => {
         const values = [PersonMock.bob(), PersonMock.jo(), PersonMock.jane()];
 
         // WHEN
-        const result = FindOperation.execute(values, (it) => it.age === 24);
+        const result = findOperation(values, (it) => it.age === 24);
 
         // THEN
         const expected = PersonMock.jane();

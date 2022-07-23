@@ -1,13 +1,13 @@
 import { PersonMock } from '../../../../test/mocks/person.mock';
-import { SortOperation } from './sort.operation';
+import sortOperation from './sort.operation';
 
-describe('SortByOperation', () => {
+describe('sortOperation', () => {
     it('given an array of strings, return an array sorted from the lowest to the highest', () => {
         // GIVEN
         const values = ['1', '0', '2', '5', '4', '3', '9'];
 
         // WHEN
-        const result = SortOperation.execute(values);
+        const result = sortOperation(values);
 
         // THEN
         const expected = ['0', '1', '2', '3', '4', '5', '9'];
@@ -19,7 +19,7 @@ describe('SortByOperation', () => {
         const values = [PersonMock.ed(), PersonMock.jane(), PersonMock.jo(), PersonMock.bob()];
 
         // WHEN
-        const result = SortOperation.execute(values);
+        const result = sortOperation(values);
 
         // THEN
         const expected = [PersonMock.ed(), PersonMock.jane(), PersonMock.jo(), PersonMock.bob()];
@@ -31,7 +31,7 @@ describe('SortByOperation', () => {
         const values = ['1', '2', '5', '4', '3', '9', '0'];
 
         // WHEN
-        const result = SortOperation.execute(values, (it) => it);
+        const result = sortOperation(values, (it) => it);
 
         // THEN
         const expected = ['0', '1', '2', '3', '4', '5', '9'];
@@ -43,7 +43,7 @@ describe('SortByOperation', () => {
         const values = ['1', '2', '5', '4', '3', '9', '0'];
 
         // WHEN
-        SortOperation.execute(values);
+        sortOperation(values);
 
         // THEN
         const expected = ['1', '2', '5', '4', '3', '9', '0'];
@@ -55,7 +55,7 @@ describe('SortByOperation', () => {
         const values = [PersonMock.ed(), PersonMock.jane(), PersonMock.jo(), PersonMock.bob()];
 
         // WHEN
-        const result = SortOperation.execute(values, (it) => it.age);
+        const result = sortOperation(values, (it) => it.age);
 
         // THEN
         const expected = [PersonMock.bob(), PersonMock.ed(), PersonMock.jo(), PersonMock.jane()];
@@ -70,7 +70,7 @@ describe('SortByOperation', () => {
         const values = [bob, jo, jane];
 
         // WHEN
-        SortOperation.execute(values, (it) => it.firstName);
+        sortOperation(values, (it) => it.firstName);
 
         // THEN
         expect(values.length).toEqual(3);

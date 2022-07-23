@@ -1,39 +1,39 @@
 import { JoinProps } from '../../models/JoinProps';
-import { AllOperation } from '../../operations/all/all.operation';
-import { AnyOperation } from '../../operations/any/any.operation';
-import { ContainsAllOperation } from '../../operations/contains-all/contains-all.operation';
-import { ContainsOperation } from '../../operations/contains/contains.operation';
-import { CountOperation } from '../../operations/count/count.operation';
-import { DistinctOperation } from '../../operations/distinct/distinct.operation';
-import { DropLastOperation } from '../../operations/drop-last/drop-last.operation';
-import { DropOperation } from '../../operations/drop/drop.operation';
-import { FilterOperation } from '../../operations/filter/filter.operation';
-import { FindOperation } from '../../operations/find/find.operation';
-import { FirstOrNullOperation } from '../../operations/first-or-null/first-or-null.operation';
-import { FirstOperation } from '../../operations/first/first.operation';
-import { FlatmapOperation } from '../../operations/flatmap/flatmap.operation';
-import { FlattenOperation } from '../../operations/flatten/flatten.operation';
-import { ForEachOperation } from '../../operations/for-each/for-each.operation';
-import { GetOperation } from '../../operations/get/get.operation';
-import { GroupByOperation } from '../../operations/group-by/group-by.operation';
-import { IsEmptyOperation } from '../../operations/is-empty/is-empty.operation';
-import { JoinOperation } from '../../operations/join/join.operation';
-import { LastOrNullOperation } from '../../operations/last-or-null/last-or-null.operation';
-import { LastOperation } from '../../operations/last/last.operation';
-import { MapOperation } from '../../operations/map/map.operation';
-import { MaxOperation } from '../../operations/max/max.operation';
-import { MinOperation } from '../../operations/min/min.operation';
-import { NoneOperation } from '../../operations/none/none.operation';
-import { OnEachOperation } from '../../operations/on-each/on-each.operation';
-import { ReduceOperation } from '../../operations/reduce/reduce.operation';
-import { ReverseOperation } from '../../operations/reverse/reverse.operation';
-import { SizeOperation } from '../../operations/size/size.operation';
-import { SomeOperation } from '../../operations/some/some.operation';
-import { SortOperation } from '../../operations/sort/sort.operation';
-import { SumOperation } from '../../operations/sum/sum.operation';
-import { TakeLastOperation } from '../../operations/take-last/take-last.operation';
-import { TakeOperation } from '../../operations/take/take.operation';
-import { ToArrayOperation } from '../../operations/to-array/to-array.operation';
+import allOperation from '../../operations/all/all.operation';
+import anyOperation from '../../operations/any/any.operation';
+import containsAllOperation from '../../operations/contains-all/contains-all.operation';
+import containsOperation from '../../operations/contains/contains.operation';
+import countOperation from '../../operations/count/count.operation';
+import distinctOperation from '../../operations/distinct/distinct.operation';
+import dropLastOperation from '../../operations/drop-last/drop-last.operation';
+import dropOperation from '../../operations/drop/drop.operation';
+import filterOperation from '../../operations/filter/filter.operation';
+import findOperation from '../../operations/find/find.operation';
+import firstOrNullOperation from '../../operations/first-or-null/first-or-null.operation';
+import firstOperation from '../../operations/first/first.operation';
+import flatmapOperation from '../../operations/flatmap/flat-map.operation';
+import flattenOperation from '../../operations/flatten/flatten.operation';
+import forEachOperation from '../../operations/for-each/for-each.operation';
+import getOperation from '../../operations/get/get.operation';
+import groupByOperation from '../../operations/group-by/group-by.operation';
+import isEmptyOperation from '../../operations/is-empty/is-empty.operation';
+import joinOperation from '../../operations/join/join.operation';
+import lastOrNullOperation from '../../operations/last-or-null/last-or-null.operation';
+import lastOperation from '../../operations/last/last.operation';
+import mapOperation from '../../operations/map/map.operation';
+import maxOperation from '../../operations/max/max.operation';
+import minOperation from '../../operations/min/min.operation';
+import noneOperation from '../../operations/none/none.operation';
+import onEachOperation from '../../operations/on-each/on-each.operation';
+import reduceOperation from '../../operations/reduce/reduce.operation';
+import reverseOperation from '../../operations/reverse/reverse.operation';
+import sizeOperation from '../../operations/size/size.operation';
+import someOperation from '../../operations/some/some.operation';
+import sortOperation from '../../operations/sort/sort.operation';
+import sumOperation from '../../operations/sum/sum.operation';
+import takeLastOperation from '../../operations/take-last/take-last.operation';
+import takeOperation from '../../operations/take/take.operation';
+import toArrayOperation from '../../operations/to-array/to-array.operation';
 
 /**
  * @author cleme_mo
@@ -56,147 +56,147 @@ export class List<T> implements Iterable<T> {
     }
 
     filter(predicate: (value: T, index: number, array: T[]) => boolean): List<T> {
-        return new List(FilterOperation.execute(this.values, predicate));
+        return new List(filterOperation(this.values, predicate));
     }
 
     onEach<U>(selector: (value: T, index: number, array: T[]) => void): List<T> {
-        return new List(OnEachOperation.execute(this.values, selector));
+        return new List(onEachOperation(this.values, selector));
     }
 
     forEach(selector: (value: T, index: number, array: T[]) => void): void {
-        ForEachOperation.execute(this.values, selector);
+        forEachOperation(this.values, selector);
     }
 
     map<U>(selector: (value: T, index: number, array: T[]) => U): List<U> {
-        return new List(MapOperation.execute(this.values, selector));
+        return new List(mapOperation(this.values, selector));
     }
 
     flatMap<U, This = undefined>(selector: (this: This, value: T, index: number, array: T[]) => U | U[]): List<U> {
-        return new List(FlatmapOperation.execute(this.values, selector));
+        return new List(flatmapOperation(this.values, selector));
     }
 
     flatten(depth: number = 1): List<T> {
-        return new List(FlattenOperation.execute(this.values, depth));
+        return new List(flattenOperation(this.values, depth));
     }
 
     reverse(): List<T> {
-        return new List(ReverseOperation.execute(this.values));
+        return new List(reverseOperation(this.values));
     }
 
     // TODO to improve by adding asc/desc option, etc ...
     sort<U>(selector?: (value: T) => U): List<T> {
-        return new List(SortOperation.execute(this.values, selector));
+        return new List(sortOperation(this.values, selector));
     }
 
     distinct<U>(selector?: (value: T) => U): List<T> {
-        return new List(DistinctOperation.execute(this.values, selector));
+        return new List(distinctOperation(this.values, selector));
     }
 
     take(n: number): List<T> {
-        return new List(TakeOperation.execute(this.values, n));
+        return new List(takeOperation(this.values, n));
     }
 
     takeLast(n: number): List<T> {
-        return new List(TakeLastOperation.execute(this.values, n));
+        return new List(takeLastOperation(this.values, n));
     }
 
     drop(n: number): List<T> {
-        return new List(DropOperation.execute(this.values, n));
+        return new List(dropOperation(this.values, n));
     }
 
     dropLast(n: number): List<T> {
-        return new List(DropLastOperation.execute(this.values, n));
+        return new List(dropLastOperation(this.values, n));
     }
 
     get(index: number): T {
-        return GetOperation.execute(this.values, index);
+        return getOperation(this.values, index);
     }
 
     find(predicate: (value: T, index: number, array: T[]) => boolean): T | undefined {
-        return FindOperation.execute(this.values, predicate);
+        return findOperation(this.values, predicate);
     }
 
     first(predicate?: (value: T, index: number, array: T[]) => boolean): T {
-        return FirstOperation.execute(this.values, predicate);
+        return firstOperation(this.values, predicate);
     }
 
     firstOrNull(predicate?: (value: T, index: number, array: T[]) => boolean): T | undefined {
-        return FirstOrNullOperation.execute(this.values, predicate);
+        return firstOrNullOperation(this.values, predicate);
     }
 
     last(predicate?: (value: T, index: number, array: T[]) => boolean): T {
-        return LastOperation.execute(this.values, predicate);
+        return lastOperation(this.values, predicate);
     }
 
     lastOrNull(predicate?: (value: T, index: number, array: T[]) => boolean): T | undefined {
-        return LastOrNullOperation.execute(this.values, predicate);
+        return lastOrNullOperation(this.values, predicate);
     }
 
     reduce<U>(operation: (previousValue: U, currentValue: T, currentIndex: number, array: T[]) => U, initialValue: U): U {
-        return ReduceOperation.execute(this.values, operation, initialValue);
+        return reduceOperation(this.values, operation, initialValue);
     }
 
     groupBy<K>(selector: (value: T) => K): Map<K, T[]> {
-        return GroupByOperation.execute(this.values, selector);
+        return groupByOperation(this.values, selector);
     }
 
     min<U>(selector?: (value: T) => U): T | undefined {
-        return MinOperation.execute(this.values, selector);
+        return minOperation(this.values, selector);
     }
 
     max<U>(selector?: (value: T) => U): T | undefined {
-        return MaxOperation.execute(this.values, selector);
+        return maxOperation(this.values, selector);
     }
 
     some(predicate: (value: T, index: number, array: T[]) => boolean): boolean {
-        return SomeOperation.execute(this.values, predicate);
+        return someOperation(this.values, predicate);
     }
 
     any(predicate: (value: T, index: number, array: T[]) => boolean): boolean {
-        return AnyOperation.execute(this.values, predicate);
+        return anyOperation(this.values, predicate);
     }
 
     none(predicate: (value: T, index: number, array: T[]) => boolean): boolean {
-        return NoneOperation.execute(this.values, predicate);
+        return noneOperation(this.values, predicate);
     }
 
     all(predicate: (value: T, index: number, array: T[]) => boolean): boolean {
-        return AllOperation.execute(this.values, predicate);
+        return allOperation(this.values, predicate);
     }
 
     contains(element: T): boolean {
-        return ContainsOperation.execute(this.values, element);
+        return containsOperation(this.values, element);
     }
 
     containsAll(elements: T[]): boolean {
-        return ContainsAllOperation.execute(this.values, elements);
+        return containsAllOperation(this.values, elements);
     }
 
     isEmpty(): boolean {
-        return IsEmptyOperation.execute(this.values);
+        return isEmptyOperation(this.values);
     }
 
     isNotEmpty(): boolean {
-        return !IsEmptyOperation.execute(this.values);
+        return !isEmptyOperation(this.values);
     }
 
     join<U>(props?: JoinProps, selector?: (value: T) => U): string {
-        return JoinOperation.execute(this.values, props, selector);
+        return joinOperation(this.values, props, selector);
     }
 
     sum<U>(selector?: (value: T) => U): number {
-        return SumOperation.execute(this.values, selector);
+        return sumOperation(this.values, selector);
     }
 
     count(predicate?: (value: T, index: number, array: T[]) => boolean): number {
-        return CountOperation.execute(this.values, predicate);
+        return countOperation(this.values, predicate);
     }
 
     size(): number {
-        return SizeOperation.execute(this.values);
+        return sizeOperation(this.values);
     }
 
     toArray(): T[] {
-        return ToArrayOperation.execute(this.values);
+        return toArrayOperation(this.values);
     }
 }

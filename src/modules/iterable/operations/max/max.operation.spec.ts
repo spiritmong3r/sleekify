@@ -1,13 +1,13 @@
 import { PersonMock } from '../../../../test/mocks/person.mock';
-import { MaxOperation } from './max.operation';
+import maxOperation from './max.operation';
 
-describe('MaxOperation', () => {
+describe('maxOperation', () => {
     it('given an empty array, return undefined value', () => {
         // GIVEN
         const values: any[] = [];
 
         // WHEN
-        const result = MaxOperation.execute(values);
+        const result = maxOperation(values);
 
         // THEN
         expect(result).toBeUndefined();
@@ -18,7 +18,7 @@ describe('MaxOperation', () => {
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        const result = MaxOperation.execute(values);
+        const result = maxOperation(values);
 
         // THEN
         const expected = 5;
@@ -30,7 +30,7 @@ describe('MaxOperation', () => {
         const values = ['a', '1', ','];
 
         // WHEN
-        const result = () => MaxOperation.execute(values);
+        const result = () => maxOperation(values);
 
         // THEN
         expect(result).toThrowError('Type of array is not number');
@@ -41,7 +41,7 @@ describe('MaxOperation', () => {
         const values: any[] = [];
 
         // WHEN
-        const result = MaxOperation.execute(values, (it) => it);
+        const result = maxOperation(values, (it) => it);
 
         // THEN
         expect(result).toBeUndefined();
@@ -52,7 +52,7 @@ describe('MaxOperation', () => {
         const values = [1, 2, 5, 4, 3];
 
         // WHEN
-        const result = MaxOperation.execute(values, (it) => it);
+        const result = maxOperation(values, (it) => it);
 
         // THEN
         const expected = 5;
@@ -64,7 +64,7 @@ describe('MaxOperation', () => {
         const values = ['1', '2', '5', '4', '3', 't', 'a'];
 
         // WHEN
-        const result = MaxOperation.execute(values, (it) => it);
+        const result = maxOperation(values, (it) => it);
 
         // THEN
         const expected = 't';
@@ -76,7 +76,7 @@ describe('MaxOperation', () => {
         const values = [PersonMock.bob(), PersonMock.ed(), PersonMock.jo()];
 
         // WHEN
-        const result = MaxOperation.execute(values, (it) => it.age);
+        const result = maxOperation(values, (it) => it.age);
 
         // THEN
         const expected = PersonMock.jo();

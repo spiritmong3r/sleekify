@@ -1,13 +1,13 @@
-import { RemoveOperation } from './remove.operation';
+import removeOperation from './remove.operation';
 
-describe('RemoveOperation', () => {
+describe('removeOperation', () => {
     it('given an empty array, do nothing', () => {
         // GIVEN
         const values: any[] = [];
         const index = 0;
 
         // WHEN
-        RemoveOperation.execute(values, index);
+        removeOperation(values, index);
 
         // THEN
         const expected: any[] = [];
@@ -20,7 +20,7 @@ describe('RemoveOperation', () => {
         const index = 1;
 
         // WHEN
-        RemoveOperation.execute(values, index);
+        removeOperation(values, index);
 
         // THEN
         const expected = [1, 3, 4, 5];

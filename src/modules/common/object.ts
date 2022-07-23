@@ -4,7 +4,7 @@
  * @param object2
  * return `true` if both objects are deeply equals, `false` otherwise.
  */
-export const deepEqual = <T>(object1: any, object2: any): boolean => {
+export const object = <T>(object1: any, object2: any): boolean => {
     const keys1 = Object.keys(object1);
     const keys2 = Object.keys(object2);
 
@@ -16,7 +16,7 @@ export const deepEqual = <T>(object1: any, object2: any): boolean => {
         const value1 = object1[key];
         const value2 = object2[key];
         const areObjects = isObject(value1) && isObject(value2);
-        if ((areObjects && !deepEqual(value1, value2)) || (!areObjects && value1 !== value2)) {
+        if ((areObjects && !object(value1, value2)) || (!areObjects && value1 !== value2)) {
             return false;
         }
     }

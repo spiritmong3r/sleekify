@@ -1,13 +1,13 @@
 import { PersonMock } from '../../../../test/mocks/person.mock';
-import { RemoveAllOperation } from './remove-all.operation';
+import removeAllOperation from './remove-all.operation';
 
-describe('RemoveAllOperation', () => {
+describe('removeAllOperation', () => {
     it('given an empty array, do nothing', () => {
         // GIVEN
         const values: any[] = [];
 
         // WHEN
-        RemoveAllOperation.execute(values, (it) => it);
+        removeAllOperation(values, (it) => it);
 
         // THEN
         const expected: any[] = [];
@@ -19,7 +19,7 @@ describe('RemoveAllOperation', () => {
         const values = [PersonMock.bob(), PersonMock.jo(), PersonMock.ted()];
 
         // WHEN
-        RemoveAllOperation.execute(values, (it) => it.age === 19);
+        removeAllOperation(values, (it) => it.age === 19);
 
         // THEN
         const expected = [PersonMock.bob(), PersonMock.ted()];

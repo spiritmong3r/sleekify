@@ -1,14 +1,14 @@
 import { PersonMock } from '../../../../test/mocks/person.mock';
-import { DropLastOperation } from './drop-last.operation';
+import dropLastOperation from './drop-last.operation';
 
-describe('DropLastOperation', () => {
+describe('dropLastOperation', () => {
     it('given an empty array, drop 5 and return an empty array', () => {
         // GIVEN
         const values: any[] = [];
         const n = 5;
 
         // WHEN
-        const result = DropLastOperation.execute(values, n);
+        const result = dropLastOperation(values, n);
 
         // THEN
         const expected: any[] = [];
@@ -21,7 +21,7 @@ describe('DropLastOperation', () => {
         const n = 0;
 
         // WHEN
-        const result = DropLastOperation.execute(values, n);
+        const result = dropLastOperation(values, n);
 
         // THEN
         const expected = [1, 2, 3, 4, 5];
@@ -34,7 +34,7 @@ describe('DropLastOperation', () => {
         const n = 2;
 
         // WHEN
-        const result = DropLastOperation.execute(values, n);
+        const result = dropLastOperation(values, n);
 
         // THEN
         const expected = [1, 2, 3];
@@ -50,7 +50,7 @@ describe('DropLastOperation', () => {
         const n = 2;
 
         // WHEN
-        DropLastOperation.execute(values, n);
+        dropLastOperation(values, n);
 
         // THEN
         expect(values.length).toEqual(3);

@@ -1,13 +1,13 @@
 import { PersonMock } from '../../../../test/mocks/person.mock';
-import { NoneOperation } from './none.operation';
+import noneOperation from './none.operation';
 
-describe('None', () => {
+describe('noneOperation', () => {
     it('given an array of strings containing a single value 4, return false', () => {
         // GIVEN
         const values = ['1', '2', '5', '4', '3', '9', '0'];
 
         // WHEN
-        const result = NoneOperation.execute(values, (it) => it === '4');
+        const result = noneOperation(values, (it) => it === '4');
 
         // THEN
         expect(result).toBeFalsy();
@@ -18,7 +18,7 @@ describe('None', () => {
         const values = ['1', '2', '5', '4', '3', '9', '0', '4'];
 
         // WHEN
-        const result = NoneOperation.execute(values, (it) => it === '4');
+        const result = noneOperation(values, (it) => it === '4');
 
         // THEN
         expect(result).toBeFalsy();
@@ -29,7 +29,7 @@ describe('None', () => {
         const values = ['1', '2', '5', '4', '3', '9', '0'];
 
         // WHEN
-        const result = NoneOperation.execute(values, (it) => it === '34');
+        const result = noneOperation(values, (it) => it === '34');
 
         // THEN
         expect(result).toBeTruthy();
@@ -40,7 +40,7 @@ describe('None', () => {
         const values = [PersonMock.ed(), PersonMock.jane(), PersonMock.jo(), PersonMock.bob()];
 
         // WHEN
-        const result = NoneOperation.execute(values, (it) => it.age === 18);
+        const result = noneOperation(values, (it) => it.age === 18);
 
         // THEN
         expect(result).toBeFalsy();
@@ -51,7 +51,7 @@ describe('None', () => {
         const values = [PersonMock.ted(), PersonMock.ed(), PersonMock.jane(), PersonMock.jo(), PersonMock.bob()];
 
         // WHEN
-        const result = NoneOperation.execute(values, (it) => it.age === 18);
+        const result = noneOperation(values, (it) => it.age === 18);
 
         // THEN
         expect(result).toBeFalsy();
@@ -62,7 +62,7 @@ describe('None', () => {
         const values = [PersonMock.ed(), PersonMock.jane(), PersonMock.jo(), PersonMock.bob()];
 
         // WHEN
-        const result = NoneOperation.execute(values, (it) => it.age === 35);
+        const result = noneOperation(values, (it) => it.age === 35);
 
         // THEN
         expect(result).toBeTruthy();

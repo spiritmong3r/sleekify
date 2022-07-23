@@ -1,13 +1,13 @@
 import { PersonMock } from '../../../../test/mocks/person.mock';
-import { LastOrNullOperation } from './last-or-null.operation';
+import lastOrNullOperation from './last-or-null.operation';
 
-describe('LastOrNullOperation', () => {
+describe('lastOrNullOperation', () => {
     it('given an empty array and no predicate, return undefined', () => {
         // GIVEN
         const values: any[] = [];
 
         // WHEN
-        const result = LastOrNullOperation.execute(values);
+        const result = lastOrNullOperation(values);
 
         // THEN
         expect(result).toBeUndefined();
@@ -18,7 +18,7 @@ describe('LastOrNullOperation', () => {
         const values: any[] = [];
 
         // WHEN
-        const result = LastOrNullOperation.execute(values, (it) => it);
+        const result = lastOrNullOperation(values, (it) => it);
 
         // THEN
         expect(result).toBeUndefined();
@@ -29,7 +29,7 @@ describe('LastOrNullOperation', () => {
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        const result = LastOrNullOperation.execute(values, (it) => it === 0);
+        const result = lastOrNullOperation(values, (it) => it === 0);
 
         // THEN
         expect(result).toBeUndefined();
@@ -40,7 +40,7 @@ describe('LastOrNullOperation', () => {
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        const result = LastOrNullOperation.execute(values);
+        const result = lastOrNullOperation(values);
 
         // THEN
         const expected = 5;
@@ -52,7 +52,7 @@ describe('LastOrNullOperation', () => {
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        const result = LastOrNullOperation.execute(values, (it) => it === 3);
+        const result = lastOrNullOperation(values, (it) => it === 3);
 
         // THEN
         const expected = 3;
@@ -64,7 +64,7 @@ describe('LastOrNullOperation', () => {
         const values = [PersonMock.bob(), PersonMock.jo(), PersonMock.jane(), PersonMock.ed()];
 
         // WHEN
-        const result = LastOrNullOperation.execute(values, (it) => it.age === 19);
+        const result = lastOrNullOperation(values, (it) => it.age === 19);
 
         // THEN
         const expected = PersonMock.ed();

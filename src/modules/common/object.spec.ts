@@ -1,5 +1,5 @@
-import { PersonMock } from '../../../test/mocks/person.mock';
-import { deepEqual } from './deep-equal';
+import { PersonMock } from '../../test/mocks/person.mock';
+import { object } from './object';
 
 describe('DeepEqual', () => {
     it('given 2 identical string, return true', () => {
@@ -8,7 +8,7 @@ describe('DeepEqual', () => {
         const object2 = 'bob';
 
         // WHEN
-        const result = deepEqual(object1, object2);
+        const result = object(object1, object2);
 
         // THEN
         expect(result).toBeTruthy();
@@ -20,7 +20,7 @@ describe('DeepEqual', () => {
         const object2 = 'jo';
 
         // WHEN
-        const result = deepEqual(object1, object2);
+        const result = object(object1, object2);
 
         // THEN
         expect(result).toBeFalsy();
@@ -32,7 +32,7 @@ describe('DeepEqual', () => {
         const object2 = PersonMock.bob();
 
         // WHEN
-        const result = deepEqual(object1, object2);
+        const result = object(object1, object2);
 
         // THEN
         expect(result).toBeTruthy();
@@ -44,7 +44,7 @@ describe('DeepEqual', () => {
         const object2 = { ...PersonMock.bob(), country: { name: 'FR' } };
 
         // WHEN
-        const result = deepEqual(object1, object2);
+        const result = object(object1, object2);
 
         // THEN
         expect(result).toBeFalsy();
@@ -56,7 +56,7 @@ describe('DeepEqual', () => {
         const object2 = { id: 1 };
 
         // WHEN
-        const result = deepEqual(object1, object2);
+        const result = object(object1, object2);
 
         // THEN
         expect(result).toBeFalsy();
@@ -70,7 +70,7 @@ describe('DeepEqual', () => {
         const joCopy = jo;
 
         // WHEN
-        deepEqual(bob, jo);
+        object(bob, jo);
 
         // THEN
         expect(bob === bobCopy).toBeTruthy();

@@ -1,13 +1,13 @@
 import { PersonMock } from '../../../../test/mocks/person.mock';
-import { ForEachOperation } from './for-each.operation';
+import forEachOperation from './for-each.operation';
 
-describe('ForEachOperation', () => {
+describe('forEachOperation', () => {
     it('given an empty array, let this array unmodified', () => {
         // GIVEN
         const values: any[] = [];
 
         // WHEN
-        ForEachOperation.execute(values, (it) => it);
+        forEachOperation(values, (it) => it);
 
         // THEN
         const expected: any[] = [];
@@ -19,7 +19,7 @@ describe('ForEachOperation', () => {
         const values = [PersonMock.bob(), PersonMock.jo(), PersonMock.jane()];
 
         // WHEN
-        ForEachOperation.execute(values, (it) => it);
+        forEachOperation(values, (it) => it);
 
         // THEN
         const expected = [PersonMock.bob(), PersonMock.jo(), PersonMock.jane()];
@@ -31,7 +31,7 @@ describe('ForEachOperation', () => {
         const values = [PersonMock.bob(), PersonMock.jo(), PersonMock.jane()];
 
         // WHEN
-        ForEachOperation.execute(values, (it) => (it.age = 11));
+        forEachOperation(values, (it) => (it.age = 11));
 
         // THEN
         const expected = [

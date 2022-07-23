@@ -1,13 +1,13 @@
 import { PersonMock } from '../../../../test/mocks/person.mock';
-import { CountOperation } from './count.operation';
+import countOperation from './count.operation';
 
-describe('CountOperation', () => {
+describe('countOperation', () => {
     it('given an empty array and no predicate, return 0', () => {
         // GIVEN
         const values: any[] = [];
 
         // WHEN
-        const result = CountOperation.execute(values);
+        const result = countOperation(values);
 
         // THEN
         expect(result).toEqual(0);
@@ -18,7 +18,7 @@ describe('CountOperation', () => {
         const values = ['1', '2', '5', '4', '3', '9', '0'];
 
         // WHEN
-        const result = CountOperation.execute(values);
+        const result = countOperation(values);
 
         // THEN
         expect(result).toEqual(7);
@@ -29,7 +29,7 @@ describe('CountOperation', () => {
         const values: any[] = [];
 
         // WHEN
-        const result = CountOperation.execute(values, () => true);
+        const result = countOperation(values, () => true);
 
         // THEN
         expect(result).toEqual(0);
@@ -40,7 +40,7 @@ describe('CountOperation', () => {
         const values = ['1', '2', '5', '4', '3', '9', '0'];
 
         // WHEN
-        const result = CountOperation.execute(values, (it) => it === '34');
+        const result = countOperation(values, (it) => it === '34');
 
         // THEN
         expect(result).toEqual(0);
@@ -51,7 +51,7 @@ describe('CountOperation', () => {
         const values = ['1', '2', '5', '4', '3', '9', '0'];
 
         // WHEN
-        const result = CountOperation.execute(values, (it) => it === '4');
+        const result = countOperation(values, (it) => it === '4');
 
         // THEN
         expect(result).toEqual(1);
@@ -62,7 +62,7 @@ describe('CountOperation', () => {
         const values = ['1', '4', '2', '5', '4', '3', '9', '4', '0'];
 
         // WHEN
-        const result = CountOperation.execute(values, (it) => it === '4');
+        const result = countOperation(values, (it) => it === '4');
 
         // THEN
         expect(result).toEqual(3);
@@ -73,7 +73,7 @@ describe('CountOperation', () => {
         const values = [PersonMock.ed(), PersonMock.jane(), PersonMock.jo(), PersonMock.bob()];
 
         // WHEN
-        const result = CountOperation.execute(values, (it) => it.age === 35);
+        const result = countOperation(values, (it) => it.age === 35);
 
         // THEN
         expect(result).toEqual(0);
@@ -84,7 +84,7 @@ describe('CountOperation', () => {
         const values = [PersonMock.ed(), PersonMock.jane(), PersonMock.jo(), PersonMock.bob()];
 
         // WHEN
-        const result = CountOperation.execute(values, (it) => it.age === 18);
+        const result = countOperation(values, (it) => it.age === 18);
 
         // THEN
         expect(result).toEqual(1);
@@ -95,7 +95,7 @@ describe('CountOperation', () => {
         const values = [PersonMock.ed(), PersonMock.jane(), PersonMock.jo(), PersonMock.bob()];
 
         // WHEN
-        const result = CountOperation.execute(values, (it) => it.age === 19);
+        const result = countOperation(values, (it) => it.age === 19);
 
         // THEN
         expect(result).toEqual(2);

@@ -1,14 +1,14 @@
 import { PersonMock } from '../../../../test/mocks/person.mock';
 import { JoinProps } from '../../models/JoinProps';
-import { JoinOperation } from './join.operation';
+import joinOperation from './join.operation';
 
-describe('JoinOperation', () => {
+describe('joinOperation', () => {
     it('given an array of numbers, return a string representation with commas', () => {
         // GIVEN
         const values = [1, 2, 5, 4, 3, 9, 0];
 
         // WHEN
-        const result = JoinOperation.execute(values);
+        const result = joinOperation(values);
 
         // THEN
         const expected = '1, 2, 5, 4, 3, 9, 0';
@@ -21,7 +21,7 @@ describe('JoinOperation', () => {
         const props: JoinProps = {};
 
         // WHEN
-        const result = JoinOperation.execute(values, props);
+        const result = joinOperation(values, props);
 
         // THEN
         const expected = '1, 2, 5, 4, 3, 9, 0';
@@ -34,7 +34,7 @@ describe('JoinOperation', () => {
         const props: JoinProps = { separator: '/' };
 
         // WHEN
-        const result = JoinOperation.execute(values, props);
+        const result = joinOperation(values, props);
 
         // THEN
         const expected = '1/2/5/4/3/9/0';
@@ -47,7 +47,7 @@ describe('JoinOperation', () => {
         const props: JoinProps = { prefix: '=> ' };
 
         // WHEN
-        const result = JoinOperation.execute(values, props);
+        const result = joinOperation(values, props);
 
         // THEN
         const expected = '=> 1, 2, 5, 4, 3, 9, 0';
@@ -60,7 +60,7 @@ describe('JoinOperation', () => {
         const props: JoinProps = { postfix: ' <=' };
 
         // WHEN
-        const result = JoinOperation.execute(values, props);
+        const result = joinOperation(values, props);
 
         // THEN
         const expected = '1, 2, 5, 4, 3, 9, 0 <=';
@@ -73,7 +73,7 @@ describe('JoinOperation', () => {
         const props: JoinProps = { limit: 6 };
 
         // WHEN
-        const result = JoinOperation.execute(values, props);
+        const result = joinOperation(values, props);
 
         // THEN
         const expected = '1, 2, ...';
@@ -86,7 +86,7 @@ describe('JoinOperation', () => {
         const props: JoinProps = { limit: 6, truncated: ';;;' };
 
         // WHEN
-        const result = JoinOperation.execute(values, props);
+        const result = joinOperation(values, props);
 
         // THEN
         const expected = '1, 2, ;;;';
@@ -99,7 +99,7 @@ describe('JoinOperation', () => {
         const props: JoinProps = { prefix: '=> ', postfix: ' <=', limit: 6, truncated: ';;;' };
 
         // WHEN
-        const result = JoinOperation.execute(values, props);
+        const result = joinOperation(values, props);
 
         // THEN
         const expected = '=> 1, 2, ;;; <=';
@@ -111,7 +111,7 @@ describe('JoinOperation', () => {
         const values = [1, 2, 5, 4, 3, 9, 0];
 
         // WHEN
-        const result = JoinOperation.execute(values, {}, (it) => it);
+        const result = joinOperation(values, {}, (it) => it);
 
         // THEN
         const expected = '1, 2, 5, 4, 3, 9, 0';
@@ -124,7 +124,7 @@ describe('JoinOperation', () => {
         const props: JoinProps = { prefix: 'people: ' };
 
         // WHEN
-        const result = JoinOperation.execute(values, props, (it) => `${it.firstName} ${it.name}`);
+        const result = joinOperation(values, props, (it) => `${it.firstName} ${it.name}`);
 
         // THEN
         const expected = 'people: Ed Todd, Bob Todd, Jane Todd';

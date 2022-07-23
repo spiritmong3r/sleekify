@@ -1,22 +1,22 @@
 import { PersonMock } from '../../../../test/mocks/person.mock';
 import { Person } from '../../../../test/models/person';
-import { AddOperation } from '../../operations/add/add.operation';
-import { DistinctOperation } from '../../operations/distinct/distinct.operation';
-import { DropLastOperation } from '../../operations/drop-last/drop-last.operation';
-import { DropOperation } from '../../operations/drop/drop.operation';
-import { FilterOperation } from '../../operations/filter/filter.operation';
-import { FlatmapOperation } from '../../operations/flatmap/flatmap.operation';
-import { FlattenOperation } from '../../operations/flatten/flatten.operation';
-import { MapOperation } from '../../operations/map/map.operation';
-import { OnEachOperation } from '../../operations/on-each/on-each.operation';
-import { RemoveAllOperation } from '../../operations/remove-all/remove-all.operation';
-import { RemoveFirstOperation } from '../../operations/remove-first/remove-first.operation';
-import { RemoveLastOperation } from '../../operations/remove-last/remove-last.operation';
-import { RemoveOperation } from '../../operations/remove/remove.operation';
-import { ReverseOperation } from '../../operations/reverse/reverse.operation';
-import { SortOperation } from '../../operations/sort/sort.operation';
-import { TakeLastOperation } from '../../operations/take-last/take-last.operation';
-import { TakeOperation } from '../../operations/take/take.operation';
+import * as addOperation from '../../operations/add/add.operation';
+import * as distinctOperation from '../../operations/distinct/distinct.operation';
+import * as dropLastOperation from '../../operations/drop-last/drop-last.operation';
+import * as dropOperation from '../../operations/drop/drop.operation';
+import * as filterOperation from '../../operations/filter/filter.operation';
+import * as flatmapOperation from '../../operations/flatmap/flat-map.operation';
+import * as flattenOperation from '../../operations/flatten/flatten.operation';
+import * as mapOperation from '../../operations/map/map.operation';
+import * as onEachOperation from '../../operations/on-each/on-each.operation';
+import * as removeAllOperation from '../../operations/remove-all/remove-all.operation';
+import * as removeFirstOperation from '../../operations/remove-first/remove-first.operation';
+import * as removeLastOperation from '../../operations/remove-last/remove-last.operation';
+import * as removeOperation from '../../operations/remove/remove.operation';
+import * as reverseOperation from '../../operations/reverse/reverse.operation';
+import * as sortOperation from '../../operations/sort/sort.operation';
+import * as takeLastOperation from '../../operations/take-last/take-last.operation';
+import * as takeOperation from '../../operations/take/take.operation';
 import { MutableList } from './mutable-list';
 import restoreAllMocks = jest.restoreAllMocks;
 
@@ -27,7 +27,7 @@ describe('MutableList', () => {
         it('add a new element to the array', () => {
             // GIVEN
             const list = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8']);
-            jest.spyOn(AddOperation, 'execute');
+            jest.spyOn(addOperation, 'default');
 
             // WHEN
             const result = list.add('9');
@@ -35,7 +35,7 @@ describe('MutableList', () => {
             // THEN
             const expected = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8', '9']);
             expect(result).toEqual(expected);
-            expect(AddOperation.execute).toHaveBeenCalled();
+            expect(addOperation.default).toHaveBeenCalled();
         });
     });
 
@@ -43,7 +43,7 @@ describe('MutableList', () => {
         it('remove an element at the given index from the array', () => {
             // GIVEN
             const list = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8']);
-            jest.spyOn(RemoveOperation, 'execute');
+            jest.spyOn(removeOperation, 'default');
 
             // WHEN
             const result = list.remove(0);
@@ -51,7 +51,7 @@ describe('MutableList', () => {
             // THEN
             const expected = new MutableList(['2', '3', '4', '5', '6', '7', '8']);
             expect(result).toEqual(expected);
-            expect(RemoveOperation.execute).toHaveBeenCalled();
+            expect(removeOperation.default).toHaveBeenCalled();
         });
     });
 
@@ -59,7 +59,7 @@ describe('MutableList', () => {
         it('remove first element from the array', () => {
             // GIVEN
             const list = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8']);
-            jest.spyOn(RemoveFirstOperation, 'execute');
+            jest.spyOn(removeFirstOperation, 'default');
 
             // WHEN
             const result = list.removeFirst();
@@ -67,7 +67,7 @@ describe('MutableList', () => {
             // THEN
             const expected = new MutableList(['2', '3', '4', '5', '6', '7', '8']);
             expect(result).toEqual(expected);
-            expect(RemoveFirstOperation.execute).toHaveBeenCalled();
+            expect(removeFirstOperation.default).toHaveBeenCalled();
         });
     });
 
@@ -75,7 +75,7 @@ describe('MutableList', () => {
         it('remove last element from the array', () => {
             // GIVEN
             const list = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8']);
-            jest.spyOn(RemoveLastOperation, 'execute');
+            jest.spyOn(removeLastOperation, 'default');
 
             // WHEN
             const result = list.removeLast();
@@ -83,7 +83,7 @@ describe('MutableList', () => {
             // THEN
             const expected = new MutableList(['1', '2', '3', '4', '5', '6', '7']);
             expect(result).toEqual(expected);
-            expect(RemoveLastOperation.execute).toHaveBeenCalled();
+            expect(removeLastOperation.default).toHaveBeenCalled();
         });
     });
 
@@ -92,7 +92,7 @@ describe('MutableList', () => {
             // GIVEN
             const list = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8', '5']);
             const predicate = (it: string) => it === '5';
-            jest.spyOn(RemoveAllOperation, 'execute');
+            jest.spyOn(removeAllOperation, 'default');
 
             // WHEN
             const result = list.removeAll(predicate);
@@ -100,7 +100,7 @@ describe('MutableList', () => {
             // THEN
             const expected = new MutableList(['1', '2', '3', '4', '6', '7', '8']);
             expect(result).toEqual(expected);
-            expect(RemoveAllOperation.execute).toHaveBeenCalled();
+            expect(removeAllOperation.default).toHaveBeenCalled();
         });
     });
 
@@ -109,7 +109,7 @@ describe('MutableList', () => {
             // GIVEN
             const list = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8']);
             const predicate = (it: string) => it !== '5';
-            jest.spyOn(FilterOperation, 'execute');
+            jest.spyOn(filterOperation, 'default');
 
             // WHEN
             const result = list.filter(predicate);
@@ -117,7 +117,7 @@ describe('MutableList', () => {
             // THEN
             const expected = new MutableList(['1', '2', '3', '4', '6', '7', '8']);
             expect(result).toEqual(expected);
-            expect(FilterOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], predicate);
+            expect(filterOperation.default).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], predicate);
         });
     });
 
@@ -126,7 +126,7 @@ describe('MutableList', () => {
             // GIVEN
             const list = new MutableList([PersonMock.bob(), PersonMock.jo(), PersonMock.jane()]);
             const selector = (it: Person) => (it.age = 18);
-            jest.spyOn(OnEachOperation, 'execute');
+            jest.spyOn(onEachOperation, 'default');
 
             // WHEN
             const result = list.onEach(selector);
@@ -138,7 +138,7 @@ describe('MutableList', () => {
                 { ...PersonMock.jane(), age: 18 },
             ]);
             expect(result).toEqual(expected);
-            expect(OnEachOperation.execute).toHaveBeenCalled();
+            expect(onEachOperation.default).toHaveBeenCalled();
         });
     });
 
@@ -147,7 +147,7 @@ describe('MutableList', () => {
             // GIVEN
             const list = new MutableList(['a', 'b', 'c']);
             const selector = (it: string) => it.toUpperCase();
-            jest.spyOn(MapOperation, 'execute');
+            jest.spyOn(mapOperation, 'default');
 
             // WHEN
             const result = list.map(selector);
@@ -155,7 +155,7 @@ describe('MutableList', () => {
             // THEN
             const expected = new MutableList(['A', 'B', 'C']);
             expect(result).toEqual(expected);
-            expect(MapOperation.execute).toHaveBeenCalledWith(['a', 'b', 'c'], selector);
+            expect(mapOperation.default).toHaveBeenCalledWith(['a', 'b', 'c'], selector);
         });
     });
 
@@ -164,7 +164,7 @@ describe('MutableList', () => {
             // GIVEN
             const list = new MutableList([[PersonMock.ted()], [PersonMock.bob()]]);
             const selector = (it: Person[]) => it.map((person) => person.firstName);
-            jest.spyOn(FlatmapOperation, 'execute');
+            jest.spyOn(flatmapOperation, 'default');
 
             // WHEN
             const result = list.flatMap(selector);
@@ -172,7 +172,7 @@ describe('MutableList', () => {
             // THEN
             const expected = new MutableList(['Ted', 'Bob']);
             expect(result).toEqual(expected);
-            expect(FlatmapOperation.execute).toHaveBeenCalledWith([[PersonMock.ted()], [PersonMock.bob()]], selector);
+            expect(flatmapOperation.default).toHaveBeenCalledWith([[PersonMock.ted()], [PersonMock.bob()]], selector);
         });
     });
 
@@ -183,7 +183,7 @@ describe('MutableList', () => {
                 ['1', '2', '3', '4', '5', '6'],
                 ['7', '8'],
             ]);
-            jest.spyOn(FlattenOperation, 'execute');
+            jest.spyOn(flattenOperation, 'default');
 
             // WHEN
             const result = list.flatten(1);
@@ -191,7 +191,7 @@ describe('MutableList', () => {
             // THEN
             const expected = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8']);
             expect(result).toEqual(expected);
-            expect(FlattenOperation.execute).toHaveBeenCalledWith(
+            expect(flattenOperation.default).toHaveBeenCalledWith(
                 [
                     ['1', '2', '3', '4', '5', '6'],
                     ['7', '8'],
@@ -205,7 +205,7 @@ describe('MutableList', () => {
         it('call the Reverse operation class', () => {
             // GIVEN
             const list = new MutableList([1, 2, 3, 4, 5, 6, 7, 8]);
-            jest.spyOn(ReverseOperation, 'execute');
+            jest.spyOn(reverseOperation, 'default');
 
             // WHEN
             const result = list.reverse();
@@ -213,7 +213,7 @@ describe('MutableList', () => {
             // THEN
             const expected = new MutableList([8, 7, 6, 5, 4, 3, 2, 1]);
             expect(result).toEqual(expected);
-            expect(ReverseOperation.execute).toHaveBeenCalledWith([1, 2, 3, 4, 5, 6, 7, 8]);
+            expect(reverseOperation.default).toHaveBeenCalledWith([1, 2, 3, 4, 5, 6, 7, 8]);
         });
     });
 
@@ -221,7 +221,7 @@ describe('MutableList', () => {
         it('call the Sort operation class without selector', () => {
             // GIVEN
             const list = new MutableList(['2', '3', '4', '5', '6', '1', '7', '8']);
-            jest.spyOn(SortOperation, 'execute');
+            jest.spyOn(sortOperation, 'default');
 
             // WHEN
             const result = list.sort();
@@ -229,14 +229,14 @@ describe('MutableList', () => {
             // THEN
             const expected = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8']);
             expect(result).toEqual(expected);
-            expect(SortOperation.execute).toHaveBeenCalledWith(['2', '3', '4', '5', '6', '1', '7', '8'], undefined);
+            expect(sortOperation.default).toHaveBeenCalledWith(['2', '3', '4', '5', '6', '1', '7', '8'], undefined);
         });
 
         it('call the Sort operation class with selector', () => {
             // GIVEN
             const list = new MutableList([PersonMock.jane(), PersonMock.bob()]);
             const selector = (it: Person) => it.age;
-            jest.spyOn(SortOperation, 'execute');
+            jest.spyOn(sortOperation, 'default');
 
             // WHEN
             const result = list.sort(selector);
@@ -244,7 +244,7 @@ describe('MutableList', () => {
             // THEN
             const expected = new MutableList([PersonMock.bob(), PersonMock.jane()]);
             expect(result).toEqual(expected);
-            expect(SortOperation.execute).toHaveBeenCalledWith([PersonMock.jane(), PersonMock.bob()], selector);
+            expect(sortOperation.default).toHaveBeenCalledWith([PersonMock.jane(), PersonMock.bob()], selector);
         });
     });
 
@@ -252,7 +252,7 @@ describe('MutableList', () => {
         it('call the Distinct operation class without selector', () => {
             // GIVEN
             const list = new MutableList(['1', '2', '3', '4', '5', '6', '3', '7', '8']);
-            jest.spyOn(DistinctOperation, 'execute');
+            jest.spyOn(distinctOperation, 'default');
 
             // WHEN
             const result = list.distinct();
@@ -260,14 +260,14 @@ describe('MutableList', () => {
             // THEN
             const expected = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8']);
             expect(result).toEqual(expected);
-            expect(DistinctOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '3', '7', '8'], undefined);
+            expect(distinctOperation.default).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '3', '7', '8'], undefined);
         });
 
         it('call the Distinct operation class with selector', () => {
             // GIVEN
             const list = new MutableList([{ name: 'bob' }, { name: 'bob' }, { name: 'ted' }]);
             const selector = (it: any) => it.name;
-            jest.spyOn(DistinctOperation, 'execute');
+            jest.spyOn(distinctOperation, 'default');
 
             // WHEN
             const result = list.distinct(selector);
@@ -275,7 +275,7 @@ describe('MutableList', () => {
             // THEN
             const expected = new MutableList([{ name: 'bob' }, { name: 'ted' }]);
             expect(result).toEqual(expected);
-            expect(DistinctOperation.execute).toHaveBeenCalledWith([{ name: 'bob' }, { name: 'bob' }, { name: 'ted' }], selector);
+            expect(distinctOperation.default).toHaveBeenCalledWith([{ name: 'bob' }, { name: 'bob' }, { name: 'ted' }], selector);
         });
     });
 
@@ -283,7 +283,7 @@ describe('MutableList', () => {
         it('call the Take operation class', () => {
             // GIVEN
             const list = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8']);
-            jest.spyOn(TakeOperation, 'execute');
+            jest.spyOn(takeOperation, 'default');
 
             // WHEN
             const result = list.take(5);
@@ -291,7 +291,7 @@ describe('MutableList', () => {
             // THEN
             const expected = new MutableList(['1', '2', '3', '4', '5']);
             expect(result).toEqual(expected);
-            expect(TakeOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], 5);
+            expect(takeOperation.default).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], 5);
         });
     });
 
@@ -299,7 +299,7 @@ describe('MutableList', () => {
         it('call the TakeLast operation class', () => {
             // GIVEN
             const list = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8']);
-            jest.spyOn(TakeLastOperation, 'execute');
+            jest.spyOn(takeLastOperation, 'default');
 
             // WHEN
             const result = list.takeLast(5);
@@ -307,7 +307,7 @@ describe('MutableList', () => {
             // THEN
             const expected = new MutableList(['4', '5', '6', '7', '8']);
             expect(result).toEqual(expected);
-            expect(TakeLastOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], 5);
+            expect(takeLastOperation.default).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], 5);
         });
     });
 
@@ -315,7 +315,7 @@ describe('MutableList', () => {
         it('call the Drop operation class', () => {
             // GIVEN
             const list = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8']);
-            jest.spyOn(DropOperation, 'execute');
+            jest.spyOn(dropOperation, 'default');
 
             // WHEN
             const result = list.drop(5);
@@ -323,7 +323,7 @@ describe('MutableList', () => {
             // THEN
             const expected = new MutableList(['6', '7', '8']);
             expect(result).toEqual(expected);
-            expect(DropOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], 5);
+            expect(dropOperation.default).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], 5);
         });
     });
 
@@ -331,7 +331,7 @@ describe('MutableList', () => {
         it('call the DropLast operation class', () => {
             // GIVEN
             const list = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8']);
-            jest.spyOn(DropLastOperation, 'execute');
+            jest.spyOn(dropLastOperation, 'default');
 
             // WHEN
             const result = list.dropLast(5);
@@ -339,7 +339,7 @@ describe('MutableList', () => {
             // THEN
             const expected = new MutableList(['1', '2', '3']);
             expect(result).toEqual(expected);
-            expect(DropLastOperation.execute).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], 5);
+            expect(dropLastOperation.default).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], 5);
         });
     });
 });

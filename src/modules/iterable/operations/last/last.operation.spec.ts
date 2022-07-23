@@ -1,13 +1,13 @@
 import { PersonMock } from '../../../../test/mocks/person.mock';
-import { LastOperation } from './last.operation';
+import lastOperation from './last.operation';
 
-describe('LastOperation', () => {
+describe('lastOperation', () => {
     it('given an empty array and no predicate, throw an exception', () => {
         // GIVEN
         const values: any[] = [];
 
         // WHEN
-        const result = () => LastOperation.execute(values);
+        const result = () => lastOperation(values);
 
         // THEN
         expect(result).toThrowError('No value matches the predicate');
@@ -18,7 +18,7 @@ describe('LastOperation', () => {
         const values: any[] = [];
 
         // WHEN
-        const result = () => LastOperation.execute(values, (it) => it);
+        const result = () => lastOperation(values, (it) => it);
 
         // THEN
         expect(result).toThrowError('No value matches the predicate');
@@ -29,7 +29,7 @@ describe('LastOperation', () => {
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        const result = () => LastOperation.execute(values, (it) => it === 0);
+        const result = () => lastOperation(values, (it) => it === 0);
 
         // THEN
         expect(result).toThrowError('No value matches the predicate');
@@ -40,7 +40,7 @@ describe('LastOperation', () => {
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        const result = LastOperation.execute(values);
+        const result = lastOperation(values);
 
         // THEN
         const expected = 5;
@@ -52,7 +52,7 @@ describe('LastOperation', () => {
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        const result = LastOperation.execute(values, (it) => it === 3);
+        const result = lastOperation(values, (it) => it === 3);
 
         // THEN
         const expected = 3;
@@ -64,7 +64,7 @@ describe('LastOperation', () => {
         const values = [PersonMock.bob(), PersonMock.jo(), PersonMock.jane(), PersonMock.ed()];
 
         // WHEN
-        const result = LastOperation.execute(values, (it) => it.age === 19);
+        const result = lastOperation(values, (it) => it.age === 19);
 
         // THEN
         const expected = PersonMock.ed();

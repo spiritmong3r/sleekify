@@ -1,13 +1,13 @@
 import { PersonMock } from '../../../../test/mocks/person.mock';
-import { SumOperation } from './sum.operation';
+import sumOperation from './sum.operation';
 
-describe('SumOperation', () => {
+describe('sumOperation', () => {
     it('given an array of numbers and no selector, return the sum of all these numbers', () => {
         // GIVEN
         const values = [1, 2, 5, 4, 3, 9, 0];
 
         // WHEN
-        const result = SumOperation.execute(values);
+        const result = sumOperation(values);
 
         // THEN
         const expected = 24;
@@ -19,7 +19,7 @@ describe('SumOperation', () => {
         const values = ['1', '2', '5', '4', '3', '9', '0'];
 
         // WHEN
-        const result = () => SumOperation.execute(values);
+        const result = () => sumOperation(values);
 
         // THEN
         expect(result).toThrowError('Type of array is not number');
@@ -30,7 +30,7 @@ describe('SumOperation', () => {
         const values = [PersonMock.ed(), PersonMock.bob(), PersonMock.ted()];
 
         // WHEN
-        const result = () => SumOperation.execute(values);
+        const result = () => sumOperation(values);
 
         // THEN
         expect(result).toThrowError('Type of array is not number');
@@ -41,7 +41,7 @@ describe('SumOperation', () => {
         const values = [1, 2, 5, 4, 3, 9, 0, 4];
 
         // WHEN
-        const result = SumOperation.execute(values, (it) => it);
+        const result = sumOperation(values, (it) => it);
 
         // THEN
         const expected = 28;
@@ -53,7 +53,7 @@ describe('SumOperation', () => {
         const values = [PersonMock.ed(), PersonMock.bob(), PersonMock.ted()];
 
         // WHEN
-        const result = SumOperation.execute(values, (it) => it.age);
+        const result = sumOperation(values, (it) => it.age);
 
         // THEN
         const expected = 55;
@@ -65,7 +65,7 @@ describe('SumOperation', () => {
         const values = ['1', '2', '5', '4', '3', '9', '0'];
 
         // WHEN
-        const result = () => SumOperation.execute(values, (it) => it);
+        const result = () => sumOperation(values, (it) => it);
 
         // THEN
         expect(result).toThrowError('Type of array is not number');
@@ -76,7 +76,7 @@ describe('SumOperation', () => {
         const values = [PersonMock.ed(), PersonMock.bob(), PersonMock.ted()];
 
         // WHEN
-        const result = () => SumOperation.execute(values, (it) => it);
+        const result = () => sumOperation(values, (it) => it);
 
         // THEN
         expect(result).toThrowError('Type of array is not number');

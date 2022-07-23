@@ -1,13 +1,13 @@
-import { GetOperation } from './get.operation';
+import getOperation from './get.operation';
 
-describe('GetOperation', () => {
+describe('getOperation', () => {
     it('given an empty array, return undefined', () => {
         // GIVEN
         const values: any[] = [];
         const index = 0;
 
         // WHEN
-        const result = GetOperation.execute(values, index);
+        const result = getOperation(values, index);
 
         // THEN
         expect(result).toBeUndefined();
@@ -19,7 +19,7 @@ describe('GetOperation', () => {
         const index = 3;
 
         // WHEN
-        const result = GetOperation.execute(values, index);
+        const result = getOperation(values, index);
 
         // THEN
         const expected = 4;

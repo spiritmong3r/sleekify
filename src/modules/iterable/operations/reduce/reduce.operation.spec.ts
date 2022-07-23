@@ -1,12 +1,12 @@
-import { ReduceOperation } from './reduce.operation';
+import reduceOperation from './reduce.operation';
 
-describe('ReduceOperation', () => {
+describe('reduceOperation', () => {
     it('given an empty array of strings, return an empty string', () => {
         // GIVEN
         const values: any[] = [];
 
         // WHEN
-        const result = ReduceOperation.execute(values, (acc, value) => acc + value, '');
+        const result = reduceOperation(values, (acc, value) => acc + value, '');
 
         // THEN
         const expected = '';
@@ -18,7 +18,7 @@ describe('ReduceOperation', () => {
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        const result = ReduceOperation.execute(values, (acc, value) => acc + value, 0);
+        const result = reduceOperation(values, (acc, value) => acc + value, 0);
 
         // THEN
         const expected = 15;
@@ -30,7 +30,7 @@ describe('ReduceOperation', () => {
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        const result = ReduceOperation.execute(values, (acc, value) => acc + value, 7);
+        const result = reduceOperation(values, (acc, value) => acc + value, 7);
 
         // THEN
         const expected = 22;
@@ -42,7 +42,7 @@ describe('ReduceOperation', () => {
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        const result = ReduceOperation.execute(values, (acc, value) => acc + value, '');
+        const result = reduceOperation(values, (acc, value) => acc + value, '');
 
         // THEN
         const expected = '12345';
@@ -57,7 +57,7 @@ describe('ReduceOperation', () => {
         ];
 
         // WHEN
-        const result = ReduceOperation.execute(values, (acc, value) => acc.concat(value), [] as number[]);
+        const result = reduceOperation(values, (acc, value) => acc.concat(value), [] as number[]);
 
         // THEN
         const expected = [1, 2, 3, 4, 5, 6, 7, 8];

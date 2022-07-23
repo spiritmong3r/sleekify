@@ -1,3 +1,1 @@
-export abstract class SizeOperation {
-    static execute = <T>(values: T[]): number => values.length;
-}
+export default <T>(values: T[]): number => values.length;

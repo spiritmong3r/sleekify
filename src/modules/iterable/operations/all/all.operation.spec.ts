@@ -1,13 +1,13 @@
 import { PersonMock } from '../../../../test/mocks/person.mock';
-import { AllOperation } from './all.operation';
+import allOperation from './all.operation';
 
-describe('AllOperation', () => {
+describe('allOperation', () => {
     it('given an array of strings containing a single value 4, return false', () => {
         // GIVEN
         const values = ['1', '2', '5', '4', '3', '9', '0'];
 
         // WHEN
-        const result = AllOperation.execute(values, (it) => it === '4');
+        const result = allOperation(values, (it) => it === '4');
 
         // THEN
         expect(result).toBeFalsy();
@@ -18,7 +18,7 @@ describe('AllOperation', () => {
         const values = ['1', '2', '5', '4', '3', '9', '0', '4'];
 
         // WHEN
-        const result = AllOperation.execute(values, (it) => it === '4');
+        const result = allOperation(values, (it) => it === '4');
 
         // THEN
         expect(result).toBeFalsy();
@@ -29,7 +29,7 @@ describe('AllOperation', () => {
         const values = ['1', '2', '5', '4', '3', '9', '0'];
 
         // WHEN
-        const result = AllOperation.execute(values, (it) => it === '34');
+        const result = allOperation(values, (it) => it === '34');
 
         // THEN
         expect(result).toBeFalsy();
@@ -40,7 +40,7 @@ describe('AllOperation', () => {
         const values = ['1', '1', '1', '1', '1', '1', '1'];
 
         // WHEN
-        const result = AllOperation.execute(values, (it) => it === '1');
+        const result = allOperation(values, (it) => it === '1');
 
         // THEN
         expect(result).toBeTruthy();
@@ -51,7 +51,7 @@ describe('AllOperation', () => {
         const values = [PersonMock.ed(), PersonMock.jane(), PersonMock.jo(), PersonMock.bob()];
 
         // WHEN
-        const result = AllOperation.execute(values, (it) => it.age === 18);
+        const result = allOperation(values, (it) => it.age === 18);
 
         // THEN
         expect(result).toBeFalsy();
@@ -62,7 +62,7 @@ describe('AllOperation', () => {
         const values = [PersonMock.ted(), PersonMock.ed(), PersonMock.jane(), PersonMock.jo(), PersonMock.bob()];
 
         // WHEN
-        const result = AllOperation.execute(values, (it) => it.age === 18);
+        const result = allOperation(values, (it) => it.age === 18);
 
         // THEN
         expect(result).toBeFalsy();
@@ -73,7 +73,7 @@ describe('AllOperation', () => {
         const values = [PersonMock.ed(), PersonMock.jane(), PersonMock.jo(), PersonMock.bob()];
 
         // WHEN
-        const result = AllOperation.execute(values, (it) => it.age === 35);
+        const result = allOperation(values, (it) => it.age === 35);
 
         // THEN
         expect(result).toBeFalsy();
@@ -84,7 +84,7 @@ describe('AllOperation', () => {
         const values = [PersonMock.ed(), PersonMock.jo(), PersonMock.jo(), PersonMock.ed()];
 
         // WHEN
-        const result = AllOperation.execute(values, (it) => it.age === 19);
+        const result = allOperation(values, (it) => it.age === 19);
 
         // THEN
         expect(result).toBeTruthy();

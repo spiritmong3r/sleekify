@@ -1,13 +1,13 @@
 import { PersonMock } from '../../../../test/mocks/person.mock';
-import { MapOperation } from './map.operation';
+import mapOperation from './map.operation';
 
-describe('MapOperation', () => {
+describe('mapOperation', () => {
     it('given an empty array, return an empty array', () => {
         // GIVEN
         const values: any[] = [];
 
         // WHEN
-        const result = MapOperation.execute(values, (it) => it);
+        const result = mapOperation(values, (it) => it);
 
         // THEN
         const expected: any[] = [];
@@ -19,7 +19,7 @@ describe('MapOperation', () => {
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        const result = MapOperation.execute(values, (it) => it.toString());
+        const result = mapOperation(values, (it) => it.toString());
 
         // THEN
         const expected = ['1', '2', '3', '4', '5'];
@@ -31,7 +31,7 @@ describe('MapOperation', () => {
         const values = [PersonMock.bob(), PersonMock.jo(), PersonMock.jane()];
 
         // WHEN
-        const result = MapOperation.execute(values, (it) => it.age);
+        const result = mapOperation(values, (it) => it.age);
 
         // THEN
         const expected = [18, 19, 24];
@@ -46,7 +46,7 @@ describe('MapOperation', () => {
         const values = [bob, jo, jane];
 
         // WHEN
-        MapOperation.execute(values, (it) => it.firstName);
+        mapOperation(values, (it) => it.firstName);
 
         // THEN
         expect(values.length).toEqual(3);

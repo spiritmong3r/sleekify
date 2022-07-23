@@ -1,13 +1,13 @@
 import { PersonMock } from '../../../../test/mocks/person.mock';
-import { FirstOrNullOperation } from './first-or-null.operation';
+import firstOrNullOperation from './first-or-null.operation';
 
-describe('FirstOrNullOperation', () => {
+describe('firstOrNullOperation', () => {
     it('given an empty array and no predicate, return undefined', () => {
         // GIVEN
         const values: any[] = [];
 
         // WHEN
-        const result = FirstOrNullOperation.execute(values);
+        const result = firstOrNullOperation(values);
 
         // THEN
         expect(result).toBeUndefined();
@@ -18,7 +18,7 @@ describe('FirstOrNullOperation', () => {
         const values: any[] = [];
 
         // WHEN
-        const result = FirstOrNullOperation.execute(values, (it) => it);
+        const result = firstOrNullOperation(values, (it) => it);
 
         // THEN
         expect(result).toBeUndefined();
@@ -29,7 +29,7 @@ describe('FirstOrNullOperation', () => {
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        const result = FirstOrNullOperation.execute(values, (it) => it === 0);
+        const result = firstOrNullOperation(values, (it) => it === 0);
 
         // THEN
         expect(result).toBeUndefined();
@@ -40,7 +40,7 @@ describe('FirstOrNullOperation', () => {
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        const result = FirstOrNullOperation.execute(values);
+        const result = firstOrNullOperation(values);
 
         // THEN
         const expected = 1;
@@ -52,7 +52,7 @@ describe('FirstOrNullOperation', () => {
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        const result = FirstOrNullOperation.execute(values, (it) => it === 3);
+        const result = firstOrNullOperation(values, (it) => it === 3);
 
         // THEN
         const expected = 3;
@@ -64,7 +64,7 @@ describe('FirstOrNullOperation', () => {
         const values = [PersonMock.bob(), PersonMock.jo(), PersonMock.jane()];
 
         // WHEN
-        const result = FirstOrNullOperation.execute(values, (it) => it.age === 24);
+        const result = firstOrNullOperation(values, (it) => it.age === 24);
 
         // THEN
         const expected = PersonMock.jane();

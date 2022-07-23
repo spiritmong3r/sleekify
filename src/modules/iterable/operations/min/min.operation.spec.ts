@@ -1,14 +1,14 @@
 import { PersonMock } from '../../../../test/mocks/person.mock';
 import { Person } from '../../../../test/models/person';
-import { MinOperation } from './min.operation';
+import minOperation from './min.operation';
 
-describe('MinOperation', () => {
+describe('minOperation', () => {
     it('given an empty array, return undefined value', () => {
         // GIVEN
         const values: any[] = [];
 
         // WHEN
-        const result = MinOperation.execute(values);
+        const result = minOperation(values);
 
         // THEN
         expect(result).toBeUndefined();
@@ -19,7 +19,7 @@ describe('MinOperation', () => {
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        const result = MinOperation.execute(values);
+        const result = minOperation(values);
 
         // THEN
         const expected = 1;
@@ -31,7 +31,7 @@ describe('MinOperation', () => {
         const values = ['a', '1', ','];
 
         // WHEN
-        const result = () => MinOperation.execute(values);
+        const result = () => minOperation(values);
 
         // THEN
         expect(result).toThrowError('Type of array is not number');
@@ -42,7 +42,7 @@ describe('MinOperation', () => {
         const values: any[] = [];
 
         // WHEN
-        const result = MinOperation.execute(values, (it) => it);
+        const result = minOperation(values, (it) => it);
 
         // THEN
         expect(result).toBeUndefined();
@@ -53,7 +53,7 @@ describe('MinOperation', () => {
         const values = [1, 2, 5, 4, 3];
 
         // WHEN
-        const result = MinOperation.execute(values, (it) => it);
+        const result = minOperation(values, (it) => it);
 
         // THEN
         const expected = 1;
@@ -65,7 +65,7 @@ describe('MinOperation', () => {
         const values = ['1', '2', '5', '4', '3', 't', 'a'];
 
         // WHEN
-        const result = MinOperation.execute(values, (it) => it);
+        const result = minOperation(values, (it) => it);
 
         // THEN
         const expected = '1';
@@ -77,7 +77,7 @@ describe('MinOperation', () => {
         const values = [PersonMock.bob(), PersonMock.ed(), PersonMock.jo()];
 
         // WHEN
-        const result = MinOperation.execute(values, (it) => it.age);
+        const result = minOperation(values, (it) => it.age);
 
         // THEN
         const expected: Person = PersonMock.bob();

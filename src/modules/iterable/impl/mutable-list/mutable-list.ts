@@ -1,20 +1,20 @@
-import { AddOperation } from '../../operations/add/add.operation';
-import { DistinctOperation } from '../../operations/distinct/distinct.operation';
-import { DropLastOperation } from '../../operations/drop-last/drop-last.operation';
-import { DropOperation } from '../../operations/drop/drop.operation';
-import { FilterOperation } from '../../operations/filter/filter.operation';
-import { FlatmapOperation } from '../../operations/flatmap/flatmap.operation';
-import { FlattenOperation } from '../../operations/flatten/flatten.operation';
-import { MapOperation } from '../../operations/map/map.operation';
-import { OnEachOperation } from '../../operations/on-each/on-each.operation';
-import { RemoveAllOperation } from '../../operations/remove-all/remove-all.operation';
-import { RemoveFirstOperation } from '../../operations/remove-first/remove-first.operation';
-import { RemoveLastOperation } from '../../operations/remove-last/remove-last.operation';
-import { RemoveOperation } from '../../operations/remove/remove.operation';
-import { ReverseOperation } from '../../operations/reverse/reverse.operation';
-import { SortOperation } from '../../operations/sort/sort.operation';
-import { TakeLastOperation } from '../../operations/take-last/take-last.operation';
-import { TakeOperation } from '../../operations/take/take.operation';
+import addOperation from '../../operations/add/add.operation';
+import distinctOperation from '../../operations/distinct/distinct.operation';
+import dropLastOperation from '../../operations/drop-last/drop-last.operation';
+import dropOperation from '../../operations/drop/drop.operation';
+import filterOperation from '../../operations/filter/filter.operation';
+import flatmapOperation from '../../operations/flatmap/flat-map.operation';
+import flattenOperation from '../../operations/flatten/flatten.operation';
+import mapOperation from '../../operations/map/map.operation';
+import onEachOperation from '../../operations/on-each/on-each.operation';
+import removeAllOperation from '../../operations/remove-all/remove-all.operation';
+import removeFirstOperation from '../../operations/remove-first/remove-first.operation';
+import removeLastOperation from '../../operations/remove-last/remove-last.operation';
+import removeOperation from '../../operations/remove/remove.operation';
+import reverseOperation from '../../operations/reverse/reverse.operation';
+import sortOperation from '../../operations/sort/sort.operation';
+import takeLastOperation from '../../operations/take-last/take-last.operation';
+import takeOperation from '../../operations/take/take.operation';
 import { List } from '../list/list';
 
 /**
@@ -26,83 +26,76 @@ export class MutableList<T> extends List<T> {
     }
 
     add(value: T): MutableList<T> {
-        AddOperation.execute(this.values, value);
+        addOperation(this.values, value);
         return this;
     }
 
     remove(index: number): MutableList<T> {
-        RemoveOperation.execute(this.values, index);
+        removeOperation(this.values, index);
         return this;
     }
 
     removeFirst(): MutableList<T> {
-        RemoveFirstOperation.execute(this.values);
+        removeFirstOperation(this.values);
         return this;
     }
 
     removeLast(): MutableList<T> {
-        RemoveLastOperation.execute(this.values);
+        removeLastOperation(this.values);
         return this;
     }
 
     removeAll(predicate: (value: T, index: number, array: T[]) => boolean): MutableList<T> {
-        RemoveAllOperation.execute(this.values, predicate);
+        removeAllOperation(this.values, predicate);
         return this;
     }
 
     filter(predicate: (value: T, index: number, array: T[]) => boolean): MutableList<T> {
-        return new MutableList(FilterOperation.execute(this.values, predicate));
+        return new MutableList(filterOperation(this.values, predicate));
     }
 
     onEach<U>(selector: (value: T, index: number, array: T[]) => void): MutableList<T> {
-        return new MutableList(OnEachOperation.execute(this.values, selector));
+        return new MutableList(onEachOperation(this.values, selector));
     }
 
     map<U>(selector: (value: T, index: number, array: T[]) => U): MutableList<U> {
-        return new MutableList(MapOperation.execute(this.values, selector));
+        return new MutableList(mapOperation(this.values, selector));
     }
 
     flatMap<U, This = undefined>(selector: (this: This, value: T, index: number, array: T[]) => U | U[]): MutableList<U> {
-        return new MutableList(FlatmapOperation.execute(this.values, selector));
+        return new MutableList(flatmapOperation(this.values, selector));
     }
 
     flatten(depth: number = 1): MutableList<T> {
-        return new MutableList(FlattenOperation.execute(this.values, depth));
+        return new MutableList(flattenOperation(this.values, depth));
     }
 
     reverse(): MutableList<T> {
-        return new MutableList(ReverseOperation.execute(this.values));
+        return new MutableList(reverseOperation(this.values));
     }
 
     // TODO to improve by adding asc/desc option, etc ...
     sort<U>(selector?: (value: T) => U): MutableList<T> {
-        return new MutableList(SortOperation.execute(this.values, selector));
+        return new MutableList(sortOperation(this.values, selector));
     }
 
     distinct<U>(selector?: (value: T) => U): MutableList<T> {
-        const res = DistinctOperation.execute(this.values, selector);
-        return new MutableList(res);
-    }
-
-    distinct2<U>(selector?: (value: T) => U): T[] {
-        const res = DistinctOperation.execute(this.values, selector);
-        new MutableList(res);
-        return res;
+        return new MutableList(distinctOperation(this.values, selector));
     }
 
     take(n: number): MutableList<T> {
-        return new MutableList(TakeOperation.execute(this.values, n));
+        return new MutableList(takeOperation(this.values, n));
     }
 
     takeLast(n: number): MutableList<T> {
-        return new MutableList(TakeLastOperation.execute(this.values, n));
+        return new MutableList(takeLastOperation(this.values, n));
     }
 
     drop(n: number): MutableList<T> {
-        return new MutableList(DropOperation.execute(this.values, n));
+        return new MutableList(dropOperation(this.values, n));
     }
 
     dropLast(n: number): MutableList<T> {
-        return new MutableList(DropLastOperation.execute(this.values, n));
+        return new MutableList(dropLastOperation(this.values, n));
     }
 }

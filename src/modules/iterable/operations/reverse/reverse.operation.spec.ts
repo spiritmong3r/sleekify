@@ -1,13 +1,13 @@
 import { PersonMock } from '../../../../test/mocks/person.mock';
-import { ReverseOperation } from './reverse.operation';
+import reverseOperation from './reverse.operation';
 
-describe('ReverseOperation', () => {
+describe('reverseOperation', () => {
     it('given an empty array, return an empty array', () => {
         // GIVEN
         const values: any[] = [];
 
         // WHEN
-        const result = ReverseOperation.execute(values);
+        const result = reverseOperation(values);
 
         // THEN
         const expected: any[] = [];
@@ -19,7 +19,7 @@ describe('ReverseOperation', () => {
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        const result = ReverseOperation.execute(values);
+        const result = reverseOperation(values);
 
         // THEN
         const expected = [5, 4, 3, 2, 1];
@@ -31,7 +31,7 @@ describe('ReverseOperation', () => {
         const values = [1, 2, 3];
 
         // WHEN
-        ReverseOperation.execute(values);
+        reverseOperation(values);
 
         // THEN
         const expected = [1, 2, 3];
@@ -43,7 +43,7 @@ describe('ReverseOperation', () => {
         const values = [PersonMock.bob(), PersonMock.jo(), PersonMock.jane()];
 
         // WHEN
-        const result = ReverseOperation.execute(values);
+        const result = reverseOperation(values);
 
         // THEN
         const expected = [PersonMock.jane(), PersonMock.jo(), PersonMock.bob()];
@@ -58,7 +58,7 @@ describe('ReverseOperation', () => {
         const values = [bob, jo, jane];
 
         // WHEN
-        ReverseOperation.execute(values);
+        reverseOperation(values);
 
         // THEN
         expect(values.length).toEqual(3);

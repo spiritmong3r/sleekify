@@ -1,3 +1,1 @@
-export abstract class ReverseOperation {
-    static execute = <T>(values: T[]): T[] => [...values].reverse();
-}
+export default <T>(values: T[]): T[] => [...values].reverse();

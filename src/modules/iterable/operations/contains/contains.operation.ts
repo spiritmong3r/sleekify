@@ -1,5 +1,3 @@
-import { deepEqual } from '../../../common/object/deep-equal';
+import { object } from '../../../common/object';
 
-export abstract class ContainsOperation {
-    static execute = <T>(values: T[], element: T): boolean => values.some((it) => deepEqual(it, element));
-}
+export default <T>(values: T[], element: T): boolean => values.some((it) => object(it, element));

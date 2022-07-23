@@ -1,5 +1,3 @@
-export abstract class RemoveFirstOperation {
-    static execute = <T>(values: T[]): void => {
-        values.splice(0, 1);
-    };
-}
+export default <T>(values: T[]): void => {
+    values.splice(0, 1);
+};

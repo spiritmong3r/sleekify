@@ -1,12 +1,12 @@
-import { RemoveLastOperation } from './remove-last.operation';
+import removeLastOperation from './remove-last.operation';
 
-describe('RemoveLastOperation', () => {
+describe('removeLastOperation', () => {
     it('given an empty array, do nothing', () => {
         // GIVEN
         const values: any[] = [];
 
         // WHEN
-        RemoveLastOperation.execute(values);
+        removeLastOperation(values);
 
         // THEN
         const expected: any[] = [];
@@ -18,7 +18,7 @@ describe('RemoveLastOperation', () => {
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        RemoveLastOperation.execute(values);
+        removeLastOperation(values);
 
         // THEN
         const expected = [1, 2, 3, 4];
