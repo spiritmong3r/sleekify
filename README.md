@@ -12,6 +12,7 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![npm version](https://img.shields.io/badge/npm-v1.0.1-brightgreen?style=flat-square)](https://www.npmjs.com/package/sleekify)
 [![codecov](https://codecov.io/gh/spiritmong3r/sleekify/branch/main/graph/badge.svg?token=HLBF8VHIGS)](https://codecov.io/gh/spiritmong3r/sleekify)
+[![<ORG_NAME>](https://circleci.com/gh/spiritmong3r/sleekify.svg?style=shield)](https://app.circleci.com/pipelines/github/spiritmong3r/sleekify)
 
 </div>
 
