@@ -3,7 +3,7 @@ import distinctOperation from '../../operations/distinct/distinct.operation';
 import dropLastOperation from '../../operations/drop-last/drop-last.operation';
 import dropOperation from '../../operations/drop/drop.operation';
 import filterOperation from '../../operations/filter/filter.operation';
-import flatmapOperation from '../../operations/flatmap/flat-map.operation';
+import flatMapOperation from '../../operations/flatmap/flat-map.operation';
 import flattenOperation from '../../operations/flatten/flatten.operation';
 import mapOperation from '../../operations/map/map.operation';
 import onEachOperation from '../../operations/on-each/on-each.operation';
@@ -16,7 +16,7 @@ import reverseOperation from '../../operations/reverse/reverse.operation';
 import sortOperation from '../../operations/sort/sort.operation';
 import takeLastOperation from '../../operations/take-last/take-last.operation';
 import takeOperation from '../../operations/take/take.operation';
-import { List } from '../list/list';
+import {List} from '../list/list';
 
 /**
  * @author cleme_mo
@@ -83,7 +83,7 @@ export class MutableList<T> extends List<T> {
     }
 
     flatMap<U, This = undefined>(selector: (this: This, value: T, index: number, array: T[]) => U | U[]): MutableList<U> {
-        return new MutableList(flatmapOperation(this.values, selector));
+        return new MutableList(flatMapOperation(this.values, selector));
     }
 
     flatten(depth: number = 1): MutableList<T> {

@@ -1,11 +1,11 @@
-import { PersonMock } from '../../../../test/mocks/person.mock';
-import { Person } from '../../../../test/models/person';
+import {PersonMock} from '../../../../test/mocks/person.mock';
+import {Person} from '../../../../test/models/person';
 import * as addOperation from '../../operations/add/add.operation';
 import * as distinctOperation from '../../operations/distinct/distinct.operation';
 import * as dropLastOperation from '../../operations/drop-last/drop-last.operation';
 import * as dropOperation from '../../operations/drop/drop.operation';
 import * as filterOperation from '../../operations/filter/filter.operation';
-import * as flatmapOperation from '../../operations/flatmap/flat-map.operation';
+import * as flatMapOperation from '../../operations/flatmap/flat-map.operation';
 import * as flattenOperation from '../../operations/flatten/flatten.operation';
 import * as mapOperation from '../../operations/map/map.operation';
 import * as onEachOperation from '../../operations/on-each/on-each.operation';
@@ -18,7 +18,7 @@ import * as reverseOperation from '../../operations/reverse/reverse.operation';
 import * as sortOperation from '../../operations/sort/sort.operation';
 import * as takeLastOperation from '../../operations/take-last/take-last.operation';
 import * as takeOperation from '../../operations/take/take.operation';
-import { MutableList } from './mutable-list';
+import {MutableList} from './mutable-list';
 import restoreAllMocks = jest.restoreAllMocks;
 
 describe('MutableList', () => {
@@ -163,9 +163,9 @@ describe('MutableList', () => {
 
             // THEN
             const expected = new MutableList([
-                { ...PersonMock.bob(), age: 18 },
-                { ...PersonMock.jo(), age: 18 },
-                { ...PersonMock.jane(), age: 18 },
+                {...PersonMock.bob(), age: 18},
+                {...PersonMock.jo(), age: 18},
+                {...PersonMock.jane(), age: 18}
             ]);
             expect(result).toEqual(expected);
             expect(onEachOperation.default).toHaveBeenCalled();
@@ -194,7 +194,7 @@ describe('MutableList', () => {
             // GIVEN
             const list = new MutableList([[PersonMock.ted()], [PersonMock.bob()]]);
             const selector = (it: Person[]) => it.map((person) => person.firstName);
-            jest.spyOn(flatmapOperation, 'default');
+            jest.spyOn(flatMapOperation, 'default');
 
             // WHEN
             const result = list.flatMap(selector);
@@ -202,7 +202,7 @@ describe('MutableList', () => {
             // THEN
             const expected = new MutableList(['Ted', 'Bob']);
             expect(result).toEqual(expected);
-            expect(flatmapOperation.default).toHaveBeenCalledWith([[PersonMock.ted()], [PersonMock.bob()]], selector);
+            expect(flatMapOperation.default).toHaveBeenCalledWith([[PersonMock.ted()], [PersonMock.bob()]], selector);
         });
     });
 
@@ -211,7 +211,7 @@ describe('MutableList', () => {
             // GIVEN
             const list = new MutableList([
                 ['1', '2', '3', '4', '5', '6'],
-                ['7', '8'],
+                ['7', '8']
             ]);
             jest.spyOn(flattenOperation, 'default');
 
@@ -224,7 +224,7 @@ describe('MutableList', () => {
             expect(flattenOperation.default).toHaveBeenCalledWith(
                 [
                     ['1', '2', '3', '4', '5', '6'],
-                    ['7', '8'],
+                    ['7', '8']
                 ],
                 1
             );
@@ -295,7 +295,7 @@ describe('MutableList', () => {
 
         it('call the Distinct operation class with selector', () => {
             // GIVEN
-            const list = new MutableList([{ name: 'bob' }, { name: 'bob' }, { name: 'ted' }]);
+            const list = new MutableList([{name: 'bob'}, {name: 'bob'}, {name: 'ted'}]);
             const selector = (it: any) => it.name;
             jest.spyOn(distinctOperation, 'default');
 
@@ -303,9 +303,9 @@ describe('MutableList', () => {
             const result = list.distinct(selector);
 
             // THEN
-            const expected = new MutableList([{ name: 'bob' }, { name: 'ted' }]);
+            const expected = new MutableList([{name: 'bob'}, {name: 'ted'}]);
             expect(result).toEqual(expected);
-            expect(distinctOperation.default).toHaveBeenCalledWith([{ name: 'bob' }, { name: 'bob' }, { name: 'ted' }], selector);
+            expect(distinctOperation.default).toHaveBeenCalledWith([{name: 'bob'}, {name: 'bob'}, {name: 'ted'}], selector);
         });
     });
 

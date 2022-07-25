@@ -1,4 +1,4 @@
-import { JoinProps } from '../../models/JoinProps';
+import {JoinProps} from '../../models/JoinProps';
 import allOperation from '../../operations/all/all.operation';
 import anyOperation from '../../operations/any/any.operation';
 import containsAllOperation from '../../operations/contains-all/contains-all.operation';
@@ -11,7 +11,7 @@ import filterOperation from '../../operations/filter/filter.operation';
 import findOperation from '../../operations/find/find.operation';
 import firstOrNullOperation from '../../operations/first-or-null/first-or-null.operation';
 import firstOperation from '../../operations/first/first.operation';
-import flatmapOperation from '../../operations/flatmap/flat-map.operation';
+import flatMapOperation from '../../operations/flatmap/flat-map.operation';
 import flattenOperation from '../../operations/flatten/flatten.operation';
 import forEachOperation from '../../operations/for-each/for-each.operation';
 import getOperation from '../../operations/get/get.operation';
@@ -50,8 +50,8 @@ export class List<T> implements Iterable<T> {
         return {
             next: (): IteratorResult<T, T> => ({
                 value: this.values[position++],
-                done: position === this.values.length - 1,
-            }),
+                done: position === this.values.length - 1
+            })
         };
     }
 
@@ -72,7 +72,7 @@ export class List<T> implements Iterable<T> {
     }
 
     flatMap<U, This = undefined>(selector: (this: This, value: T, index: number, array: T[]) => U | U[]): List<U> {
-        return new List(flatmapOperation(this.values, selector));
+        return new List(flatMapOperation(this.values, selector));
     }
 
     flatten(depth: number = 1): List<T> {

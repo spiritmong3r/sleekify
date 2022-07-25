@@ -1,6 +1,6 @@
-import { PersonMock } from '../../../../test/mocks/person.mock';
-import { Person } from '../../../../test/models/person';
-import { JoinProps } from '../../models/JoinProps';
+import {PersonMock} from '../../../../test/mocks/person.mock';
+import {Person} from '../../../../test/models/person';
+import {JoinProps} from '../../models/JoinProps';
 import * as allOperation from '../../operations/all/all.operation';
 import * as anyOperation from '../../operations/any/any.operation';
 import * as containsAllOperation from '../../operations/contains-all/contains-all.operation';
@@ -13,7 +13,7 @@ import * as filterOperation from '../../operations/filter/filter.operation';
 import * as findOperation from '../../operations/find/find.operation';
 import * as firstOrNullOperation from '../../operations/first-or-null/first-or-null.operation';
 import * as firstOperation from '../../operations/first/first.operation';
-import * as flatmapOperation from '../../operations/flatmap/flat-map.operation';
+import * as flatMapOperation from '../../operations/flatmap/flat-map.operation';
 import * as flattenOperation from '../../operations/flatten/flatten.operation';
 import * as forEachOperation from '../../operations/for-each/for-each.operation';
 import * as getOperation from '../../operations/get/get.operation';
@@ -36,7 +36,7 @@ import * as sumOperation from '../../operations/sum/sum.operation';
 import * as takeLastOperation from '../../operations/take-last/take-last.operation';
 import * as takeOperation from '../../operations/take/take.operation';
 import * as toArrayOperation from '../../operations/to-array/to-array.operation';
-import { List } from './list';
+import {List} from './list';
 import restoreAllMocks = jest.restoreAllMocks;
 
 describe('List', () => {
@@ -88,9 +88,9 @@ describe('List', () => {
 
             // THEN
             const expected = new List([
-                { ...PersonMock.bob(), age: 18 },
-                { ...PersonMock.jo(), age: 18 },
-                { ...PersonMock.jane(), age: 18 },
+                {...PersonMock.bob(), age: 18},
+                {...PersonMock.jo(), age: 18},
+                {...PersonMock.jane(), age: 18}
             ]);
             expect(result).toEqual(expected);
             expect(onEachOperation.default).toHaveBeenCalled();
@@ -129,8 +129,8 @@ describe('List', () => {
 
             // THEN
             const expected = new List([
-                { ...PersonMock.ted(), name: 'Hololo' },
-                { ...PersonMock.jo(), name: 'Hololo' },
+                {...PersonMock.ted(), name: 'Hololo'},
+                {...PersonMock.jo(), name: 'Hololo'}
             ]);
             expect(list).toEqual(expected);
             expect(forEachOperation.default).toHaveBeenCalled();
@@ -193,7 +193,7 @@ describe('List', () => {
             // GIVEN
             const list = new List([[PersonMock.ted()], [PersonMock.bob()]]);
             const selector = (it: Person[]) => it.map((person) => person.firstName);
-            jest.spyOn(flatmapOperation, 'default');
+            jest.spyOn(flatMapOperation, 'default');
 
             // WHEN
             const result = list.flatMap(selector);
@@ -201,7 +201,7 @@ describe('List', () => {
             // THEN
             const expected = new List(['Ted', 'Bob']);
             expect(result).toEqual(expected);
-            expect(flatmapOperation.default).toHaveBeenCalledWith([[PersonMock.ted()], [PersonMock.bob()]], selector);
+            expect(flatMapOperation.default).toHaveBeenCalledWith([[PersonMock.ted()], [PersonMock.bob()]], selector);
         });
 
         it('check immutability', () => {
@@ -227,7 +227,7 @@ describe('List', () => {
             // GIVEN
             const list = new List([
                 ['1', '2', '3', '4', '5', '6'],
-                ['7', '8'],
+                ['7', '8']
             ]);
             jest.spyOn(flattenOperation, 'default');
 
@@ -240,7 +240,7 @@ describe('List', () => {
             expect(flattenOperation.default).toHaveBeenCalledWith(
                 [
                     ['1', '2', '3', '4', '5', '6'],
-                    ['7', '8'],
+                    ['7', '8']
                 ],
                 1
             );
@@ -362,7 +362,7 @@ describe('List', () => {
 
         it('call the Distinct operation class with selector', () => {
             // GIVEN
-            const list = new List([{ name: 'bob' }, { name: 'bob' }, { name: 'ted' }]);
+            const list = new List([{name: 'bob'}, {name: 'bob'}, {name: 'ted'}]);
             const selector = (it: any) => it.name;
             jest.spyOn(distinctOperation, 'default');
 
@@ -370,9 +370,9 @@ describe('List', () => {
             const result = list.distinct(selector);
 
             // THEN
-            const expected = new List([{ name: 'bob' }, { name: 'ted' }]);
+            const expected = new List([{name: 'bob'}, {name: 'ted'}]);
             expect(result).toEqual(expected);
-            expect(distinctOperation.default).toHaveBeenCalledWith([{ name: 'bob' }, { name: 'bob' }, { name: 'ted' }], selector);
+            expect(distinctOperation.default).toHaveBeenCalledWith([{name: 'bob'}, {name: 'bob'}, {name: 'ted'}], selector);
         });
 
         it('check immutability', () => {
@@ -1057,7 +1057,7 @@ describe('List', () => {
         it('call the Join operation class with both parameters', () => {
             // GIVEN
             const list = new List(['1', '2', '3', '4', '5', '6', '7', '8']);
-            const props: JoinProps = { separator: '/' };
+            const props: JoinProps = {separator: '/'};
             const selector = (it: string) => it;
             jest.spyOn(joinOperation, 'default');
 
