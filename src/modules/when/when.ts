@@ -1,7 +1,31 @@
-import { Statement } from './models/statements';
+import {Statement} from './models/statements';
 
 /**
+ * Behaves like if/else conditionals, check every branch condition sequentially until `true` value is found and then execute the associated code.
+ *
+ * If no matching input, then execute the default value if there's one, otherwise return `undefined`.
+ *
+ * Usage :
+ * ```js
+ *  const darkColorName = getRandomColor();
+ *  const lightColorName = getRandomColor();
+ *
+ *  const color = when([
+ *    darkColorName === 'black', () => new Black(),
+ *    lightColorName === 'white', () => new White(),
+ *    lightColorName === 'yellow', () => new Yellow(),
+ *    () => undefined, // default value
+ *  ]);
+ *
+ * ```
+ *
+ * @param statements Array of pairs of value and function.
+ * @return An object of type `R` or `undefined`.
+ */
+export function when<I extends boolean, R>(statements: Statement<I, R>): R | undefined;
+/**
  * Given an expression or value, check if there's a matching input and then execute the associated code.
+ *
  * If no matching input, then execute the default value if there's one, otherwise return `undefined`
  *
  * Usage :
@@ -19,10 +43,10 @@ import { Statement } from './models/statements';
  *
  * ```
  *
+ * @param input
  * @param statements Array of pairs of value and function.
  * @return An object of type `R` or `undefined`.
  */
-export function when<I extends boolean, R>(statements: Statement<I, R>): R | undefined;
 export function when<I, R>(input: I, statements: Statement<I, R>): R | undefined;
 export function when<I, R>(arg1: I | Statement<I, R>, arg2?: Statement<I, R>): R | undefined {
     let statements: Statement<I, R>;

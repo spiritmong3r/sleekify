@@ -1,4 +1,4 @@
-import { when } from './when';
+import {when} from './when';
 
 describe('when', () => {
     describe('with input and branches with simple value', () => {
@@ -7,7 +7,10 @@ describe('when', () => {
             const value = 5;
 
             // WHEN
-            const result = when(value, [5, () => 'Hello', 6, () => 'Goodbye !']);
+            const result = when(value, [
+                5, () => 'Hello',
+                6, () => 'Goodbye !'
+            ]);
 
             // THEN
             expect(result).toEqual('Hello');
@@ -18,7 +21,10 @@ describe('when', () => {
             const value = 7;
 
             // WHEN
-            const result = when(value, [5, () => 'Hello', 6, () => 'Goodbye !']);
+            const result = when(value, [
+                5, () => 'Hello',
+                6, () => 'Goodbye !'
+            ]);
 
             // THEN
             expect(result).toBeUndefined();
@@ -29,7 +35,11 @@ describe('when', () => {
             const value = 6;
 
             // WHEN
-            const result = when(value, [5, () => 'Hello', 6, () => 'Goodbye !', () => 'Nothing !']);
+            const result = when(value, [
+                5, () => 'Hello',
+                6, () => 'Goodbye !',
+                () => 'Nothing !'
+            ]);
 
             // THEN
             expect(result).toEqual('Goodbye !');
@@ -40,7 +50,10 @@ describe('when', () => {
             const value = 7;
 
             // WHEN
-            const result = when(value, [null, () => 'null !', () => 'not null !']);
+            const result = when(value, [
+                null, () => 'null !',
+                () => 'not null !'
+            ]);
 
             // THEN
             expect(result).toEqual('not null !');
@@ -51,7 +64,11 @@ describe('when', () => {
             const value = null;
 
             // WHEN
-            const result = when(value, [5, () => 'Hello', 6, () => 'Goodbye !', null, () => 'null !']);
+            const result = when(value, [
+                5, () => 'Hello',
+                6, () => 'Goodbye !',
+                null, () => 'null !'
+            ]);
 
             // THEN
             expect(result).toEqual('null !');
@@ -62,7 +79,11 @@ describe('when', () => {
             const value = undefined;
 
             // WHEN
-            const result = when(value, [5, () => 'Hello', 6, () => 'Goodbye !', undefined, () => 'undefined !']);
+            const result = when(value, [
+                5, () => 'Hello',
+                6, () => 'Goodbye !',
+                undefined, () => 'undefined !'
+            ]);
 
             // THEN
             expect(result).toEqual('undefined !');
@@ -75,7 +96,11 @@ describe('when', () => {
             const value = 6;
 
             // WHEN
-            const result = when(value, [5, () => 'Hello', [4, 6], () => 'Goodbye !', () => 'Nothing !']);
+            const result = when(value, [
+                5, () => 'Hello',
+                [4, 6], () => 'Goodbye !',
+                () => 'Nothing !'
+            ]);
 
             // THEN
             expect(result).toEqual('Goodbye !');
@@ -86,21 +111,27 @@ describe('when', () => {
             const value = 7;
 
             // WHEN
-            const result = when(value, [5, () => 'Hello', [4, 6], () => 'Goodbye !', () => 'Nothing !']);
+            const result = when(value, [
+                5, () => 'Hello',
+                [4, 6], () => 'Goodbye !',
+                () => 'Nothing !'
+            ]);
 
             // THEN
             expect(result).toEqual('Nothing !');
         });
     });
 
-    // TODO complete
     describe('without input and branches with an array as value', () => {
         it('given an input, a default value and a matching value, should return branch with matching value', () => {
             // GIVEN
-            const value = 5;
+            const getValue = (): number => 5;
 
             // WHEN
-            const result = when([value === 5, () => 'Hello', () => 'Nothing !']);
+            const result = when([
+                getValue() === 5, () => 'Hello',
+                () => 'Nothing !'
+            ]);
 
             // THEN
             expect(result).toEqual('Hello');
@@ -111,7 +142,10 @@ describe('when', () => {
             const getValue = (): number => 6;
 
             // WHEN
-            const result = when([getValue() === 5, () => 'Hello', () => 'Nothing !']);
+            const result = when([
+                getValue() === 5, () => 'Hello',
+                () => 'Nothing !'
+            ]);
 
             // THEN
             expect(result).toEqual('Nothing !');
@@ -122,7 +156,9 @@ describe('when', () => {
             const getValue = (): number => 6;
 
             // WHEN
-            const result = when([getValue() === 5, () => 'Hello']);
+            const result = when([
+                getValue() === 5, () => 'Hello'
+            ]);
 
             // THEN
             expect(result).toBeUndefined();
@@ -133,7 +169,10 @@ describe('when', () => {
             const getValue = (): number => 5;
 
             // WHEN
-            const result = when([getValue() === 5, () => 'Hello', getValue() === 6, () => 'Goodbye !']);
+            const result = when([
+                getValue() === 5, () => 'Hello',
+                getValue() === 6, () => 'Goodbye !'
+            ]);
 
             // THEN
             expect(result).toEqual('Hello');

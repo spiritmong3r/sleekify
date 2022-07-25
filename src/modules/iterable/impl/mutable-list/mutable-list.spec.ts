@@ -10,6 +10,7 @@ import * as flattenOperation from '../../operations/flatten/flatten.operation';
 import * as mapOperation from '../../operations/map/map.operation';
 import * as onEachOperation from '../../operations/on-each/on-each.operation';
 import * as removeAllOperation from '../../operations/remove-all/remove-all.operation';
+import * as removeAtOperation from '../../operations/remove-at/remove-at.operation';
 import * as removeFirstOperation from '../../operations/remove-first/remove-first.operation';
 import * as removeLastOperation from '../../operations/remove-last/remove-last.operation';
 import * as removeOperation from '../../operations/remove/remove.operation';
@@ -40,18 +41,34 @@ describe('MutableList', () => {
     });
 
     describe('remove', () => {
-        it('remove an element at the given index from the array', () => {
+        it('remove an element from the array', () => {
             // GIVEN
             const list = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8']);
             jest.spyOn(removeOperation, 'default');
 
             // WHEN
-            const result = list.remove(0);
+            const result = list.remove('1');
 
             // THEN
             const expected = new MutableList(['2', '3', '4', '5', '6', '7', '8']);
             expect(result).toEqual(expected);
             expect(removeOperation.default).toHaveBeenCalled();
+        });
+    });
+
+    describe('removeAt', () => {
+        it('remove an element at the given index from the array', () => {
+            // GIVEN
+            const list = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8']);
+            jest.spyOn(removeAtOperation, 'default');
+
+            // WHEN
+            const result = list.removeAt(0);
+
+            // THEN
+            const expected = new MutableList(['2', '3', '4', '5', '6', '7', '8']);
+            expect(result).toEqual(expected);
+            expect(removeAtOperation.default).toHaveBeenCalled();
         });
     });
 
@@ -88,6 +105,19 @@ describe('MutableList', () => {
     });
 
     describe('removeAll', () => {
+        it('remove all elements matching the given element', () => {
+            // GIVEN
+            const list = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8', '5']);
+            jest.spyOn(removeAllOperation, 'default');
+
+            // WHEN
+            const result = list.removeAll('5');
+
+            // THEN
+            const expected = new MutableList(['1', '2', '3', '4', '6', '7', '8']);
+            expect(result).toEqual(expected);
+            expect(removeAllOperation.default).toHaveBeenCalled();
+        });
         it('remove all elements matching the given predicate', () => {
             // GIVEN
             const list = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8', '5']);

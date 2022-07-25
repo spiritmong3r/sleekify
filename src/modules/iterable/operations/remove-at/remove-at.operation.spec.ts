@@ -1,29 +1,30 @@
-import removeOperation from './remove.operation';
+import removeAtOperation from './remove-at.operation';
+import removeOperation from './remove-at.operation';
 
 describe('removeOperation', () => {
     it('given an empty array, do nothing', () => {
         // GIVEN
         const values: any[] = [];
-        const element = 0;
+        const index = 0;
 
         // WHEN
-        removeOperation(values, element);
+        removeAtOperation(values, index);
 
         // THEN
         const expected: any[] = [];
         expect(values).toEqual(expected);
     });
 
-    it('given an array numbers and a number to remove, update the array by removing the first matching element', () => {
+    it('given an array numbers and an index, update the array by removing the element at the given index', () => {
         // GIVEN
         const values = [1, 2, 3, 4, 5];
-        const element = 1;
+        const index = 1;
 
         // WHEN
-        removeOperation(values, element);
+        removeAtOperation(values, index);
 
         // THEN
-        const expected = [2, 3, 4, 5];
+        const expected = [1, 3, 4, 5];
         expect(values).toEqual(expected);
     });
 });

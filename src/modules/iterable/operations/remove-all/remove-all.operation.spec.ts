@@ -25,4 +25,17 @@ describe('removeAllOperation', () => {
         const expected = [PersonMock.bob(), PersonMock.ted()];
         expect(values).toEqual(expected);
     });
+
+    it('given an array of Persons and an element, update the array by removing the given element', () => {
+        // GIVEN
+        const jo = PersonMock.jo();
+        const values = [PersonMock.bob(), jo, PersonMock.ted()];
+
+        // WHEN
+        removeAllOperation(values, jo);
+
+        // THEN
+        const expected = [PersonMock.bob(), PersonMock.ted()];
+        expect(values).toEqual(expected);
+    });
 });

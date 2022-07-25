@@ -9,10 +9,9 @@
 
 <div align="center">
 
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![npm version](https://img.shields.io/badge/npm-v1.0.1-brightgreen?style=flat-square)](https://www.npmjs.com/package/sleekify)
 [![codecov](https://codecov.io/gh/spiritmong3r/sleekify/branch/main/graph/badge.svg?token=HLBF8VHIGS)](https://codecov.io/gh/spiritmong3r/sleekify)
-[![<ORG_NAME>](https://circleci.com/gh/spiritmong3r/sleekify.svg?style=shield)](https://app.circleci.com/pipelines/github/spiritmong3r/sleekify)
+[![spiritmong3r](https://circleci.com/gh/spiritmong3r/sleekify.svg?style=shield)](https://app.circleci.com/pipelines/github/spiritmong3r/sleekify)
 
 </div>
 
@@ -43,7 +42,7 @@ npm i sleekify
 ### Usage
 
 ```ts
-import { List, MutableList, listOf, mutableListOf, when } from 'sleekify';
+import {List, MutableList, listOf, mutableListOf, when} from 'sleekify';
 ```
 
 ## API documentation
@@ -88,12 +87,12 @@ values.any((value) => value === 0); // returns false
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
-values.contains({ name: 'Jo', age: 22 }); // returns true
-values.contains({ name: 'Jo', age: 23 }); // returns false
+values.contains({name: 'Jo', age: 22}); // returns true
+values.contains({name: 'Jo', age: 23}); // returns false
 ```
 
 ⇨ <code>containsAll</code>
@@ -103,15 +102,15 @@ values.contains({ name: 'Jo', age: 23 }); // returns false
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.containsAll([
-  { name: 'Bob', age: 18 },
-  { name: 'Jo', age: 22 },
+    {name: 'Bob', age: 18},
+    {name: 'Jo', age: 22},
 ]); // returns true
-values.containsAll({ name: 'Bob', age: 18 }, { name: 'Jo', age: 23 }); // returns false
+values.containsAll({name: 'Bob', age: 18}, {name: 'Jo', age: 23}); // returns false
 ```
 
 ⇨ <code>count</code>
@@ -121,8 +120,8 @@ values.containsAll({ name: 'Bob', age: 18 }, { name: 'Jo', age: 23 }); // return
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.count(); // returns 2
@@ -136,10 +135,10 @@ values.count((value) => value.age === 18); // returns 1
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
-const jo2: Person = { name: 'Jo', age: 22 };
-const jo3: Person = { name: 'Jo', age: 23 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo2: Person = {name: 'Jo', age: 22};
+const jo3: Person = {name: 'Jo', age: 23};
 
 const values = new List([bob, jo, jo2, jo3]);
 values.distinct(); // returns List([bob, jo, jo3])
@@ -153,8 +152,8 @@ values.distinct((value) => value.name === 'Jo'); // returns List([bob, jo])
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.drop(1); // returns List([jo])
@@ -167,8 +166,8 @@ values.drop(1); // returns List([jo])
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.dropLast(1); // returns List([bob])
@@ -181,8 +180,8 @@ values.dropLast(1); // returns List([bob])
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.filter((value) => value.age === 18); // returns List([bob])
@@ -195,9 +194,9 @@ values.filter((value) => value.age === 18); // returns List([bob])
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
-const jo1: Person = { name: 'Jo', age: 23 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo1: Person = {name: 'Jo', age: 23};
 
 const values = new List([bob, jo, jo1]);
 values.first((value) => value.name === 'jo'); // returns jo
@@ -211,9 +210,9 @@ values.first((value) => value.name === 'jane'); // returns undefined
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
-const jo1: Person = { name: 'Jo', age: 23 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo1: Person = {name: 'Jo', age: 23};
 
 const values = new List([bob, jo, jo1]);
 values.first((value) => value.name === 'jo'); // returns jo
@@ -227,9 +226,9 @@ values.first((value) => value.name === 'jane'); // throw an error 'No value matc
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
-const jo1: Person = { name: 'Jo', age: 23 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo1: Person = {name: 'Jo', age: 23};
 
 const values = new List([bob, jo, jo1]);
 values.first((value) => value.name === 'jo'); // returns jo
@@ -243,8 +242,8 @@ values.first((value) => value.name === 'jane'); // returns undefined
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([[bob], jo]);
 values.flatMap((value) => value.name); // returns List(['bob', 'jo'])
@@ -257,9 +256,9 @@ values.flatMap((value) => value.name); // returns List(['bob', 'jo'])
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
-const jane: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jane: Person = {name: 'Jo', age: 22};
 
 const values = new List([[bob], jo, [[jane]]]);
 values.flatten(); // returns List([bob, jo, [jane]])
@@ -273,8 +272,8 @@ values.flatten(2); // returns List([bob, jo, jane])
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.forEach((value) => (value.age = 18)); // returns nothing but every Person of the List are now 18
@@ -287,8 +286,8 @@ values.forEach((value) => (value.age = 18)); // returns nothing but every Person
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.get(0); // returns bob
@@ -302,9 +301,9 @@ values.get(2); // returns undefined
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
-const jane: Person = { name: 'Jane', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jane: Person = {name: 'Jane', age: 22};
 
 const values = new List([bob, jo, jane]);
 values.groupBy((value) => value.age);
@@ -322,8 +321,8 @@ values.groupBy((value) => value.age);
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 new List([bob, jo]).isEmpty(); // returns false
 new List().isEmpty(); // returns true
@@ -336,11 +335,11 @@ new List().isEmpty(); // returns true
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
-values.join({ separator: ' / ' }, (value) => value.name); // returns 'bob / jo'
+values.join({separator: ' / '}, (value) => value.name); // returns 'bob / jo'
 ```
 
 ⇨ <code>last</code>
@@ -350,9 +349,9 @@ values.join({ separator: ' / ' }, (value) => value.name); // returns 'bob / jo'
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
-const jo1: Person = { name: 'Jo', age: 23 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo1: Person = {name: 'Jo', age: 23};
 
 const values = new List([bob, jo, jo1]);
 values.last((value) => value.name === 'jo'); // returns jo1
@@ -366,9 +365,9 @@ values.last((value) => value.name === 'jane'); // throw an error 'No value match
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
-const jo1: Person = { name: 'Jo', age: 23 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo1: Person = {name: 'Jo', age: 23};
 
 const values = new List([bob, jo, jo1]);
 values.last((value) => value.name === 'jo'); // returns jo1
@@ -382,13 +381,13 @@ values.last((value) => value.name === 'jane'); // returns undefined
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.map((value) => {
-  value.age = 18;
-  return value;
+    value.age = 18;
+    return value;
 }); // returns a new List similar to values but where every Person is now 18
 ```
 
@@ -406,8 +405,8 @@ values.max(); // returns 5
 ```
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.max((value) => value.age); // returns jo
@@ -428,8 +427,8 @@ values.min(); // returns 1
 ```
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.min((value) => value.age); // returns bob
@@ -455,8 +454,8 @@ values.none((value) => value === 0); // returns true
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.onEach((value) => (value.age = 18)); // returns a new List similar to values but where every Person is now 18
@@ -469,8 +468,8 @@ values.onEach((value) => (value.age = 18)); // returns a new List similar to val
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.reduce((acc, value) => acc + value.age, 0); // returns 40
@@ -483,8 +482,8 @@ values.reduce((acc, value) => acc + value.age, 0); // returns 40
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.reverse(); // returns List([jo, bob])
@@ -497,8 +496,8 @@ values.reverse(); // returns List([jo, bob])
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.size(); // returns 2
@@ -523,8 +522,8 @@ values.some((value) => value === 0); // returns false
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([jo, bob]);
 values.sort((value) => value.age); // returns List([bob, jo])
@@ -539,8 +538,8 @@ values.sort((value) => value.age); // returns List([bob, jo])
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.sum((value) => value.age); // returns 40
@@ -554,8 +553,8 @@ values.sum(); // throw an error 'Type of array is not number'
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.take(1); // returns List([bob])
@@ -568,8 +567,8 @@ values.take(1); // returns List([bob])
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.takeLast(1); // returns List([jo])
@@ -582,8 +581,8 @@ values.takeLast(1); // returns List([jo])
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.toArray(); // returns [bob, jo]
@@ -644,12 +643,12 @@ values.any((value) => value === 0); // returns false
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
-values.contains({ name: 'Jo', age: 22 }); // returns true
-values.contains({ name: 'Jo', age: 23 }); // returns false
+values.contains({name: 'Jo', age: 22}); // returns true
+values.contains({name: 'Jo', age: 23}); // returns false
 ```
 
 ⇨ <code>containsAll</code>
@@ -659,15 +658,15 @@ values.contains({ name: 'Jo', age: 23 }); // returns false
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.containsAll([
-  { name: 'Bob', age: 18 },
-  { name: 'Jo', age: 22 },
+    {name: 'Bob', age: 18},
+    {name: 'Jo', age: 22},
 ]); // returns true
-values.containsAll({ name: 'Bob', age: 18 }, { name: 'Jo', age: 23 }); // returns false
+values.containsAll({name: 'Bob', age: 18}, {name: 'Jo', age: 23}); // returns false
 ```
 
 ⇨ <code>count</code>
@@ -677,8 +676,8 @@ values.containsAll({ name: 'Bob', age: 18 }, { name: 'Jo', age: 23 }); // return
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.count(); // returns 2
@@ -692,10 +691,10 @@ values.count((value) => value.age === 18); // returns 1
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
-const jo2: Person = { name: 'Jo', age: 22 };
-const jo3: Person = { name: 'Jo', age: 23 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo2: Person = {name: 'Jo', age: 22};
+const jo3: Person = {name: 'Jo', age: 23};
 
 const values = new List([bob, jo, jo2, jo3]);
 values.distinct(); // returns List([bob, jo, jo3])
@@ -709,8 +708,8 @@ values.distinct((value) => value.name === 'Jo'); // returns List([bob, jo])
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.drop(1); // returns List([jo])
@@ -723,8 +722,8 @@ values.drop(1); // returns List([jo])
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.dropLast(1); // returns List([bob])
@@ -737,8 +736,8 @@ values.dropLast(1); // returns List([bob])
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.filter((value) => value.age === 18); // returns List([bob])
@@ -751,9 +750,9 @@ values.filter((value) => value.age === 18); // returns List([bob])
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
-const jo1: Person = { name: 'Jo', age: 23 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo1: Person = {name: 'Jo', age: 23};
 
 const values = new List([bob, jo, jo1]);
 values.first((value) => value.name === 'jo'); // returns jo
@@ -767,9 +766,9 @@ values.first((value) => value.name === 'jane'); // returns undefined
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
-const jo1: Person = { name: 'Jo', age: 23 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo1: Person = {name: 'Jo', age: 23};
 
 const values = new List([bob, jo, jo1]);
 values.first((value) => value.name === 'jo'); // returns jo
@@ -783,9 +782,9 @@ values.first((value) => value.name === 'jane'); // throw an error 'No value matc
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
-const jo1: Person = { name: 'Jo', age: 23 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo1: Person = {name: 'Jo', age: 23};
 
 const values = new List([bob, jo, jo1]);
 values.first((value) => value.name === 'jo'); // returns jo
@@ -799,8 +798,8 @@ values.first((value) => value.name === 'jane'); // returns undefined
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([[bob], jo]);
 values.flatMap((value) => value.name); // returns List(['bob', 'jo'])
@@ -813,9 +812,9 @@ values.flatMap((value) => value.name); // returns List(['bob', 'jo'])
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
-const jane: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jane: Person = {name: 'Jo', age: 22};
 
 const values = new List([[bob], jo, [[jane]]]);
 values.flatten(); // returns List([bob, jo, [jane]])
@@ -829,8 +828,8 @@ values.flatten(2); // returns List([bob, jo, jane])
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.forEach((value) => (value.age = 18)); // returns nothing but every Person of the List are now 18
@@ -843,8 +842,8 @@ values.forEach((value) => (value.age = 18)); // returns nothing but every Person
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.get(0); // returns bob
@@ -858,9 +857,9 @@ values.get(2); // returns undefined
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
-const jane: Person = { name: 'Jane', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jane: Person = {name: 'Jane', age: 22};
 
 const values = new List([bob, jo, jane]);
 values.groupBy((value) => value.age);
@@ -878,8 +877,8 @@ values.groupBy((value) => value.age);
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 new List([bob, jo]).isEmpty(); // returns false
 new List().isEmpty(); // returns true
@@ -892,11 +891,11 @@ new List().isEmpty(); // returns true
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
-values.join({ separator: ' / ' }, (value) => value.name); // returns 'bob / jo'
+values.join({separator: ' / '}, (value) => value.name); // returns 'bob / jo'
 ```
 
 ⇨ <code>last</code>
@@ -906,9 +905,9 @@ values.join({ separator: ' / ' }, (value) => value.name); // returns 'bob / jo'
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
-const jo1: Person = { name: 'Jo', age: 23 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo1: Person = {name: 'Jo', age: 23};
 
 const values = new List([bob, jo, jo1]);
 values.last((value) => value.name === 'jo'); // returns jo1
@@ -922,9 +921,9 @@ values.last((value) => value.name === 'jane'); // throw an error 'No value match
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
-const jo1: Person = { name: 'Jo', age: 23 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jo1: Person = {name: 'Jo', age: 23};
 
 const values = new List([bob, jo, jo1]);
 values.last((value) => value.name === 'jo'); // returns jo1
@@ -938,13 +937,13 @@ values.last((value) => value.name === 'jane'); // returns undefined
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.map((value) => {
-  value.age = 18;
-  return value;
+    value.age = 18;
+    return value;
 }); // returns a new List similar to values but where every Person is now 18
 ```
 
@@ -962,8 +961,8 @@ values.max(); // returns 5
 ```
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.max((value) => value.age); // returns jo
@@ -984,8 +983,8 @@ values.min(); // returns 1
 ```
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.min((value) => value.age); // returns bob
@@ -1011,8 +1010,8 @@ values.none((value) => value === 0); // returns true
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.onEach((value) => (value.age = 18)); // returns a new List similar to values but where every Person is now 18
@@ -1025,8 +1024,8 @@ values.onEach((value) => (value.age = 18)); // returns a new List similar to val
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.reduce((acc, value) => acc + value.age, 0); // returns 40
@@ -1080,9 +1079,9 @@ values.removeLast(); // returns List([1, 2, 3, 4, 5])
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
-const jane: Person = { name: 'Jane', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+const jane: Person = {name: 'Jane', age: 22};
 
 const values = new List([bob, jo, jane]);
 values.removeAll((value) => value.age === 22); // returns List([bob])
@@ -1095,8 +1094,8 @@ values.removeAll((value) => value.age === 22); // returns List([bob])
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.reverse(); // returns List([jo, bob])
@@ -1109,8 +1108,8 @@ values.reverse(); // returns List([jo, bob])
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.size(); // returns 2
@@ -1135,8 +1134,8 @@ values.some((value) => value === 0); // returns false
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([jo, bob]);
 values.sort((value) => value.age); // returns List([bob, jo])
@@ -1151,8 +1150,8 @@ values.sort((value) => value.age); // returns List([bob, jo])
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.sum((value) => value.age); // returns 40
@@ -1166,8 +1165,8 @@ values.sum(); // throw an error 'Type of array is not number'
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.take(1); // returns List([bob])
@@ -1180,8 +1179,8 @@ values.take(1); // returns List([bob])
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.takeLast(1); // returns List([jo])
@@ -1194,8 +1193,8 @@ values.takeLast(1); // returns List([jo])
 **example :**
 
 ```ts
-const bob: Person = { name: 'Bob', age: 18 };
-const jo: Person = { name: 'Jo', age: 22 };
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
 
 const values = new List([bob, jo]);
 values.toArray(); // returns [bob, jo]
@@ -1253,13 +1252,13 @@ It can also be used without argument. In this case it is similar to the <code>if
 const colorName = getRandomColor();
 
 const color = when(colorName, [
-  'orange',
-  () => new Orange(),
-  ['red', 'redish'],
-  () => new Red(),
-  'green',
-  () => new Green(),
-  () => undefined, // default value
+    'orange',
+    () => new Orange(),
+    ['red', 'redish'],
+    () => new Red(),
+    'green',
+    () => new Green(),
+    () => undefined, // default value
 ]);
 ```
 
@@ -1271,13 +1270,13 @@ const darkColorName = getRandomColor();
 const lightColorName = getRandomColor();
 
 const color = when([
-  darkColorName === 'black',
-  () => new Black(),
-  lightColorName === 'white',
-  () => new White(),
-  lightColorName === 'yellow',
-  () => new Yellow(),
-  () => undefined, // default value
+    darkColorName === 'black',
+    () => new Black(),
+    lightColorName === 'white',
+    () => new White(),
+    lightColorName === 'yellow',
+    () => new Yellow(),
+    () => undefined, // default value
 ]);
 ```
 
@@ -1309,11 +1308,11 @@ const colorName = getRandomColor();
 
 let color = undefined;
 if (colorName === 'orange') {
-  color = new Orange();
+    color = new Orange();
 } else if (colorName === 'red' || colorName === 'redish') {
-  color = new Red();
+    color = new Red();
 } else if (colorName === 'green') {
-  color = new Green();
+    color = new Green();
 }
 ```
 
@@ -1338,19 +1337,19 @@ const colorName = getRandomColor();
 
 let color;
 switch (color) {
-  case 'orange':
-    color = new Orange();
-    break;
-  case 'red':
-  case 'redish':
-    color = new Red();
-    break;
-  case 'green':
-    color = new Green();
-    break;
-  default:
-    color = undefined;
-    break;
+    case 'orange':
+        color = new Orange();
+        break;
+    case 'red':
+    case 'redish':
+        color = new Red();
+        break;
+    case 'green':
+        color = new Green();
+        break;
+    default:
+        color = undefined;
+        break;
 }
 ```
 

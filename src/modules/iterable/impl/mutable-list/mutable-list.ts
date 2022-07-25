@@ -8,6 +8,7 @@ import flattenOperation from '../../operations/flatten/flatten.operation';
 import mapOperation from '../../operations/map/map.operation';
 import onEachOperation from '../../operations/on-each/on-each.operation';
 import removeAllOperation from '../../operations/remove-all/remove-all.operation';
+import removeAtOperation from '../../operations/remove-at/remove-at.operation';
 import removeFirstOperation from '../../operations/remove-first/remove-first.operation';
 import removeLastOperation from '../../operations/remove-last/remove-last.operation';
 import removeOperation from '../../operations/remove/remove.operation';
@@ -30,8 +31,13 @@ export class MutableList<T> extends List<T> {
         return this;
     }
 
-    remove(index: number): MutableList<T> {
-        removeOperation(this.values, index);
+    remove(element: T): MutableList<T> {
+        removeOperation(this.values, element);
+        return this;
+    }
+
+    removeAt(index: number): MutableList<T> {
+        removeAtOperation(this.values, index);
         return this;
     }
 
@@ -45,8 +51,22 @@ export class MutableList<T> extends List<T> {
         return this;
     }
 
-    removeAll(predicate: (value: T, index: number, array: T[]) => boolean): MutableList<T> {
-        removeAllOperation(this.values, predicate);
+    /**
+     * Remove all elements from the array matching the predicate.
+     *
+     * @param predicate Predicate to apply.
+     * @return `this`, a {@link MutableList}.
+     */
+    removeAll(predicate: (value: T, index: number, array: T[]) => boolean): MutableList<T>;
+    /**
+     * Remove all occurences of the given element from the array.
+     *
+     * @param element Element(s) to remove.
+     * @return `this`, a {@link MutableList}.
+     */
+    removeAll(element: T): MutableList<T>;
+    removeAll(arg: T | ((value: T, index: number, array: T[]) => boolean)): MutableList<T> {
+        removeAllOperation(this.values, arg);
         return this;
     }
 

@@ -1,3 +1,4 @@
-export default <T>(values: T[], index: number): void => {
-    values.splice(index, 1);
+export default <T>(values: T[], element: T): void => {
+    const elementIndex = values.indexOf(element);
+    values.splice(elementIndex, 1);
 };
