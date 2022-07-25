@@ -9,7 +9,7 @@
 
 <div align="center">
 
-[![npm version](https://img.shields.io/badge/npm-v1.0.1-brightgreen?style=flat-square)](https://www.npmjs.com/package/sleekify)
+[![npm version](https://img.shields.io/badge/npm-v1.0.1-blue?style=flat-square)](https://www.npmjs.com/package/sleekify)
 [![codecov](https://codecov.io/gh/spiritmong3r/sleekify/branch/main/graph/badge.svg?token=HLBF8VHIGS)](https://codecov.io/gh/spiritmong3r/sleekify)
 [![spiritmong3r](https://circleci.com/gh/spiritmong3r/sleekify.svg?style=shield)](https://app.circleci.com/pipelines/github/spiritmong3r/sleekify)
 
@@ -599,15 +599,15 @@ values.toArray(); // returns [bob, jo]
 
 ⇨ <code>add</code>
 
-> Add a new element to the current `List` and returns `this`.
+> Add a new element to the current `MutableList` and returns `this`.
 >
 > Mutable operation.
 
 **example :**
 
 ```ts
-const values = new List([1, 2, 3, 4, 5]);
-values.add(6); // returns List([1, 2, 3, 4, 5, 6])
+const values = new MutableList([1, 2, 3, 4, 5]);
+values.add(6); // returns MutableList([1, 2, 3, 4, 5, 6])
 ```
 
 ⇨ <code>all</code>
@@ -617,7 +617,7 @@ values.add(6); // returns List([1, 2, 3, 4, 5, 6])
 **example :**
 
 ```ts
-const values = new List([1, 2, 3, 4, 5]);
+const values = new MutableList([1, 2, 3, 4, 5]);
 values.all((value) => !isNaN(value)); // returns true
 values.all((value) => isNaN(value)); // returns false
 ```
@@ -631,7 +631,7 @@ values.all((value) => isNaN(value)); // returns false
 **example :**
 
 ```ts
-const values = new List([1, 2, 3, 4, 5]);
+const values = new MutableList([1, 2, 3, 4, 5]);
 values.any((value) => value === 3); // returns true
 values.any((value) => value === 0); // returns false
 ```
@@ -646,7 +646,7 @@ values.any((value) => value === 0); // returns false
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List([bob, jo]);
+const values = new MutableList([bob, jo]);
 values.contains({name: 'Jo', age: 22}); // returns true
 values.contains({name: 'Jo', age: 23}); // returns false
 ```
@@ -661,7 +661,7 @@ values.contains({name: 'Jo', age: 23}); // returns false
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List([bob, jo]);
+const values = new MutableList([bob, jo]);
 values.containsAll([
     {name: 'Bob', age: 18},
     {name: 'Jo', age: 22},
@@ -679,14 +679,14 @@ values.containsAll({name: 'Bob', age: 18}, {name: 'Jo', age: 23}); // returns fa
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List([bob, jo]);
+const values = new MutableList([bob, jo]);
 values.count(); // returns 2
 values.count((value) => value.age === 18); // returns 1
 ```
 
 ⇨ <code>distinct</code>
 
-> Returns a new `List` without any duplicates. If a predicate is given then only duplicates among the matching elements will be removed
+> Returns a new `MutableList` without any duplicates. If a predicate is given then only duplicates among the matching elements will be removed
 
 **example :**
 
@@ -696,14 +696,14 @@ const jo: Person = {name: 'Jo', age: 22};
 const jo2: Person = {name: 'Jo', age: 22};
 const jo3: Person = {name: 'Jo', age: 23};
 
-const values = new List([bob, jo, jo2, jo3]);
-values.distinct(); // returns List([bob, jo, jo3])
-values.distinct((value) => value.name === 'Jo'); // returns List([bob, jo])
+const values = new MutableList([bob, jo, jo2, jo3]);
+values.distinct(); // returns MutableList([bob, jo, jo3])
+values.distinct((value) => value.name === 'Jo'); // returns MutableList([bob, jo])
 ```
 
 ⇨ <code>drop</code>
 
-> Returns a new `List` without the n first elements
+> Returns a new `MutableList` without the n first elements
 
 **example :**
 
@@ -711,13 +711,13 @@ values.distinct((value) => value.name === 'Jo'); // returns List([bob, jo])
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List([bob, jo]);
-values.drop(1); // returns List([jo])
+const values = new MutableList([bob, jo]);
+values.drop(1); // returns MutableList([jo])
 ```
 
 ⇨ <code>dropLast</code>
 
-> Returns a new `List` without the n last elements
+> Returns a new `MutableList` without the n last elements
 
 **example :**
 
@@ -725,13 +725,13 @@ values.drop(1); // returns List([jo])
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List([bob, jo]);
-values.dropLast(1); // returns List([bob])
+const values = new MutableList([bob, jo]);
+values.dropLast(1); // returns MutableList([bob])
 ```
 
 ⇨ <code>filter</code>
 
-> Returns a new `List` with only the elements matching the predicate
+> Returns a new `MutableList` with only the elements matching the predicate
 
 **example :**
 
@@ -739,8 +739,8 @@ values.dropLast(1); // returns List([bob])
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List([bob, jo]);
-values.filter((value) => value.age === 18); // returns List([bob])
+const values = new MutableList([bob, jo]);
+values.filter((value) => value.age === 18); // returns MutableList([bob])
 ```
 
 ⇨ <code>find</code>
@@ -754,7 +754,7 @@ const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 const jo1: Person = {name: 'Jo', age: 23};
 
-const values = new List([bob, jo, jo1]);
+const values = new MutableList([bob, jo, jo1]);
 values.first((value) => value.name === 'jo'); // returns jo
 values.first((value) => value.name === 'jane'); // returns undefined
 ```
@@ -770,7 +770,7 @@ const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 const jo1: Person = {name: 'Jo', age: 23};
 
-const values = new List([bob, jo, jo1]);
+const values = new MutableList([bob, jo, jo1]);
 values.first((value) => value.name === 'jo'); // returns jo
 values.first((value) => value.name === 'jane'); // throw an error 'No value matches the predicate'
 ```
@@ -786,14 +786,14 @@ const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 const jo1: Person = {name: 'Jo', age: 23};
 
-const values = new List([bob, jo, jo1]);
+const values = new MutableList([bob, jo, jo1]);
 values.first((value) => value.name === 'jo'); // returns jo
 values.first((value) => value.name === 'jane'); // returns undefined
 ```
 
 ⇨ <code>flatMap</code>
 
-> Returns a new `List`, apply the given selector and then flatten (1 level deep) the results
+> Returns a new `MutableList`, apply the given selector and then flatten (1 level deep) the results
 
 **example :**
 
@@ -801,13 +801,13 @@ values.first((value) => value.name === 'jane'); // returns undefined
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List([[bob], jo]);
-values.flatMap((value) => value.name); // returns List(['bob', 'jo'])
+const values = new MutableList([[bob], jo]);
+values.flatMap((value) => value.name); // returns MutableList(['bob', 'jo'])
 ```
 
 ⇨ <code>flatten</code>
 
-> Returns a new `List` flattened 1 level deep by default, if a depth is specified then apply it
+> Returns a new `MutableList` flattened 1 level deep by default, if a depth is specified then apply it
 
 **example :**
 
@@ -816,14 +816,14 @@ const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 const jane: Person = {name: 'Jo', age: 22};
 
-const values = new List([[bob], jo, [[jane]]]);
-values.flatten(); // returns List([bob, jo, [jane]])
-values.flatten(2); // returns List([bob, jo, jane])
+const values = new MutableList([[bob], jo, [[jane]]]);
+values.flatten(); // returns MutableList([bob, jo, [jane]])
+values.flatten(2); // returns MutableList([bob, jo, jane])
 ```
 
 ⇨ <code>forEach</code>
 
-> void function that applies a given selector on every elements of the List
+> void function that applies a given selector on every elements of the MutableList
 
 **example :**
 
@@ -831,8 +831,8 @@ values.flatten(2); // returns List([bob, jo, jane])
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List([bob, jo]);
-values.forEach((value) => (value.age = 18)); // returns nothing but every Person of the List are now 18
+const values = new MutableList([bob, jo]);
+values.forEach((value) => (value.age = 18)); // returns nothing but every Person of the MutableList are now 18
 ```
 
 ⇨ <code>get</code>
@@ -845,7 +845,7 @@ values.forEach((value) => (value.age = 18)); // returns nothing but every Person
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List([bob, jo]);
+const values = new MutableList([bob, jo]);
 values.get(0); // returns bob
 values.get(2); // returns undefined
 ```
@@ -861,7 +861,7 @@ const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 const jane: Person = {name: 'Jane', age: 22};
 
-const values = new List([bob, jo, jane]);
+const values = new MutableList([bob, jo, jane]);
 values.groupBy((value) => value.age);
 // returns a map like so:
 // Map([
@@ -872,7 +872,7 @@ values.groupBy((value) => value.age);
 
 ⇨ <code>isEmpty</code>
 
-> Check if the List is empty or not
+> Check if the MutableList is empty or not
 
 **example :**
 
@@ -880,13 +880,13 @@ values.groupBy((value) => value.age);
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-new List([bob, jo]).isEmpty(); // returns false
-new List().isEmpty(); // returns true
+new MutableList([bob, jo]).isEmpty(); // returns false
+new MutableList().isEmpty(); // returns true
 ```
 
 ⇨ <code>join</code>
 
-> Returns a string resulting from converting each element of the List to a string and then concatenating them together
+> Returns a string resulting from converting each element of the MutableList to a string and then concatenating them together
 
 **example :**
 
@@ -894,7 +894,7 @@ new List().isEmpty(); // returns true
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List([bob, jo]);
+const values = new MutableList([bob, jo]);
 values.join({separator: ' / '}, (value) => value.name); // returns 'bob / jo'
 ```
 
@@ -909,7 +909,7 @@ const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 const jo1: Person = {name: 'Jo', age: 23};
 
-const values = new List([bob, jo, jo1]);
+const values = new MutableList([bob, jo, jo1]);
 values.last((value) => value.name === 'jo'); // returns jo1
 values.last((value) => value.name === 'jane'); // throw an error 'No value matches the predicate'
 ```
@@ -925,14 +925,14 @@ const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 const jo1: Person = {name: 'Jo', age: 23};
 
-const values = new List([bob, jo, jo1]);
+const values = new MutableList([bob, jo, jo1]);
 values.last((value) => value.name === 'jo'); // returns jo1
 values.last((value) => value.name === 'jane'); // returns undefined
 ```
 
 ⇨ <code>map</code>
 
-> Returns a new `List` where a given selector is applied on every elements
+> Returns a new `MutableList` where a given selector is applied on every elements
 
 **example :**
 
@@ -940,7 +940,7 @@ values.last((value) => value.name === 'jane'); // returns undefined
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List([bob, jo]);
+const values = new MutableList([bob, jo]);
 values.map((value) => {
     value.age = 18;
     return value;
@@ -956,7 +956,7 @@ values.map((value) => {
 **examples :**
 
 ```ts
-const values = new List([1, 2, 3, 4, 5]);
+const values = new MutableList([1, 2, 3, 4, 5]);
 values.max(); // returns 5
 ```
 
@@ -964,7 +964,7 @@ values.max(); // returns 5
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List([bob, jo]);
+const values = new MutableList([bob, jo]);
 values.max((value) => value.age); // returns jo
 values.max(); // throw an Error 'Type of array is not number'
 ```
@@ -978,7 +978,7 @@ values.max(); // throw an Error 'Type of array is not number'
 **examples :**
 
 ```ts
-const values = new List([1, 2, 3, 4, 5]);
+const values = new MutableList([1, 2, 3, 4, 5]);
 values.min(); // returns 1
 ```
 
@@ -986,7 +986,7 @@ values.min(); // returns 1
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List([bob, jo]);
+const values = new MutableList([bob, jo]);
 values.min((value) => value.age); // returns bob
 values.min(); // throw an Error 'Type of array is not number'
 ```
@@ -998,14 +998,14 @@ values.min(); // throw an Error 'Type of array is not number'
 **example :**
 
 ```ts
-const values = new List([1, 2, 3, 4, 5]);
+const values = new MutableList([1, 2, 3, 4, 5]);
 values.none((value) => value === 3); // returns false
 values.none((value) => value === 0); // returns true
 ```
 
 ⇨ <code>onEach</code>
 
-> Returns a new `List` where a given selector is applied on every elements, the selector silently returns `this`.
+> Returns a new `MutableList` where a given selector is applied on every elements, the selector silently returns `this`.
 
 **example :**
 
@@ -1013,13 +1013,13 @@ values.none((value) => value === 0); // returns true
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List([bob, jo]);
-values.onEach((value) => (value.age = 18)); // returns a new List similar to values but where every Person is now 18
+const values = new MutableList([bob, jo]);
+values.onEach((value) => (value.age = 18)); // returns a new MutableList similar to values but where every Person is now 18
 ```
 
 ⇨ <code>reduce</code>
 
-> Returns a value obtained after an operation (accumulator) is applied on every element of the List.
+> Returns a value obtained after an operation (accumulator) is applied on every element of the MutableList.
 
 **example :**
 
@@ -1027,52 +1027,28 @@ values.onEach((value) => (value.age = 18)); // returns a new List similar to val
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List([bob, jo]);
+const values = new MutableList([bob, jo]);
 values.reduce((acc, value) => acc + value.age, 0); // returns 40
 ```
 
 ⇨ <code>remove</code>
 
-> Remove the element at the given index from the current `List` and returns `this`.
+> Remove the element at the given index from the current `MutableList` and returns `this`.
 >
 > Mutable operation.
 
 **example :**
 
 ```ts
-const values = new List([1, 2, 3, 4, 5, 6]);
-values.remove(5); // returns List([1, 2, 3, 4, 5])
-```
-
-⇨ <code>removeFirst</code>
-
-> Remove the first element the current `List` and returns `this`.
->
-> Mutable operation.
-
-**example :**
-
-```ts
-const values = new List([1, 2, 3, 4, 5, 6]);
-values.removeFirst(); // returns List([2, 3, 4, 5, 6])
-```
-
-⇨ <code>removeLast</code>
-
-> Remove the last element the current `List` and returns `this`.
->
-> Mutable operation.
-
-**example :**
-
-```ts
-const values = new List([1, 2, 3, 4, 5, 6]);
-values.removeLast(); // returns List([1, 2, 3, 4, 5])
+const values = new MutableList([1, 2, 3, 4, 5, 6]);
+values.remove(5); // returns MutableList([1, 2, 3, 4, 5])
 ```
 
 ⇨ <code>removeAll</code>
 
-> Remove the last element the current `List` and returns `this`.
+> If the parameter is a predicate, remove all elements from the array matching this predicate.
+>
+> Otherwise remove all occurences of the given element from the array.
 >
 > Mutable operation.
 
@@ -1083,13 +1059,53 @@ const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 const jane: Person = {name: 'Jane', age: 22};
 
-const values = new List([bob, jo, jane]);
-values.removeAll((value) => value.age === 22); // returns List([bob])
+const values = new MutableList([bob, jo, jane]);
+values.removeAll((value) => value.age === 22); // returns MutableList([bob])
+values.removeAll(bob); // returns MutableList([jo, jane])
+```
+
+⇨ <code>removeAt</code>
+
+> Remove the element at the given index from the current `MutableList` and returns `this`.
+>
+> Mutable operation.
+
+**example :**
+
+```ts
+const values = new MutableList([1, 2, 3, 4, 5, 6]);
+values.removeAt(5); // returns MutableList([1, 2, 3, 4, 5])
+```
+
+⇨ <code>removeFirst</code>
+
+> Remove the first element the current `MutableList` and returns `this`.
+>
+> Mutable operation.
+
+**example :**
+
+```ts
+const values = new MutableList([1, 2, 3, 4, 5, 6]);
+values.removeFirst(); // returns MutableList([2, 3, 4, 5, 6])
+```
+
+⇨ <code>removeLast</code>
+
+> Remove the last element the current `MutableList` and returns `this`.
+>
+> Mutable operation.
+
+**example :**
+
+```ts
+const values = new MutableList([1, 2, 3, 4, 5, 6]);
+values.removeLast(); // returns MutableList([1, 2, 3, 4, 5])
 ```
 
 ⇨ <code>reverse</code>
 
-> Returns a new `List` where all elements are reversed: first element become last, last become first and so on.
+> Returns a new `MutableList` where all elements are reversed: first element become last, last become first and so on.
 
 **example :**
 
@@ -1097,13 +1113,13 @@ values.removeAll((value) => value.age === 22); // returns List([bob])
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List([bob, jo]);
-values.reverse(); // returns List([jo, bob])
+const values = new MutableList([bob, jo]);
+values.reverse(); // returns MutableList([jo, bob])
 ```
 
 ⇨ <code>size</code>
 
-> Returns the number of elements in the List.
+> Returns the number of elements in the MutableList.
 
 **example :**
 
@@ -1111,7 +1127,7 @@ values.reverse(); // returns List([jo, bob])
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List([bob, jo]);
+const values = new MutableList([bob, jo]);
 values.size(); // returns 2
 ```
 
@@ -1122,14 +1138,14 @@ values.size(); // returns 2
 **example :**
 
 ```ts
-const values = new List([1, 2, 3, 4, 5]);
+const values = new MutableList([1, 2, 3, 4, 5]);
 values.some((value) => value === 3); // returns true
 values.some((value) => value === 0); // returns false
 ```
 
 ⇨ <code>sort</code>
 
-> Returns a new `List` where elements are sorted according to the selector if given.
+> Returns a new `MutableList` where elements are sorted according to the selector if given.
 
 **example :**
 
@@ -1137,15 +1153,15 @@ values.some((value) => value === 0); // returns false
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List([jo, bob]);
-values.sort((value) => value.age); // returns List([bob, jo])
+const values = new MutableList([jo, bob]);
+values.sort((value) => value.age); // returns MutableList([bob, jo])
 ```
 
 ⇨ <code>sum</code>
 
 > Calculate the sum of the array according to the selector if given.
 >
-> If no selector is given, the `List` must be composed of numbers otherwise an error will be thrown.
+> If no selector is given, the `MutableList` must be composed of numbers otherwise an error will be thrown.
 
 **example :**
 
@@ -1153,14 +1169,14 @@ values.sort((value) => value.age); // returns List([bob, jo])
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List([bob, jo]);
+const values = new MutableList([bob, jo]);
 values.sum((value) => value.age); // returns 40
 values.sum(); // throw an error 'Type of array is not number'
 ```
 
 ⇨ <code>take</code>
 
-> Returns a new `List` with only the n first elements.
+> Returns a new `MutableList` with only the n first elements.
 
 **example :**
 
@@ -1168,13 +1184,13 @@ values.sum(); // throw an error 'Type of array is not number'
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List([bob, jo]);
-values.take(1); // returns List([bob])
+const values = new MutableList([bob, jo]);
+values.take(1); // returns MutableList([bob])
 ```
 
 ⇨ <code>takeLast</code>
 
-> Returns a new `List` with only the n last elements.
+> Returns a new `MutableList` with only the n last elements.
 
 **example :**
 
@@ -1182,13 +1198,13 @@ values.take(1); // returns List([bob])
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List([bob, jo]);
-values.takeLast(1); // returns List([jo])
+const values = new MutableList([bob, jo]);
+values.takeLast(1); // returns MutableList([jo])
 ```
 
 ⇨ <code>toArray</code>
 
-> Returns an array out of the `List`.
+> Returns an array out of the `MutableList`.
 
 **example :**
 
@@ -1196,7 +1212,7 @@ values.takeLast(1); // returns List([jo])
 const bob: Person = {name: 'Bob', age: 18};
 const jo: Person = {name: 'Jo', age: 22};
 
-const values = new List([bob, jo]);
+const values = new MutableList([bob, jo]);
 values.toArray(); // returns [bob, jo]
 ```
 
