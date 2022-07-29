@@ -118,14 +118,14 @@ describe('List', () => {
         it('call the ForEach operation class', () => {
             // GIVEN
             const list = new List([PersonMock.ted(), PersonMock.jo()]);
-            const selector = (it: Person) => {
+            const action = (it: Person) => {
                 it.name = 'Hololo';
                 return it;
             };
             jest.spyOn(forEachOperation, 'default');
 
             // WHEN
-            list.forEach(selector);
+            list.forEach(action);
 
             // THEN
             const expected = new List([

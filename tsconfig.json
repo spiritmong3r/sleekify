@@ -1,14 +1,21 @@
 {
-    "compilerOptions": {
-        "target": "es5",
-        "declaration": true,
-        "rootDir": "./src",
-        "strict": true,
-        "removeComments": true,
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "moduleResolution": "node"
-    },
-    "include": ["./src/**/*.ts"],
-    "exclude": ["node_modules", "**/*.spec.ts", "./src/test"]
+  "compilerOptions": {
+    "target": "es5",
+    "declaration": true,
+    "rootDir": "./src",
+    "strict": true,
+    "removeComments": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "noImplicitAny": true
+  },
+  "include": [
+    "./src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts",
+    "./src/test"
+  ]
 }

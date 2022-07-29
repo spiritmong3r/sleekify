@@ -237,7 +237,7 @@ values.first((value) => value.name === 'jane'); // returns undefined
 
 ⇨ <code>flatMap</code>
 
-> Returns a new `List`, apply the given selector and then flatten (1 level deep) the results
+> Returns a new `List`, apply the given transformer and then flatten (1 level deep) the results
 
 **example :**
 
@@ -267,7 +267,7 @@ values.flatten(2); // returns List([bob, jo, jane])
 
 ⇨ <code>forEach</code>
 
-> void function that applies a given selector on every elements of the List
+> void function that applies a given action on every elements of the List
 
 **example :**
 
@@ -328,6 +328,20 @@ new List([bob, jo]).isEmpty(); // returns false
 new List().isEmpty(); // returns true
 ```
 
+⇨ <code>isNotEmpty</code>
+
+> Check if the List is empty or not
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+new List([bob, jo]).isNotEmpty(); // returns true
+new List().isNotEmpty(); // returns false
+```
+
 ⇨ <code>join</code>
 
 > Returns a string resulting from converting each element of the List to a string and then concatenating them together
@@ -376,7 +390,7 @@ values.last((value) => value.name === 'jane'); // returns undefined
 
 ⇨ <code>map</code>
 
-> Returns a new `List` where a given selector is applied on every elements
+> Returns a new `List` where a given transformer is applied on every elements
 
 **example :**
 
@@ -449,7 +463,7 @@ values.none((value) => value === 0); // returns true
 
 ⇨ <code>onEach</code>
 
-> Returns a new `List` where a given selector is applied on every elements, the selector silently returns `this`.
+> Returns a new `List` where a given action is applied on every elements, the selector silently returns `this`.
 
 **example :**
 
@@ -793,7 +807,7 @@ values.first((value) => value.name === 'jane'); // returns undefined
 
 ⇨ <code>flatMap</code>
 
-> Returns a new `MutableList`, apply the given selector and then flatten (1 level deep) the results
+> Returns a new `MutableList`, apply the given transformer and then flatten (1 level deep) the results
 
 **example :**
 
@@ -823,7 +837,7 @@ values.flatten(2); // returns MutableList([bob, jo, jane])
 
 ⇨ <code>forEach</code>
 
-> void function that applies a given selector on every elements of the MutableList
+> void function that applies a given action on every elements of the MutableList
 
 **example :**
 
@@ -884,6 +898,20 @@ new MutableList([bob, jo]).isEmpty(); // returns false
 new MutableList().isEmpty(); // returns true
 ```
 
+⇨ <code>isNotEmpty</code>
+
+> Check if the MutableList is empty or not
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+new MutableList([bob, jo]).isNotEmpty(); // returns true
+new MutableList().isNotEmpty(); // returns false
+```
+
 ⇨ <code>join</code>
 
 > Returns a string resulting from converting each element of the MutableList to a string and then concatenating them together
@@ -932,7 +960,7 @@ values.last((value) => value.name === 'jane'); // returns undefined
 
 ⇨ <code>map</code>
 
-> Returns a new `MutableList` where a given selector is applied on every elements
+> Returns a new `MutableList` where a given transformer is applied on every elements
 
 **example :**
 
@@ -1005,7 +1033,7 @@ values.none((value) => value === 0); // returns true
 
 ⇨ <code>onEach</code>
 
-> Returns a new `MutableList` where a given selector is applied on every elements, the selector silently returns `this`.
+> Returns a new `MutableList` where a given action is applied on every elements, the selector silently returns `this`.
 
 **example :**
 

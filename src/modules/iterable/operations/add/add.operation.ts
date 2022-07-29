@@ -1,3 +1,3 @@
-export default <T>(values: T[], value: T): void => {
-    values.push(value);
+export default <T>(values: T[], elements: T[]): void => {
+    values.push(...elements);
 };

@@ -150,16 +150,16 @@ describe('MutableList', () => {
             expect(filterOperation.default).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], predicate);
         });
     });
-
+    
     describe('onEach', () => {
         it('call the OnEach operation class', () => {
             // GIVEN
             const list = new MutableList([PersonMock.bob(), PersonMock.jo(), PersonMock.jane()]);
-            const selector = (it: Person) => (it.age = 18);
+            const action = (it: Person) => (it.age = 18);
             jest.spyOn(onEachOperation, 'default');
 
             // WHEN
-            const result = list.onEach(selector);
+            const result = list.onEach(action);
 
             // THEN
             const expected = new MutableList([
@@ -176,16 +176,16 @@ describe('MutableList', () => {
         it('call the Map operation class', () => {
             // GIVEN
             const list = new MutableList(['a', 'b', 'c']);
-            const selector = (it: string) => it.toUpperCase();
+            const transformer = (it: string) => it.toUpperCase();
             jest.spyOn(mapOperation, 'default');
 
             // WHEN
-            const result = list.map(selector);
+            const result = list.map(transformer);
 
             // THEN
             const expected = new MutableList(['A', 'B', 'C']);
             expect(result).toEqual(expected);
-            expect(mapOperation.default).toHaveBeenCalledWith(['a', 'b', 'c'], selector);
+            expect(mapOperation.default).toHaveBeenCalledWith(['a', 'b', 'c'], transformer);
         });
     });
 
@@ -193,16 +193,16 @@ describe('MutableList', () => {
         it('call the Flatmap operation class', () => {
             // GIVEN
             const list = new MutableList([[PersonMock.ted()], [PersonMock.bob()]]);
-            const selector = (it: Person[]) => it.map((person) => person.firstName);
+            const transformer = (it: Person[]) => it.map((person) => person.firstName);
             jest.spyOn(flatMapOperation, 'default');
 
             // WHEN
-            const result = list.flatMap(selector);
+            const result = list.flatMap(transformer);
 
             // THEN
             const expected = new MutableList(['Ted', 'Bob']);
             expect(result).toEqual(expected);
-            expect(flatMapOperation.default).toHaveBeenCalledWith([[PersonMock.ted()], [PersonMock.bob()]], selector);
+            expect(flatMapOperation.default).toHaveBeenCalledWith([[PersonMock.ted()], [PersonMock.bob()]], transformer);
         });
     });
 

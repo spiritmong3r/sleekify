@@ -4,10 +4,10 @@ describe('addOperation', () => {
     it('given an array of strings, add a new entry to the current array', () => {
         // GIVEN
         const values = ['1', '2', '5', '4', '3', '9', '0', '4'];
-        const valueToAdd = '7';
+        const valuesToAdd = ['7'];
 
         // WHEN
-        addOperation(values, valueToAdd);
+        addOperation(values, valuesToAdd);
 
         // THEN
         const expected = ['1', '2', '5', '4', '3', '9', '0', '4', '7'];
