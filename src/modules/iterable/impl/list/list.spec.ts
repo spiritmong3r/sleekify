@@ -87,11 +87,7 @@ describe('List', () => {
             const result = list.onEach(selector);
 
             // THEN
-            const expected = new List([
-                {...PersonMock.bob(), age: 18},
-                {...PersonMock.jo(), age: 18},
-                {...PersonMock.jane(), age: 18}
-            ]);
+            const expected = new List([{...PersonMock.bob(), age: 18}, {...PersonMock.jo(), age: 18}, {...PersonMock.jane(), age: 18}]);
             expect(result).toEqual(expected);
             expect(onEachOperation.default).toHaveBeenCalled();
         });
@@ -128,10 +124,7 @@ describe('List', () => {
             list.forEach(action);
 
             // THEN
-            const expected = new List([
-                {...PersonMock.ted(), name: 'Hololo'},
-                {...PersonMock.jo(), name: 'Hololo'}
-            ]);
+            const expected = new List([{...PersonMock.ted(), name: 'Hololo'}, {...PersonMock.jo(), name: 'Hololo'}]);
             expect(list).toEqual(expected);
             expect(forEachOperation.default).toHaveBeenCalled();
         });
@@ -225,10 +218,7 @@ describe('List', () => {
     describe('flatten', () => {
         it('call the Flatten operation class', () => {
             // GIVEN
-            const list = new List([
-                ['1', '2', '3', '4', '5', '6'],
-                ['7', '8']
-            ]);
+            const list = new List([['1', '2', '3', '4', '5', '6'], ['7', '8']]);
             jest.spyOn(flattenOperation, 'default');
 
             // WHEN
@@ -237,13 +227,7 @@ describe('List', () => {
             // THEN
             const expected = new List(['1', '2', '3', '4', '5', '6', '7', '8']);
             expect(result).toEqual(expected);
-            expect(flattenOperation.default).toHaveBeenCalledWith(
-                [
-                    ['1', '2', '3', '4', '5', '6'],
-                    ['7', '8']
-                ],
-                1
-            );
+            expect(flattenOperation.default).toHaveBeenCalledWith([['1', '2', '3', '4', '5', '6'], ['7', '8']], 1);
         });
 
         it('check immutability', () => {

@@ -39,6 +39,7 @@ import toArrayOperation from '../../operations/to-array/to-array.operation';
  * @author cleme_mo
  */
 export class List<T> implements Iterable<T> {
+
     protected values: T[];
 
     constructor(values: T[] = []) {
@@ -419,4 +420,5 @@ export class List<T> implements Iterable<T> {
     toArray(): T[] {
         return toArrayOperation(this.values);
     }
+
 }

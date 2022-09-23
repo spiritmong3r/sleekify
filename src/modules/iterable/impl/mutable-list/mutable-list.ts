@@ -1,4 +1,5 @@
 import addOperation from '../../operations/add/add.operation';
+import clearOperation from '../../operations/clear/clear.operation';
 import distinctOperation from '../../operations/distinct/distinct.operation';
 import dropLastOperation from '../../operations/drop-last/drop-last.operation';
 import dropOperation from '../../operations/drop/drop.operation';
@@ -22,6 +23,7 @@ import {List} from '../list/list';
  * @author cleme_mo
  */
 export class MutableList<T> extends List<T> {
+
     constructor(values: T[] = []) {
         super(values);
     }
@@ -86,6 +88,7 @@ export class MutableList<T> extends List<T> {
      * @return `this`, a {@link MutableList}.
      */
     removeAll(predicate: (value: T, index: number, array: T[]) => boolean): MutableList<T>;
+
     /**
      * Remove all occurences of the given element from the current list.
      *
@@ -217,4 +220,15 @@ export class MutableList<T> extends List<T> {
     dropLast(n: number): MutableList<T> {
         return new MutableList(dropLastOperation(this.values, n));
     }
+
+    /**
+     * Remove all elements from the current list.
+     *
+     * @return `this`, a {@link MutableList}.
+     */
+    clear(): MutableList<T> {
+        clearOperation(this.values);
+        return this;
+    }
+
 }
