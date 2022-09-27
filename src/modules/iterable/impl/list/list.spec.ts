@@ -18,6 +18,7 @@ import * as flattenOperation from '../../operations/flatten/flatten.operation';
 import * as forEachOperation from '../../operations/for-each/for-each.operation';
 import * as getOperation from '../../operations/get/get.operation';
 import * as groupByOperation from '../../operations/group-by/group-by.operation';
+import * as indexOfOperation from '../../operations/index-of/index-of.operation';
 import * as isEmptyOperation from '../../operations/is-empty/is-empty.operation';
 import * as joinOperation from '../../operations/join/join.operation';
 import * as lastOrNullOperation from '../../operations/last-or-null/last-or-null.operation';
@@ -36,6 +37,7 @@ import * as sumOperation from '../../operations/sum/sum.operation';
 import * as takeLastOperation from '../../operations/take-last/take-last.operation';
 import * as takeOperation from '../../operations/take/take.operation';
 import * as toArrayOperation from '../../operations/to-array/to-array.operation';
+import {MutableList} from '../mutable-list/mutable-list';
 import {List} from './list';
 import restoreAllMocks = jest.restoreAllMocks;
 
@@ -1128,6 +1130,22 @@ describe('List', () => {
             const expected = 8;
             expect(result).toEqual(expected);
             expect(countOperation.default).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], undefined);
+        });
+    });
+
+    describe('indexOf', () => {
+        it('call the Clear operation class', () => {
+            // GIVEN
+            const list = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8']);
+            const value = '4';
+            jest.spyOn(indexOfOperation, 'default');
+
+            // WHEN
+            const result = list.indexOf(value);
+
+            // THEN
+            expect(result).toEqual(3);
+            expect(indexOfOperation.default).toHaveBeenCalled();
         });
     });
 

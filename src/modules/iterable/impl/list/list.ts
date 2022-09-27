@@ -16,6 +16,7 @@ import flattenOperation from '../../operations/flatten/flatten.operation';
 import forEachOperation from '../../operations/for-each/for-each.operation';
 import getOperation from '../../operations/get/get.operation';
 import groupByOperation from '../../operations/group-by/group-by.operation';
+import indexOfOperation from '../../operations/index-of/index-of.operation';
 import isEmptyOperation from '../../operations/is-empty/is-empty.operation';
 import joinOperation from '../../operations/join/join.operation';
 import lastOrNullOperation from '../../operations/last-or-null/last-or-null.operation';
@@ -401,6 +402,15 @@ export class List<T> implements Iterable<T> {
      */
     count(predicate?: (value: T, index: number, array: T[]) => boolean): number {
         return countOperation(this.values, predicate);
+    }
+
+    /**
+     * Find the first index at which a given element can be found in the array.
+     *
+     * @return the element index or `-1` if it doesn't exists.
+     */
+    indexOf(value: T): number {
+        return indexOfOperation(this.values, value);
     }
 
     /**

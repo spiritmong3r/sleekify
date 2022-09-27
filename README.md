@@ -650,6 +650,20 @@ values.any((value) => value === 3); // returns true
 values.any((value) => value === 0); // returns false
 ```
 
+⇨ <code>clear</code>
+
+> Remove all elements from the current list.
+
+**example :**
+
+```ts
+const bob: Person = {name: 'Bob', age: 18};
+const jo: Person = {name: 'Jo', age: 22};
+
+const values = new List([bob, jo]);
+values.clear(); // returns an empty MutableList
+```
+
 ⇨ <code>contains</code>
 
 > Check if there's at least one element matching the given entry, if that's the case then returns `true`, else `false`.
