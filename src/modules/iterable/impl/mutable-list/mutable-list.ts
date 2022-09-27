@@ -15,6 +15,7 @@ import removeLastOperation from '../../operations/remove-last/remove-last.operat
 import removeOperation from '../../operations/remove/remove.operation';
 import reverseOperation from '../../operations/reverse/reverse.operation';
 import sortOperation from '../../operations/sort/sort.operation';
+import subListOperation from '../../operations/sub-list/sub-list.operation';
 import takeLastOperation from '../../operations/take-last/take-last.operation';
 import takeOperation from '../../operations/take/take.operation';
 import {List} from '../list/list';
@@ -229,6 +230,17 @@ export class MutableList<T> extends List<T> {
     clear(): MutableList<T> {
         clearOperation(this.values);
         return this;
+    }
+
+    /**
+     * Create a new list containing the elements between the given indexes.
+     *
+     * @param fromIndex Index at which extraction starts.
+     * @param toIndex Index at which extraction ends.
+     * @return a new {@link MutableList}.
+     */
+    subList(fromIndex?: number, toIndex?: number): MutableList<T> {
+        return new MutableList(subListOperation(this.values, fromIndex, toIndex));
     }
 
 }

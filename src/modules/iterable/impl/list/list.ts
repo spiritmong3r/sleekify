@@ -31,6 +31,7 @@ import reverseOperation from '../../operations/reverse/reverse.operation';
 import sizeOperation from '../../operations/size/size.operation';
 import someOperation from '../../operations/some/some.operation';
 import sortOperation from '../../operations/sort/sort.operation';
+import subListOperation from '../../operations/sub-list/sub-list.operation';
 import sumOperation from '../../operations/sum/sum.operation';
 import takeLastOperation from '../../operations/take-last/take-last.operation';
 import takeOperation from '../../operations/take/take.operation';
@@ -184,6 +185,17 @@ export class List<T> implements Iterable<T> {
      */
     dropLast(n: number): List<T> {
         return new List(dropLastOperation(this.values, n));
+    }
+
+    /**
+     * Create a new list containing the elements between the given indexes.
+     *
+     * @param fromIndex Index at which extraction starts.
+     * @param toIndex Index at which extraction ends.
+     * @return a new {@link List}.
+     */
+    subList(fromIndex?: number, toIndex?: number): List<T> {
+        return new List(subListOperation(this.values, fromIndex, toIndex));
     }
 
     /**

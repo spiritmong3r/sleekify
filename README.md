@@ -555,6 +555,19 @@ const values = new List([jo, bob]);
 values.sort((value) => value.age); // returns List([bob, jo])
 ```
 
+⇨ <code>subList</code>
+
+> Create a new list containing the elements between the given indexes.
+
+**example :**
+
+```ts
+const values = new List([1, 2, 3, 4, 5]);
+values.subList(1, 3); // returns List([2, 3]);
+values.subList(2); // returns List([3, 4, 5]);
+values.subList(-2); // returns List([4, 5]);
+```
+
 ⇨ <code>sum</code>
 
 > Calculate the sum of the array according to the selector if given.
@@ -1209,6 +1222,19 @@ const jo: Person = {name: 'Jo', age: 22};
 
 const values = new MutableList([jo, bob]);
 values.sort((value) => value.age); // returns MutableList([bob, jo])
+```
+
+⇨ <code>subList</code>
+
+> Create a new list containing the elements between the given indexes.
+
+**example :**
+
+```ts
+const values = new MutableList([1, 2, 3, 4, 5]);
+values.subList(1, 3); // returns MutableList([2, 3]);
+values.subList(2); // returns MutableList([3, 4, 5]);
+values.subList(-2); // returns MutableList([4, 5]);
 ```
 
 ⇨ <code>sum</code>

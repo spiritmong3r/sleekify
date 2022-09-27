@@ -17,6 +17,7 @@ import * as removeLastOperation from '../../operations/remove-last/remove-last.o
 import * as removeOperation from '../../operations/remove/remove.operation';
 import * as reverseOperation from '../../operations/reverse/reverse.operation';
 import * as sortOperation from '../../operations/sort/sort.operation';
+import * as subListOperation from '../../operations/sub-list/sub-list.operation';
 import * as takeLastOperation from '../../operations/take-last/take-last.operation';
 import * as takeOperation from '../../operations/take/take.operation';
 import {MutableList} from './mutable-list';
@@ -374,6 +375,22 @@ describe('MutableList', () => {
             // THEN
             expect(result.size()).toEqual(0);
             expect(clearOperation.default).toHaveBeenCalled();
+        });
+    });
+
+    describe('subList', () => {
+        it('call the subListOperation class', () => {
+            // GIVEN
+            const list = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8']);
+            jest.spyOn(subListOperation, 'default');
+
+            // WHEN
+            const result = list.subList(1, 4);
+
+            // THEN
+            const expected = new MutableList(['2', '3', '4']);
+            expect(result).toEqual(expected);
+            expect(subListOperation.default).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], 1, 4);
         });
     });
 });

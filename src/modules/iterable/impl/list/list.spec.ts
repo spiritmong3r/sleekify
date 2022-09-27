@@ -33,6 +33,7 @@ import * as reverseOperation from '../../operations/reverse/reverse.operation';
 import * as sizeOperation from '../../operations/size/size.operation';
 import * as someOperation from '../../operations/some/some.operation';
 import * as sortOperation from '../../operations/sort/sort.operation';
+import * as subListOperation from '../../operations/sub-list/sub-list.operation';
 import * as sumOperation from '../../operations/sum/sum.operation';
 import * as takeLastOperation from '../../operations/take-last/take-last.operation';
 import * as takeOperation from '../../operations/take/take.operation';
@@ -508,6 +509,22 @@ describe('List', () => {
             expect(list.get(0) === bob).toBeTruthy();
             expect(list.get(1) === jo).toBeTruthy();
             expect(list.get(2) === jane).toBeTruthy();
+        });
+    });
+
+    describe('subList', () => {
+        it('call the subListOperation class', () => {
+            // GIVEN
+            const list = new List(['1', '2', '3', '4', '5', '6', '7', '8']);
+            jest.spyOn(subListOperation, 'default');
+
+            // WHEN
+            const result = list.subList(1, 4);
+
+            // THEN
+            const expected = new List(['2', '3', '4']);
+            expect(result).toEqual(expected);
+            expect(subListOperation.default).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], 1, 4);
         });
     });
 
