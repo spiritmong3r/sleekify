@@ -314,6 +314,18 @@ values.groupBy((value) => value.age);
 // ])
 ```
 
+⇨ <code>indexOf</code>
+
+> Find the first index at which a given element can be found in the array
+
+**example :**
+
+```ts
+const values = new List([1, 2, 3, 4, 5]);
+values.indexOf(5); // returns 1
+values.indexOf(11); // returns -1
+```
+
 ⇨ <code>isEmpty</code>
 
 > Check if the List is empty or not
