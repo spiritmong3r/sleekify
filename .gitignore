@@ -5,3 +5,4 @@
 /dist/
 /.stryker-tmp/
 /reports/mutation/
+/publisher.js
