@@ -322,7 +322,7 @@ values.groupBy((value) => value.age);
 
 ```ts
 const values = new List([1, 2, 3, 4, 5]);
-values.indexOf(5); // returns 1
+values.indexOf(5); // returns 4
 values.indexOf(11); // returns -1
 ```
 
