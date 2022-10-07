@@ -1348,12 +1348,9 @@ It can also be used without argument. In this case it is similar to the <code>if
 const colorName = getRandomColor();
 
 const color = when(colorName, [
-    'orange',
-    () => new Orange(),
-    ['red', 'redish'],
-    () => new Red(),
-    'green',
-    () => new Green(),
+    'orange', () => new Orange(),
+    ['red', 'redish'], () => new Red(),
+    'green', () => new Green(),
     () => undefined, // default value
 ]);
 ```
@@ -1366,12 +1363,9 @@ const darkColorName = getRandomColor();
 const lightColorName = getRandomColor();
 
 const color = when([
-    darkColorName === 'black',
-    () => new Black(),
-    lightColorName === 'white',
-    () => new White(),
-    lightColorName === 'yellow',
-    () => new Yellow(),
+    darkColorName === 'black', () => new Black(),
+    lightColorName === 'white', () => new White(),
+    lightColorName === 'yellow', () => new Yellow(),
     () => undefined, // default value
 ]);
 ```
@@ -1393,7 +1387,12 @@ const color = when([
 ```ts
 const colorName = getRandomColor();
 
-const color = when(colorName, ['orange', () => new Orange(), ['red', 'redish'], () => new Red(), 'green', () => new Green(), () => undefined]);
+const color = when(colorName, [
+    'orange', () => new Orange(),
+    ['red', 'redish'], () => new Red(),
+    'green', () => new Green(),
+    () => undefined
+]);
 ```
 
 </td>
