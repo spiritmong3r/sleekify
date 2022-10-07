@@ -59,6 +59,10 @@
   ],
   "keywords": [
     "list",
+    "mutable",
+    "immutable",
+    "iterable operations",
+    "fluent",
     "util",
     "functional"
   ]
