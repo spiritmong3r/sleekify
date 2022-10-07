@@ -1,13 +1,13 @@
-import { PersonMock } from '../../../../test/mocks/person.mock';
-import lastOrNullOperation from './last-or-null.operation';
+import {PersonMock} from '../../../../test/mocks/person.mock';
+import firstOrUndefinedOperation from './first-or-undefined.operation';
 
-describe('lastOrNullOperation', () => {
+describe('firstOrUndefinedOperation', () => {
     it('given an empty array and no predicate, return undefined', () => {
         // GIVEN
         const values: any[] = [];
 
         // WHEN
-        const result = lastOrNullOperation(values);
+        const result = firstOrUndefinedOperation(values);
 
         // THEN
         expect(result).toBeUndefined();
@@ -18,7 +18,7 @@ describe('lastOrNullOperation', () => {
         const values: any[] = [];
 
         // WHEN
-        const result = lastOrNullOperation(values, (it) => it);
+        const result = firstOrUndefinedOperation(values, (it) => it);
 
         // THEN
         expect(result).toBeUndefined();
@@ -29,45 +29,45 @@ describe('lastOrNullOperation', () => {
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        const result = lastOrNullOperation(values, (it) => it === 0);
+        const result = firstOrUndefinedOperation(values, (it) => it === 0);
 
         // THEN
         expect(result).toBeUndefined();
     });
 
-    it('given an array of numbers and no predicate, return the last value', () => {
+    it('given an array of numbers and no predicate, return the first value', () => {
         // GIVEN
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        const result = lastOrNullOperation(values);
+        const result = firstOrUndefinedOperation(values);
 
         // THEN
-        const expected = 5;
+        const expected = 1;
         expect(result).toEqual(expected);
     });
 
-    it('given an array of numbers, return the last value matching the predicate', () => {
+    it('given an array of numbers, return the first value matching the predicate', () => {
         // GIVEN
         const values = [1, 2, 3, 4, 5];
 
         // WHEN
-        const result = lastOrNullOperation(values, (it) => it === 3);
+        const result = firstOrUndefinedOperation(values, (it) => it === 3);
 
         // THEN
         const expected = 3;
         expect(result).toEqual(expected);
     });
 
-    it('given an array of persons, return the last person matching the predicate', () => {
+    it('given an array of persons, return the first person matching the predicate', () => {
         // GIVEN
-        const values = [PersonMock.bob(), PersonMock.jo(), PersonMock.jane(), PersonMock.ed()];
+        const values = [PersonMock.bob(), PersonMock.jo(), PersonMock.jane()];
 
         // WHEN
-        const result = lastOrNullOperation(values, (it) => it.age === 19);
+        const result = firstOrUndefinedOperation(values, (it) => it.age === 24);
 
         // THEN
-        const expected = PersonMock.ed();
+        const expected = PersonMock.jane();
         expect(result).toEqual(expected);
     });
 });

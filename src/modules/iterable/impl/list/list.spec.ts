@@ -11,7 +11,7 @@ import * as dropLastOperation from '../../operations/drop-last/drop-last.operati
 import * as dropOperation from '../../operations/drop/drop.operation';
 import * as filterOperation from '../../operations/filter/filter.operation';
 import * as findOperation from '../../operations/find/find.operation';
-import * as firstOrNullOperation from '../../operations/first-or-null/first-or-null.operation';
+import * as firstOrUndefinedOperation from '../../operations/first-or-undefined/first-or-undefined.operation';
 import * as firstOperation from '../../operations/first/first.operation';
 import * as flatMapOperation from '../../operations/flatmap/flat-map.operation';
 import * as flattenOperation from '../../operations/flatten/flatten.operation';
@@ -21,7 +21,7 @@ import * as groupByOperation from '../../operations/group-by/group-by.operation'
 import * as indexOfOperation from '../../operations/index-of/index-of.operation';
 import * as isEmptyOperation from '../../operations/is-empty/is-empty.operation';
 import * as joinOperation from '../../operations/join/join.operation';
-import * as lastOrNullOperation from '../../operations/last-or-null/last-or-null.operation';
+import * as lastOrUndefinedOperation from '../../operations/last-or-undefined/last-or-undefined.operation';
 import * as lastOperation from '../../operations/last/last.operation';
 import * as mapOperation from '../../operations/map/map.operation';
 import * as maxOperation from '../../operations/max/max.operation';
@@ -609,47 +609,47 @@ describe('List', () => {
         });
     });
 
-    describe('firstOrNull', () => {
-        it('call the FirstOrNull operation class with a predicate', () => {
+    describe('firstOrUndefinedOperation', () => {
+        it('call the FirstOrUndefined operation class with a predicate', () => {
             // GIVEN
             const list = new List(['1', '2', '3', '4', '5', '6', '7', '8']);
             const predicate = () => true;
-            jest.spyOn(firstOrNullOperation, 'default');
+            jest.spyOn(firstOrUndefinedOperation, 'default');
 
             // WHEN
-            const result = list.firstOrNull(predicate);
+            const result = list.firstOrUndefined(predicate);
 
             // THEN
             const expected = '1';
             expect(result).toEqual(expected);
-            expect(firstOrNullOperation.default).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], predicate);
+            expect(firstOrUndefinedOperation.default).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], predicate);
         });
 
-        it('call the FirstOrNull operation class without predicate', () => {
+        it('call the FirstOrUndefined operation class without predicate', () => {
             // GIVEN
             const list = new List(['1', '2', '3', '4', '5', '6', '7', '8']);
-            jest.spyOn(firstOrNullOperation, 'default');
+            jest.spyOn(firstOrUndefinedOperation, 'default');
 
             // WHEN
-            const result = list.firstOrNull();
+            const result = list.firstOrUndefined();
 
             // THEN
             const expected = '1';
             expect(result).toEqual(expected);
-            expect(firstOrNullOperation.default).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], undefined);
+            expect(firstOrUndefinedOperation.default).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], undefined);
         });
 
-        it('call the FirstOrNull operation class, return undefined', () => {
+        it('call the FirstOrUndefined operation class, return undefined', () => {
             // GIVEN
             const list = new List();
-            jest.spyOn(firstOrNullOperation, 'default');
+            jest.spyOn(firstOrUndefinedOperation, 'default');
 
             // WHEN
-            const result = list.firstOrNull();
+            const result = list.firstOrUndefined();
 
             // THEN
             expect(result).toBeUndefined();
-            expect(firstOrNullOperation.default).toHaveBeenCalledWith([], undefined);
+            expect(firstOrUndefinedOperation.default).toHaveBeenCalledWith([], undefined);
         });
     });
 
@@ -684,47 +684,47 @@ describe('List', () => {
         });
     });
 
-    describe('lastOrNull', () => {
-        it('call the LastOrNull operation class with a predicate', () => {
+    describe('lastOrUndefined', () => {
+        it('call the LastOrUndefined operation class with a predicate', () => {
             // GIVEN
             const list = new List(['1', '2', '3', '4', '5', '6', '7', '8']);
             const predicate = () => true;
-            jest.spyOn(lastOrNullOperation, 'default');
+            jest.spyOn(lastOrUndefinedOperation, 'default');
 
             // WHEN
-            const result = list.lastOrNull(predicate);
+            const result = list.lastOrUndefined(predicate);
 
             // THEN
             const expected = '8';
             expect(result).toEqual(expected);
-            expect(lastOrNullOperation.default).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], predicate);
+            expect(lastOrUndefinedOperation.default).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], predicate);
         });
 
-        it('call the LastOrNull operation class without predicate', () => {
+        it('call the LastOrUndefined operation class without predicate', () => {
             // GIVEN
             const list = new List(['1', '2', '3', '4', '5', '6', '7', '8']);
-            jest.spyOn(lastOrNullOperation, 'default');
+            jest.spyOn(lastOrUndefinedOperation, 'default');
 
             // WHEN
-            const result = list.lastOrNull();
+            const result = list.lastOrUndefined();
 
             // THEN
             const expected = '8';
             expect(result).toEqual(expected);
-            expect(lastOrNullOperation.default).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], undefined);
+            expect(lastOrUndefinedOperation.default).toHaveBeenCalledWith(['1', '2', '3', '4', '5', '6', '7', '8'], undefined);
         });
 
-        it('call the LastOrNull operation class, return undefined', () => {
+        it('call the LastOrUndefined operation class, return undefined', () => {
             // GIVEN
             const list = new List();
-            jest.spyOn(lastOrNullOperation, 'default');
+            jest.spyOn(lastOrUndefinedOperation, 'default');
 
             // WHEN
-            const result = list.lastOrNull();
+            const result = list.lastOrUndefined();
 
             // THEN
             expect(result).toBeUndefined();
-            expect(lastOrNullOperation.default).toHaveBeenCalledWith([], undefined);
+            expect(lastOrUndefinedOperation.default).toHaveBeenCalledWith([], undefined);
         });
     });
 

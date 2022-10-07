@@ -9,7 +9,7 @@ import dropLastOperation from '../../operations/drop-last/drop-last.operation';
 import dropOperation from '../../operations/drop/drop.operation';
 import filterOperation from '../../operations/filter/filter.operation';
 import findOperation from '../../operations/find/find.operation';
-import firstOrNullOperation from '../../operations/first-or-null/first-or-null.operation';
+import firstOrUndefinedOperation from '../../operations/first-or-undefined/first-or-undefined.operation';
 import firstOperation from '../../operations/first/first.operation';
 import flatMapOperation from '../../operations/flatmap/flat-map.operation';
 import flattenOperation from '../../operations/flatten/flatten.operation';
@@ -19,7 +19,7 @@ import groupByOperation from '../../operations/group-by/group-by.operation';
 import indexOfOperation from '../../operations/index-of/index-of.operation';
 import isEmptyOperation from '../../operations/is-empty/is-empty.operation';
 import joinOperation from '../../operations/join/join.operation';
-import lastOrNullOperation from '../../operations/last-or-null/last-or-null.operation';
+import lastOrUndefinedOperation from '../../operations/last-or-undefined/last-or-undefined.operation';
 import lastOperation from '../../operations/last/last.operation';
 import mapOperation from '../../operations/map/map.operation';
 import maxOperation from '../../operations/max/max.operation';
@@ -234,8 +234,8 @@ export class List<T> implements Iterable<T> {
      * @param predicate The predicate to apply, optional.
      * @return The element or `undefined` if no matching.
      */
-    firstOrNull(predicate?: (value: T, index: number, array: T[]) => boolean): T | undefined {
-        return firstOrNullOperation(this.values, predicate);
+    firstOrUndefined(predicate?: (value: T, index: number, array: T[]) => boolean): T | undefined {
+        return firstOrUndefinedOperation(this.values, predicate);
     }
 
     /**
@@ -254,8 +254,8 @@ export class List<T> implements Iterable<T> {
      * @param predicate The predicate to apply, optional.
      * @return The element or `undefined` if no matching.
      */
-    lastOrNull(predicate?: (value: T, index: number, array: T[]) => boolean): T | undefined {
-        return lastOrNullOperation(this.values, predicate);
+    lastOrUndefined(predicate?: (value: T, index: number, array: T[]) => boolean): T | undefined {
+        return lastOrUndefinedOperation(this.values, predicate);
     }
 
     /**

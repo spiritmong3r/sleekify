@@ -219,7 +219,7 @@ values.first((value) => value.name === 'jo'); // returns jo
 values.first((value) => value.name === 'jane'); // throw an error 'No value matches the predicate'
 ```
 
-⇨ <code>firstOrNull</code>
+⇨ <code>firstOrUndefined</code>
 
 > Returns the first element matching the predicate, alias for `find` function
 
@@ -231,8 +231,8 @@ const jo: Person = {name: 'Jo', age: 22};
 const jo1: Person = {name: 'Jo', age: 23};
 
 const values = new List([bob, jo, jo1]);
-values.first((value) => value.name === 'jo'); // returns jo
-values.first((value) => value.name === 'jane'); // returns undefined
+values.firstOrUndefined((value) => value.name === 'jo'); // returns jo
+values.firstOrUndefined((value) => value.name === 'jane'); // returns undefined
 ```
 
 ⇨ <code>flatMap</code>
@@ -384,7 +384,7 @@ values.last((value) => value.name === 'jo'); // returns jo1
 values.last((value) => value.name === 'jane'); // throw an error 'No value matches the predicate'
 ```
 
-⇨ <code>lastOrNull</code>
+⇨ <code>lastOrUndefined</code>
 
 > Returns the last element matching the predicate, or `undefined` if no matching
 
@@ -396,8 +396,8 @@ const jo: Person = {name: 'Jo', age: 22};
 const jo1: Person = {name: 'Jo', age: 23};
 
 const values = new List([bob, jo, jo1]);
-values.last((value) => value.name === 'jo'); // returns jo1
-values.last((value) => value.name === 'jane'); // returns undefined
+values.lastOrUndefined((value) => value.name === 'jo'); // returns jo1
+values.lastOrUndefined((value) => value.name === 'jane'); // returns undefined
 ```
 
 ⇨ <code>map</code>
@@ -828,7 +828,7 @@ values.first((value) => value.name === 'jo'); // returns jo
 values.first((value) => value.name === 'jane'); // throw an error 'No value matches the predicate'
 ```
 
-⇨ <code>firstOrNull</code>
+⇨ <code>firstOrUndefined</code>
 
 > Returns the first element matching the predicate, alias for `find` function
 
@@ -840,8 +840,8 @@ const jo: Person = {name: 'Jo', age: 22};
 const jo1: Person = {name: 'Jo', age: 23};
 
 const values = new MutableList([bob, jo, jo1]);
-values.first((value) => value.name === 'jo'); // returns jo
-values.first((value) => value.name === 'jane'); // returns undefined
+values.firstOrUndefined((value) => value.name === 'jo'); // returns jo
+values.firstOrUndefined((value) => value.name === 'jane'); // returns undefined
 ```
 
 ⇨ <code>flatMap</code>
@@ -981,7 +981,7 @@ values.last((value) => value.name === 'jo'); // returns jo1
 values.last((value) => value.name === 'jane'); // throw an error 'No value matches the predicate'
 ```
 
-⇨ <code>lastOrNull</code>
+⇨ <code>lastOrUndefined</code>
 
 > Returns the last element matching the predicate, or `undefined` if no matching
 
@@ -993,8 +993,8 @@ const jo: Person = {name: 'Jo', age: 22};
 const jo1: Person = {name: 'Jo', age: 23};
 
 const values = new MutableList([bob, jo, jo1]);
-values.last((value) => value.name === 'jo'); // returns jo1
-values.last((value) => value.name === 'jane'); // returns undefined
+values.lastOrUndefined((value) => value.name === 'jo'); // returns jo1
+values.lastOrUndefined((value) => value.name === 'jane'); // returns undefined
 ```
 
 ⇨ <code>map</code>

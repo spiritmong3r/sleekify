@@ -1,6 +1,6 @@
-import { List } from '../modules/iterable/impl/list/list';
-import { PersonMock } from './mocks/person.mock';
-import { Person } from './models/person';
+import {List} from '../modules/iterable/impl/list/list';
+import {PersonMock} from './mocks/person.mock';
+import {Person} from './models/person';
 
 describe.skip('performance', () => {
     it('filter', () => {
@@ -261,13 +261,13 @@ describe.skip('performance', () => {
         console.log(`sleekify method => ${endTime} - ${startTime} = ${timeElapsed} ms`);
     });
 
-    it('firstOrNull', () => {
+    it('firstOrUndefinedOperation', () => {
         // GIVEN
         const values = new List<Person>(...[Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob())], PersonMock.jo());
         const startTime = new Date().getTime();
 
         // WHEN
-        values.firstOrNull((it) => it.firstName === 'Jo');
+        values.firstOrUndefined((it) => it.firstName === 'Jo');
 
         // THEN
         const endTime = new Date().getTime();
@@ -289,13 +289,13 @@ describe.skip('performance', () => {
         console.log(`sleekify method => ${endTime} - ${startTime} = ${timeElapsed} ms`);
     });
 
-    it('lastOrNull', () => {
+    it('lastOrUndefined', () => {
         // GIVEN
         const values = new List<Person>(Array.from(Array(10_000_000).keys()).map(() => PersonMock.bob()));
         const startTime = new Date().getTime();
 
         // WHEN
-        values.lastOrNull((it) => it.firstName === 'Bob');
+        values.lastOrUndefined((it) => it.firstName === 'Bob');
 
         // THEN
         const endTime = new Date().getTime();
