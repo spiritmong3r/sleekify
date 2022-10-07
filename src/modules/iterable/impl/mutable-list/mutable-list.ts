@@ -85,7 +85,7 @@ export class MutableList<T> extends List<T> {
     /**
      * Remove all elements matching the predicate from current list.
      *
-     * @param predicate Predicate to apply.
+     * @param predicate Predicate to apply on each element.
      * @return `this`, a {@link MutableList}.
      */
     removeAll(predicate: (value: T, index: number, array: T[]) => boolean): MutableList<T>;
@@ -97,6 +97,7 @@ export class MutableList<T> extends List<T> {
      * @return `this`, a {@link MutableList}.
      */
     removeAll(element: T): MutableList<T>;
+
     removeAll(arg: T | ((value: T, index: number, array: T[]) => boolean)): MutableList<T> {
         removeAllOperation(this.values, arg);
         return this;
@@ -105,7 +106,7 @@ export class MutableList<T> extends List<T> {
     /**
      * Create a new list with all elements matching the given predicate.
      *
-     * @param predicate Predicate to apply.
+     * @param predicate Predicate to apply on each element.
      * @return a new {@link MutableList}.
      */
     filter(predicate: (value: T, index: number, array: T[]) => boolean): MutableList<T> {
@@ -115,7 +116,7 @@ export class MutableList<T> extends List<T> {
     /**
      * Create a new list where a given action is applied on every elements, the action silently returns `this`.
      *
-     * @param action Action to apply on each element.
+     * @param action Action to apply on each element on each element.
      * @return a new {@link MutableList}.
      */
     onEach<U>(action: (value: T, index: number, array: T[]) => void): MutableList<T> {
@@ -125,7 +126,7 @@ export class MutableList<T> extends List<T> {
     /**
      * Create a new list where a given transformer is applied on every elements.
      *
-     * @param transformer Transformer to apply.
+     * @param transformer Transformer to apply on each element.
      * @return a new {@link MutableList}.
      */
     map<U>(transformer: (value: T, index: number, array: T[]) => U): MutableList<U> {
@@ -135,7 +136,7 @@ export class MutableList<T> extends List<T> {
     /**
      * Create a new list, apply the given transformer and then flatten (1 level deep) the results.
      *
-     * @param transformer
+     * @param transformer Transformer to apply on each element.
      * @return a new {@link MutableList}.
      */
     flatMap<U, This = undefined>(transformer: (this: This, value: T, index: number, array: T[]) => U | U[]): MutableList<U> {
@@ -165,7 +166,7 @@ export class MutableList<T> extends List<T> {
     /**
      * Create a new list where elements are sorted according to the selector if given.
      *
-     * @param selector Selector to apply.
+     * @param selector Selector to apply on each element, optionnal.
      * @return a new {@link MutableList}.
      */
     sort<U>(selector?: (value: T) => U): MutableList<T> {
@@ -175,7 +176,7 @@ export class MutableList<T> extends List<T> {
     /**
      * Create a new list without any duplicates. If a predicate is given then only duplicates among the matching elements will be removed.
      *
-     * @param selector Selector to apply.
+     * @param selector Selector to apply on each element, optionnal.
      * @return a new {@link MutableList}.
      */
     distinct<U>(selector?: (value: T) => U): MutableList<T> {
@@ -235,8 +236,8 @@ export class MutableList<T> extends List<T> {
     /**
      * Create a new list containing the elements between the given indexes.
      *
-     * @param fromIndex Index at which extraction starts.
-     * @param toIndex Index at which extraction ends.
+     * @param fromIndex Index at which extraction starts, optionnal.
+     * @param toIndex Index at which extraction ends, optionnal.
      * @return a new {@link MutableList}.
      */
     subList(fromIndex?: number, toIndex?: number): MutableList<T> {

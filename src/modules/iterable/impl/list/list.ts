@@ -61,7 +61,7 @@ export class List<T> implements Iterable<T> {
     /**
      * Create a new list with all elements matching the given predicate.
      *
-     * @param predicate Predicate to apply.
+     * @param predicate Predicate to apply o each element.
      * @return a new {@link List}.
      */
     filter(predicate: (value: T, index: number, array: T[]) => boolean): List<T> {
@@ -90,7 +90,7 @@ export class List<T> implements Iterable<T> {
     /**
      * Create a new list where a given transformer is applied on every elements.
      *
-     * @param transformer Transformer to apply.
+     * @param transformer Transformer to apply on each element.
      * @return a new {@link List}.
      */
     map<U>(transformer: (value: T, index: number, array: T[]) => U): List<U> {
@@ -100,7 +100,7 @@ export class List<T> implements Iterable<T> {
     /**
      * Create a new list, apply the given transformer and then flatten (1 level deep) the results.
      *
-     * @param transformer
+     * @param transformer Transformer to apply on each element.
      * @return a new {@link List}.
      */
     flatMap<U, This = undefined>(transformer: (this: This, value: T, index: number, array: T[]) => U | U[]): List<U> {
@@ -130,7 +130,7 @@ export class List<T> implements Iterable<T> {
     /**
      * Create a new list where elements are sorted according to the selector if given.
      *
-     * @param selector Selector to apply.
+     * @param selector Selector to apply on each element, optionnal.
      * @return a new {@link List}.
      */
     sort<U>(selector?: (value: T) => U): List<T> {
@@ -140,7 +140,7 @@ export class List<T> implements Iterable<T> {
     /**
      * Create a new list without any duplicates. If a predicate is given then only duplicates among the matching elements will be removed.
      *
-     * @param selector Selector to apply.
+     * @param selector Selector to apply on each element, optionnal.
      * @return a new {@link List}.
      */
     distinct<U>(selector?: (value: T) => U): List<T> {
@@ -190,8 +190,8 @@ export class List<T> implements Iterable<T> {
     /**
      * Create a new list containing the elements between the given indexes.
      *
-     * @param fromIndex Index at which extraction starts.
-     * @param toIndex Index at which extraction ends.
+     * @param fromIndex Index at which extraction starts, optionnal.
+     * @param toIndex Index at which extraction ends, optionnal.
      * @return a new {@link List}.
      */
     subList(fromIndex?: number, toIndex?: number): List<T> {
@@ -211,7 +211,7 @@ export class List<T> implements Iterable<T> {
     /**
      * Get the first element matching the predicate.
      *
-     * @param predicate The predicate to apply.
+     * @param predicate The predicate to apply on each element.
      * @return The element or `undefined` if no matching.
      */
     find(predicate: (value: T, index: number, array: T[]) => boolean): T | undefined {
@@ -221,7 +221,7 @@ export class List<T> implements Iterable<T> {
     /**
      * Get the first element matching the predicate, throw an error if there's not matching.
      *
-     * @param predicate The predicate to apply, optional.
+     * @param predicate The predicate to apply on each element, optional.
      * @return The element.
      */
     first(predicate?: (value: T, index: number, array: T[]) => boolean): T {
@@ -231,7 +231,7 @@ export class List<T> implements Iterable<T> {
     /**
      * Get the first element matching the predicate, alias for `find` function.
      *
-     * @param predicate The predicate to apply, optional.
+     * @param predicate The predicate to apply on each element, optional.
      * @return The element or `undefined` if no matching.
      */
     firstOrUndefined(predicate?: (value: T, index: number, array: T[]) => boolean): T | undefined {
@@ -241,7 +241,7 @@ export class List<T> implements Iterable<T> {
     /**
      * Get the last element matching the predicate, throw an error if there's not matching.
      *
-     * @param predicate The predicate to apply, optional.
+     * @param predicate The predicate to apply on each element, optional.
      * @return The element.
      */
     last(predicate?: (value: T, index: number, array: T[]) => boolean): T {
@@ -251,7 +251,7 @@ export class List<T> implements Iterable<T> {
     /**
      * Get the last element matching the predicate, or `undefined` if no matching.
      *
-     * @param predicate The predicate to apply, optional.
+     * @param predicate The predicate to apply on each element, optional.
      * @return The element or `undefined` if no matching.
      */
     lastOrUndefined(predicate?: (value: T, index: number, array: T[]) => boolean): T | undefined {
@@ -261,7 +261,7 @@ export class List<T> implements Iterable<T> {
     /**
      * Get a value obtained after an operation (accumulator) is applied on every element of the List.
      *
-     * @param operation The operation to apply.
+     * @param operation The operation to apply on each element.
      * @param initialValue Value to start from.
      * @return An objet of the same type as `initialValue`.
      */
@@ -272,7 +272,7 @@ export class List<T> implements Iterable<T> {
     /**
      * Build a Map object where the key is provided by the given selector and value is an array of all the elements matching this key
      *
-     * @param selector Selector to apply.
+     * @param selector Selector to apply on each element.
      * @return an objet `Map`.
      */
     groupBy<K>(selector: (value: T) => K): Map<K, T[]> {
@@ -284,7 +284,7 @@ export class List<T> implements Iterable<T> {
      *
      * If no selector, then just returns the min among all values. The array must consist of numbers only, otherwise an error is thrown.
      *
-     * @param selector The selector to apply.
+     * @param selector The selector to apply on each element, optionnal.
      * @return An element of the list or `undefined` if the list is empty.
      */
     min<U>(selector?: (value: T) => U): T | undefined {
@@ -296,7 +296,7 @@ export class List<T> implements Iterable<T> {
      *
      * If no selector, then just returns the max among all values. The array must consist of numbers only, otherwise an error is thrown.
      *
-     * @param selector The selector to apply.
+     * @param selector The selector to apply on each element, optionnal.
      * @return An element of the list or `undefined` if the list is empty.
      */
     max<U>(selector?: (value: T) => U): T | undefined {
@@ -306,7 +306,7 @@ export class List<T> implements Iterable<T> {
     /**
      * Check if there's at least one element matching the predicate.
      *
-     * @param predicate The predicate to apply.
+     * @param predicate The predicate to apply on each element.
      * @return `true` if there's at least one matching, `false` otherwise.
      */
     some(predicate: (value: T, index: number, array: T[]) => boolean): boolean {
@@ -318,7 +318,7 @@ export class List<T> implements Iterable<T> {
      *
      * Alias for `some` function.
      *
-     * @param predicate The predicate to apply.
+     * @param predicate The predicate to apply on each element.
      * @return `true` if there's at least one matching, `false` otherwise.
      */
     any(predicate: (value: T, index: number, array: T[]) => boolean): boolean {
@@ -328,7 +328,7 @@ export class List<T> implements Iterable<T> {
     /**
      * Check if there's no element matching the predicate.
      *
-     * @param predicate The predicate to apply.
+     * @param predicate The predicate to apply on each element.
      * @return `true` if no matching, `false` otherwise.
      */
     none(predicate: (value: T, index: number, array: T[]) => boolean): boolean {
@@ -338,7 +338,7 @@ export class List<T> implements Iterable<T> {
     /**
      * Check if all elements are matching the predicate.
      *
-     * @param predicate The predicate to apply.
+     * @param predicate The predicate to apply on each element.
      * @return `true` if every element are matching, `false` otherwise.
      */
     all(predicate: (value: T, index: number, array: T[]) => boolean): boolean {
@@ -348,7 +348,7 @@ export class List<T> implements Iterable<T> {
     /**
      * Check if there's at least one element matching the given entry.
      *
-     * @param element
+     * @param element Element to check.
      * @return `true` if there's at least a matching, `false` otherwise.
      */
     contains(element: T): boolean {
@@ -358,7 +358,7 @@ export class List<T> implements Iterable<T> {
     /**
      * Check if the given entries are presents in the list.
      *
-     * @param elements
+     * @param elements Elements to check.
      * @return `true` if all entries matching, `false` otherwise.
      */
     containsAll(elements: T[]): boolean {
@@ -387,7 +387,7 @@ export class List<T> implements Iterable<T> {
      * Build a string resulting from converting each element of the list to a string and then concatenating them together.
      *
      * @param props Properties to apply, optional.
-     * @param selector Selector to apply, optional.
+     * @param selector Selector to apply on each element, optional.
      * @return a string.
      */
     join<U>(props?: JoinProps, selector?: (value: T) => U): string {
@@ -399,7 +399,7 @@ export class List<T> implements Iterable<T> {
      *
      * If no selector is given, the list must be composed of numbers otherwise an error will be thrown.
      *
-     * @param selector The selector to apply, optional.
+     * @param selector The selector to apply on each element, optional.
      * @eturn a number.
      */
     sum<U>(selector?: (value: T) => U): number {
@@ -409,7 +409,7 @@ export class List<T> implements Iterable<T> {
     /**
      * Count the number of elements matching the given predicate. If no predicate then behaves just like `length`.
      *
-     * @param predicate The predicate to apply, optional.
+     * @param predicate The predicate to apply on each element, optional.
      * @eturn a number.
      */
     count(predicate?: (value: T, index: number, array: T[]) => boolean): number {
