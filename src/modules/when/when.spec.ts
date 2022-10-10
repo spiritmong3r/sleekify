@@ -123,7 +123,7 @@ describe('when', () => {
     });
 
     describe('without input and branches with an array as value', () => {
-        it('given an input, a default value and a matching value, should return branch with matching value', () => {
+        it('given a default value and a matching value, should return branch with matching value', () => {
             // GIVEN
             const getValue = (): number => 5;
 
@@ -137,7 +137,7 @@ describe('when', () => {
             expect(result).toEqual('Hello');
         });
 
-        it('given an input, a default value and no matching value, should return default value', () => {
+        it('given a default value and no matching value, should return default value', () => {
             // GIVEN
             const getValue = (): number => 6;
 
@@ -151,7 +151,7 @@ describe('when', () => {
             expect(result).toEqual('Nothing !');
         });
 
-        it('given an input, no default value and no matching value, should return undefined', () => {
+        it('given no default value and no matching value, should return undefined', () => {
             // GIVEN
             const getValue = (): number => 6;
 
@@ -164,7 +164,7 @@ describe('when', () => {
             expect(result).toBeUndefined();
         });
 
-        it('given an input, no default value and a matching value, should return branch with matching value', () => {
+        it('given no default value and a matching value, should return branch with matching value', () => {
             // GIVEN
             const getValue = (): number => 5;
 

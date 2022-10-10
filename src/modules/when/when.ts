@@ -43,7 +43,7 @@ export function when<I extends boolean, R>(statements: Statement<I, R>): R | und
  *
  * ```
  *
- * @param input
+ * @param input Value compared.
  * @param statements Array of pairs of value and function.
  * @return An object of type `R` or `undefined`.
  */
