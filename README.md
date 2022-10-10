@@ -9,7 +9,7 @@
 
 <div align="center">
 
-[![npm version](https://img.shields.io/badge/npm-v1.0.12-blue?style=flat-square)](https://www.npmjs.com/package/sleekify)
+[![npm version](https://img.shields.io/badge/npm-v1.0.13-blue?style=flat-square)](https://www.npmjs.com/package/sleekify)
 [![codecov](https://codecov.io/gh/spiritmong3r/sleekify/branch/main/graph/badge.svg?token=HLBF8VHIGS)](https://codecov.io/gh/spiritmong3r/sleekify)
 [![spiritmong3r](https://circleci.com/gh/spiritmong3r/sleekify.svg?style=shield)](https://app.circleci.com/pipelines/github/spiritmong3r/sleekify)
 
