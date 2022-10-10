@@ -38,7 +38,6 @@ import * as sumOperation from '../../operations/sum/sum.operation';
 import * as takeLastOperation from '../../operations/take-last/take-last.operation';
 import * as takeOperation from '../../operations/take/take.operation';
 import * as toArrayOperation from '../../operations/to-array/to-array.operation';
-import {MutableList} from '../mutable-list/mutable-list';
 import {List} from './list';
 import restoreAllMocks = jest.restoreAllMocks;
 
@@ -1153,7 +1152,7 @@ describe('List', () => {
     describe('indexOf', () => {
         it('call the Clear operation class', () => {
             // GIVEN
-            const list = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8']);
+            const list = new List(['1', '2', '3', '4', '5', '6', '7', '8']);
             const value = '4';
             jest.spyOn(indexOfOperation, 'default');
 

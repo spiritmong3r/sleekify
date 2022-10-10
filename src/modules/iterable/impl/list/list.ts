@@ -51,10 +51,14 @@ export class List<T> implements Iterable<T> {
     [Symbol.iterator](): Iterator<T, T, T | undefined> {
         let position = 0;
         return {
-            next: (): IteratorResult<T, T> => ({
-                value: this.values[position++],
-                done: position === this.values.length - 1
-            })
+            next: (): IteratorResult<T, T> => {
+                const iterator: IteratorResult<T, T> = {
+                    value: this.values[position],
+                    done: this.values.length === 0 || position === this.values.length - 1
+                };
+                position++;
+                return iterator;
+            }
         };
     }
 

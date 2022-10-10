@@ -29,14 +29,14 @@ describe('MutableList', () => {
     describe('add', () => {
         it('add a new element to the array', () => {
             // GIVEN
-            const list = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8']);
+            const list = new MutableList();
             jest.spyOn(addOperation, 'default');
 
             // WHEN
             const result = list.add('9');
 
             // THEN
-            const expected = new MutableList(['1', '2', '3', '4', '5', '6', '7', '8', '9']);
+            const expected = new MutableList(['9']);
             expect(result).toEqual(expected);
             expect(addOperation.default).toHaveBeenCalled();
         });
@@ -373,7 +373,7 @@ describe('MutableList', () => {
             const result = list.clear();
 
             // THEN
-            expect(result.size()).toEqual(0);
+            expect(result).toEqual(new MutableList());
             expect(clearOperation.default).toHaveBeenCalled();
         });
     });
