@@ -55,8 +55,7 @@ export function when<I, R>(arg1: I | Statement<I, R>, arg2?: Statement<I, R>): R
     if (arg2) {
         const input = arg1 as I;
         statements = arg2;
-        isStatementToExecute = (index: number) =>
-            (Array.isArray(statements[index]) && (statements[index] as []).some((it) => it === input)) || statements[index] === input;
+        isStatementToExecute = (index: number) => (Array.isArray(statements[index]) && (statements[index] as []).some((it) => it === input)) || statements[index] === input;
     } else {
         statements = arg1 as Statement<I, R>;
         isStatementToExecute = (index: number) => (typeof statements[index] == 'boolean' ? !!statements[index] : false);
