@@ -3,7 +3,7 @@ import {Statement} from './models/statements';
 /**
  * Behaves like if/else conditionals, check every branch condition sequentially until `true` value is found and then execute the associated code.
  *
- * If no matching input, then execute the default value if there's one, otherwise return `undefined`.
+ * If no matching input, then execute the default branch if there's one, otherwise return `undefined`.
  *
  * Usage :
  * ```js
@@ -14,7 +14,7 @@ import {Statement} from './models/statements';
  *    darkColorName === 'black', () => new Black(),
  *    lightColorName === 'white', () => new White(),
  *    lightColorName === 'yellow', () => new Yellow(),
- *    () => undefined, // default value
+ *    () => undefined, // default branch
  *  ]);
  *
  * ```
@@ -26,7 +26,7 @@ export function when<I extends boolean, R>(statements: Statement<I, R>): R | und
 /**
  * Given an expression or value, check if there's a matching input and then execute the associated code.
  *
- * If no matching input, then execute the default value if there's one, otherwise return `undefined`
+ * If no matching input, then execute the default branch if there's one, otherwise return `undefined`
  *
  * Usage :
  * ```js
@@ -38,7 +38,7 @@ export function when<I extends boolean, R>(statements: Statement<I, R>): R | und
  *         const label = 'wrong'
  *         return `${label} !`
  *     },
- *     () => 'No matching'  // <== this is the default value, which is optional
+ *     () => 'No matching' // default branch
  *  ]);
  *
  * ```
