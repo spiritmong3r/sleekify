@@ -19,8 +19,8 @@ jobs:
       - run:
           command: yarn build
           name: Build app
-      - codecov/upload:
-          file: coverage/clover.xml
+#      - codecov/upload:
+#          file: coverage/clover.xml
   code-quality:
     machine:
       image: 'ubuntu-2004:current'
