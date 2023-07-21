@@ -2,7 +2,7 @@
 version: 2.1
 orbs:
   node: circleci/node@5.0.2
-  codecov: codecov/codecov@3.2.3
+#  codecov: codecov/codecov@3.2.3
   qodana: jetbrains/qodana@2023.2
 
 # Define a job to be invoked later in a workflow.
