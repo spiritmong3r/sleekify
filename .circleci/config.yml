@@ -20,7 +20,7 @@ jobs:
           command: yarn build
           name: Build app
       - store_artifacts:
-          path: /.qodana/code-coverage
+          path: /.qodana/code-coverage/lcov.info
 #      - codecov/upload:
 #          file: coverage/clover.xml
   code-quality:
