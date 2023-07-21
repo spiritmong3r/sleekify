@@ -50,7 +50,7 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
-    "coverageDirectory": "../.qodana/code-coverage/",
+    "coverageDirectory": "../.qodana/coverage-data/",
     "coverageReporters": ["lcovonly"],
     "collectCoverage": true,
     "testEnvironment": "node"
