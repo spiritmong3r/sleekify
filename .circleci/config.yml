@@ -14,16 +14,26 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
       - run:
-          command: yarn test
+          command: yarn coverage
           name: Run tests
       - run:
           command: yarn build
           name: Build app
       - codecov/upload:
           file: coverage/clover.xml
+  code-quality:
+    machine:
+      image: 'ubuntu-2004:current'
+    steps:
+      - checkout
+      - qodana/scan
 
 # Invoke jobs via workflows
 workflows:
   build_and_test-workflow:
     jobs:
       - build_and_test
+      - code-quality:
+          context: qodana
+          requires:
+            - build_and_test

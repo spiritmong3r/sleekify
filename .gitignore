@@ -6,3 +6,4 @@
 /.stryker-tmp/
 /reports/mutation/
 /publisher.js
+/.qodana/
